@@ -69,6 +69,7 @@ public class MobileControls : MonoBehaviour
         var interactButton = m_Document.rootVisualElement.Q<VisualElement>("ButtonInteract");
         interactButton.RegisterCallback<PointerEnterEvent>(evt=> { InteractEvent.Invoke(true); });
         interactButton.RegisterCallback<PointerLeaveEvent>(evt=> { InteractEvent.Invoke(false); });
+    
         // Removed controls from original layout
         // Left here to serve as reference for future inputs
         /*
