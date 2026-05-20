@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - MobileControls
   - DialogueUI
+  - OptionsMenu
   layers:
   - Default
   - TransparentFX
