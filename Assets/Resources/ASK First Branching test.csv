@@ -1,0 +1,17 @@
+﻿NPC Name,Line Batch ID,Line ID,Dialogue Line,Options Bypass,Option 1,Option 1 Ref,Option 2,Option 2 Ref,Option 3,Option 3 Ref,Option 4,Option 4 Ref
+Elly,0,0,Oh hello,TRUE,,1,,,,,,
+Elly,0,1,Which option are you picking?,FALSE,1!!,2,Im picking option 2,3,This is option 3,4,4 yippee,5
+Elly,0,2,Oooo you picked option 1? Cool,TRUE,,6,,,,,,
+Elly,0,3,Option 2… respectable,TRUE,,6,,,,,,
+Elly,0,4,You picked option 3? Woah,TRUE,,6,,,,,,
+Elly,0,5,Option 4 is EVIL,TRUE,,6,,,,,,
+Elly,0,6,Ok bye,TRUE,,7,,,,,,
+Elly,0,7,Im gonna end the convo here,TRUE,,-1,,,,,,
+Gideon,0,0,Top text bottom text,TRUE,,1,,,,,,
+Gideon,0,1,pick one pls,FALSE,1!!,2,Im picking option 2,3,This is option 3,4,4 yippee,5
+Gideon,0,2,Oooo you picked option 1? Cool,TRUE,,6,,,,,,
+Gideon,0,3,Option 2… respectable,TRUE,,6,,,,,,
+Gideon,0,4,You picked option 3? Woah,TRUE,,6,,,,,,
+Gideon,0,5,Option 4 is EVIL,TRUE,,6,,,,,,
+Gideon,0,6,buh bye,TRUE,,7,,,,,,
+Gideon,0,7,Im gonna end the convo here,TRUE,,-1,,,,,,

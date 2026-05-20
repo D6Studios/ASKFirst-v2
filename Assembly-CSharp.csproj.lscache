@@ -50,6 +50,9 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 /warnaserror+:NU1605
 
 [sourceFiles]
+Assets/Scripts/DialogueClasses/
+ DialogueLineBatch.cs
+ DialogueLines.cs
 Assets/Scripts/
  Mobile Controls/MobileControls.cs
  NPCBehavior.cs

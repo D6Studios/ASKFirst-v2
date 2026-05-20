@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "ASKFirst-v2.slnx",
+    "dotnet.defaultSolution": "ASKFirst v2.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
