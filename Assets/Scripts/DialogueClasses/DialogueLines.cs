@@ -13,7 +13,11 @@ public class DialogueLines
     public int option2NextId;
     public int option3NextId;
     public int option4NextId;
-    public DialogueLines(int id, string line, bool optionsBypass = false, string option1 = "", string option2 = "", string option3 = "", string option4 = "", int option1NextId = -1, int option2NextId = -1, int option3NextId = -1, int option4NextId = -1)
+    public int option1MoodChange;
+    public int option2MoodChange;
+    public int option3MoodChange;
+    public int option4MoodChange;
+    public DialogueLines(int id, string line, bool optionsBypass = false, string option1 = "", string option2 = "", string option3 = "", string option4 = "", int option1NextId = -1, int option2NextId = -1, int option3NextId = -1, int option4NextId = -1, int option1MoodChange = 0, int option2MoodChange = 0, int option3MoodChange = 0, int option4MoodChange = 0)
     {
         this.id = id;
         this.line = line;
@@ -26,5 +30,9 @@ public class DialogueLines
         this.option2NextId = option2NextId;
         this.option3NextId = option3NextId;
         this.option4NextId = option4NextId;
+        this.option1MoodChange = option1MoodChange;
+        this.option2MoodChange = option2MoodChange;
+        this.option3MoodChange = option3MoodChange;
+        this.option4MoodChange = option4MoodChange;
     }
 }

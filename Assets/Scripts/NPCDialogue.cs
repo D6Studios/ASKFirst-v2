@@ -24,7 +24,7 @@ public class NPCDialogue : MonoBehaviour
                 DialogueLines currentDialogueLine;
                 if (bool.Parse(splitLine[4]) == false)
                 {
-                     currentDialogueLine = new DialogueLines(int.Parse(splitLine[2]), splitLine[3], bool.Parse(splitLine[4]), splitLine[5], splitLine[7], splitLine[9], splitLine[11], int.Parse(splitLine[6]), int.Parse(splitLine[8]), int.Parse(splitLine[10]), int.Parse(splitLine[12]));
+                     currentDialogueLine = new DialogueLines(int.Parse(splitLine[2]), splitLine[3], bool.Parse(splitLine[4]), splitLine[5], splitLine[8], splitLine[11], splitLine[14], int.Parse(splitLine[6]), int.Parse(splitLine[9]), int.Parse(splitLine[12]), int.Parse(splitLine[15]), int.Parse(splitLine[7]), int.Parse(splitLine[10]), int.Parse(splitLine[13]), int.Parse(splitLine[16]));
 
                 }
                 else

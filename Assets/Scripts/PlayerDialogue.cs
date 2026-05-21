@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 public class PlayerDialogue : MonoBehaviour
 {
     Canvas dialogueUI;
     GameObject mobileControls;
     bool advanceDialogue = false;
     bool textScrolling = false;
+    bool moodUpdating = false;
     [SerializeField]
     TextMeshProUGUI dialogueText;
     [SerializeField]
@@ -17,6 +19,8 @@ public class PlayerDialogue : MonoBehaviour
     TextMeshProUGUI option3Text;
     [SerializeField]
     TextMeshProUGUI option4Text;
+    [SerializeField]
+    Slider moodSlider;
     int optionPicked;
     void Start()
     {
@@ -27,12 +31,15 @@ public class PlayerDialogue : MonoBehaviour
     public void StartDialogue(GameObject npc)
     {
         dialogueUI.enabled = true;
+        moodSlider.value=5;
         StartCoroutine(DialogueCoroutine(npc));
+
     }
     public void EndDialogue(GameObject npc)
     {
         dialogueUI.enabled = false;
         mobileControls.GetComponent<MobileControls>().InteractEvent.Invoke(false);
+        Debug.Log("Dialogue Ended with a mood score of: " + moodSlider.value); //Placeholder for mood system implementation
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>().isBusy = false;
         
     }
@@ -50,6 +57,7 @@ public class PlayerDialogue : MonoBehaviour
             else if (dialogueLine.option1NextId == -1)
             {
                 EndDialogue(npc);
+                break;
             }
             else if (dialogueLine.optionsBypass == true)
             {
@@ -58,7 +66,6 @@ public class PlayerDialogue : MonoBehaviour
             }
             else if (dialogueLine.optionsBypass == false)
             {
-                Debug.Log("Option picked: " + optionPicked);
                 switch (optionPicked)
                 {
                     case 1:
@@ -85,6 +92,11 @@ public class PlayerDialogue : MonoBehaviour
                 Coroutine textScroll = StartCoroutine(TextScrolling(dialogueLine.line));
                 if (dialogueLine.optionsBypass == false)
                 {
+                    //Enable option buttons
+                        option2Text.transform.parent.gameObject.SetActive(true);
+                        option3Text.transform.parent.gameObject.SetActive(true);
+                        option4Text.transform.parent.gameObject.SetActive(true);
+                    //Set option text
                         option1Text.text = dialogueLine.option1;
                         option2Text.text = dialogueLine.option2;
                         option3Text.text = dialogueLine.option3;
@@ -92,7 +104,12 @@ public class PlayerDialogue : MonoBehaviour
                 }
                 else
                 {
-                    option1Text.text = "";
+                    //Disable option buttons
+                    option2Text.transform.parent.gameObject.SetActive(false);
+                    option3Text.transform.parent.gameObject.SetActive(false);
+                    option4Text.transform.parent.gameObject.SetActive(false);
+                    //Clear option text
+                    option1Text.text = "...";
                     option2Text.text = "";
                     option3Text.text = "";
                     option4Text.text = "";
@@ -106,8 +123,26 @@ public class PlayerDialogue : MonoBehaviour
                     dialogueText.text = dialogueLine.line;
                     yield return new WaitUntil(() => advanceDialogue);
                 }
+                StopCoroutine(textScroll);
                 advanceDialogue = false;
-                
+                if (dialogueLine.optionsBypass == false)
+                {
+                    switch (optionPicked)
+                    {
+                        case 1:
+                            StartCoroutine(MoodChange(dialogueLine.option1MoodChange));
+                            break;
+                        case 2:
+                            StartCoroutine(MoodChange(dialogueLine.option2MoodChange));
+                            break;
+                        case 3:
+                            StartCoroutine(MoodChange(dialogueLine.option3MoodChange));
+                            break;
+                        case 4:
+                            StartCoroutine(MoodChange(dialogueLine.option4MoodChange));
+                            break;
+                    }
+                }
             }
         }
         
@@ -117,6 +152,7 @@ public class PlayerDialogue : MonoBehaviour
     }
     IEnumerator TextScrolling(string dialogueLine)
     {
+        Debug.Log(dialogueLine);
         textScrolling = true;
         dialogueText.text = "";
         foreach (char c in dialogueLine)
@@ -128,9 +164,26 @@ public class PlayerDialogue : MonoBehaviour
     }
     public void OptionSelect(int optionId)
     {
-       
         advanceDialogue = true;
-        optionPicked = optionId;
-        
+        optionPicked = optionId;        
+    }
+    IEnumerator MoodChange(int moodChange)
+    {
+        if (moodUpdating)
+        {
+            yield return new WaitUntil(() => moodUpdating == false);
+        }
+        moodUpdating = true;
+        float elapsedTime = 0f;
+        float startValue = moodSlider.value;
+        float targetValue = Mathf.Clamp(moodSlider.value + moodChange, moodSlider.minValue, moodSlider.maxValue);
+        while (elapsedTime < 0.4f)
+        {
+            moodSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / 0.4f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        moodSlider.value = targetValue;
+        moodUpdating = false;
     }
 }
