@@ -5,7 +5,15 @@ public class NPCBehavior : MonoBehaviour
     public float playerDistance;
     [SerializeField]
     public float interactDistance = 3f;
-    
+    Outline NPCOutline;
+    void Start()
+    {
+        NPCOutline = GetComponent<Outline>();
+        if (NPCOutline != null)
+        {
+            NPCOutline.enabled = false;
+        }
+    }
     void Update()
     {
         CheckPlayerProximity();
@@ -23,5 +31,12 @@ public class NPCBehavior : MonoBehaviour
     {
         //Placeholder for interaction logic
         Debug.Log("Interacted with " + gameObject.name);
+    }
+    public void OutlineNPC(bool outline)
+    {
+        if (NPCOutline != null)
+        {
+            NPCOutline.enabled = outline;
+        }
     }
 }

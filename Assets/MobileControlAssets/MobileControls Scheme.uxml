@@ -15,8 +15,6 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button text="" name="ButtonInteract" style="background-image: url(&quot;project://database/Assets/Starter%20Assets/Runtime/Mobile/UI/Images/UI_Circle_Bevel_Base.png?fileID=21300000&amp;guid=b74c31d447d2f5d41a61081bdf5e7126&amp;type=3#UI_Circle_Bevel_Base&quot;); background-color: rgba(255, 255, 255, 0); bottom: 74px; right: 228px; font-size: 73px; -unity-text-align: middle-center; width: 130px; height: 130px;">
-            <ui:VisualElement name="ButtonImage" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/interactIcon.png?fileID=2800000&amp;guid=6524d1c6818e7ad499d55f00874ab723&amp;type=3#interactIcon&quot;); background-size: 60% 60%;"/>
-        </ui:Button>
+        <ui:Button text="" name="ButtonInteract" style="background-image: url(&quot;project://database/Assets/Sprites/interactBtn.png?fileID=21300000&amp;guid=a56b141c882585244b5e5a71ce9a4a3a&amp;type=3#interactBtn&quot;); background-color: rgba(255, 255, 255, 0); bottom: 74px; right: 228px; font-size: 73px; -unity-text-align: middle-center; width: 152.3991px; height: 130px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
     </ui:VisualElement>
 </ui:UXML>

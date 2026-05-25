@@ -28,6 +28,8 @@ public class PlayerInteraction : MonoBehaviour
     /// dialogueUI is a UI canvas that is used to display dialogue options and text when the player interacts with an NPC. It can be activated or deactivated based on the player's interaction state.
     /// </summary>
     VisualElement mobileControlsUI;
+    VisualElement interactButton;
+    
     
 
     void Start()
@@ -36,7 +38,8 @@ public class PlayerInteraction : MonoBehaviour
         closestNPCDistance = Mathf.Infinity;
         mobileControls = GameObject.FindGameObjectWithTag("MobileControls");
         mobileControlsUI = mobileControls.GetComponent<UIDocument>().rootVisualElement;
-        
+        interactButton = mobileControlsUI.Q<VisualElement>("ButtonInteract");
+
     }
 
     // Update is called once per frame
@@ -62,10 +65,16 @@ public class PlayerInteraction : MonoBehaviour
     }
     void CheckClosestNPC()
     {
-        if (closestNPC == null)return;
+        if (closestNPC == null)
+        {
+            interactButton.style.display = DisplayStyle.None;
+            return;
+        };
+        interactButton.style.display = DisplayStyle.Flex;
         closestNPCDistance = Vector3.Distance(transform.position, closestNPC.transform.position);
         if (closestNPCDistance > closestNPC.GetComponent<NPCBehavior>().interactDistance)
         {
+            closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
             closestNPC = null;
             closestNPCDistance = Mathf.Infinity;
         }
@@ -75,7 +84,12 @@ public class PlayerInteraction : MonoBehaviour
         float distance = Vector3.Distance(transform.position, npc.transform.position);
         if (distance < closestNPCDistance)
         {
+            if (closestNPC != null)
+            {
+                closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
+            }
             closestNPC = npc;
+            closestNPC.GetComponent<NPCBehavior>().OutlineNPC(true);
             closestNPCDistance = distance;
         }
     }
