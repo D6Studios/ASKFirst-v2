@@ -3,18 +3,14 @@
     <ui:VisualElement name="MobileInput" style="height: 100%; width: 100%; flex-shrink: 0; flex-grow: 1;">
         <ui:VisualElement name="JoystickMove">
             <ui:VisualElement name="JoystickBackground">
-                <ui:VisualElement name="JoystickHandle" picking-mode="Ignore" usage-hints="DynamicTransform" class="touchscreen-button">
-                    <ui:VisualElement name="JoystickIcon" class="button-icon"/>
-                </ui:VisualElement>
+                <ui:VisualElement name="JoystickHandle" picking-mode="Ignore" usage-hints="DynamicTransform" class="touchscreen-button" style="background-image: url(&quot;project://database/Assets/Sprites/MoveIcon.png?fileID=21300000&amp;guid=54b353134057700478e418f5c2c129a3&amp;type=3#MoveIcon&quot;);"/>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="JoystickLook">
             <ui:VisualElement name="JoystickBackground">
-                <ui:VisualElement name="JoystickHandle" picking-mode="Ignore" usage-hints="DynamicTransform" enabled="true" class="touchscreen-button">
-                    <ui:VisualElement name="JoystickIcon" class="button-icon"/>
-                </ui:VisualElement>
+                <ui:VisualElement name="JoystickHandle" picking-mode="Ignore" usage-hints="DynamicTransform" enabled="true" class="touchscreen-button" style="background-image: url(&quot;project://database/Assets/Sprites/LookIcon.png?fileID=21300000&amp;guid=ae4d60162df12ef46ad67bd1f5afa73c&amp;type=3#LookIcon&quot;);"/>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button text="" name="ButtonInteract" style="background-image: url(&quot;project://database/Assets/Sprites/interactBtn.png?fileID=21300000&amp;guid=a56b141c882585244b5e5a71ce9a4a3a&amp;type=3#interactBtn&quot;); background-color: rgba(255, 255, 255, 0); bottom: 74px; right: 228px; font-size: 73px; -unity-text-align: middle-center; width: 152.3991px; height: 130px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
+        <ui:Button text="" name="ButtonInteract" style="background-image: url(&quot;project://database/Assets/Sprites/Interact.png?fileID=21300000&amp;guid=e7e2178cb80bc4c418c1111f2ca8543a&amp;type=3#Interact&quot;); background-color: rgba(255, 255, 255, 0); bottom: 74px; right: 228px; font-size: 73px; -unity-text-align: middle-center; width: 152.3991px; height: 130px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
     </ui:VisualElement>
 </ui:UXML>
