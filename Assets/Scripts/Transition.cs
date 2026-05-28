@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Transition : MonoBehaviour
 {
    public  Canvas mainMenu;
@@ -10,11 +10,13 @@ public class Transition : MonoBehaviour
         videoMenu.enabled = true;
         mainMenu.enabled = false;
         levelSelect.enabled = false;
+        skipVideo();
     }
     public void SwitchToLevelSelect()
     {
         mainMenu.enabled = false;
         levelSelect.enabled = true;
+        SceneManager.LoadScene("Level1_Scene");
     }
     public void skipVideo()
     {

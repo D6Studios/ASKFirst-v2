@@ -8,7 +8,7 @@ public class NPCBehavior : MonoBehaviour
     Outline NPCOutline;
     void Start()
     {
-        NPCOutline = GetComponent<Outline>();
+        NPCOutline = gameObject.GetComponentInChildren<Outline>();
         if (NPCOutline != null)
         {
             NPCOutline.enabled = false;

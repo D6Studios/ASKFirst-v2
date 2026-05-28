@@ -27,6 +27,12 @@ public class PlayerDialogue : MonoBehaviour
         dialogueUI = GameObject.FindGameObjectWithTag("DialogueUI").GetComponent<Canvas>();
         dialogueUI.enabled = false;
         mobileControls = GameObject.FindGameObjectWithTag("MobileControls");
+        dialogueText= dialogueUI.transform.Find("DialogueBox/DialogueText").GetComponent<TextMeshProUGUI>();
+        option1Text = dialogueUI.transform.Find("Option 1").GetChild(0).GetComponent<TextMeshProUGUI>();
+        option2Text = dialogueUI.transform.Find("Option 2").GetChild(0).GetComponent<TextMeshProUGUI>();
+        option3Text = dialogueUI.transform.Find("Option 3").GetChild(0).GetComponent<TextMeshProUGUI>();
+        option4Text = dialogueUI.transform.Find("Option 4").GetChild(0).GetComponent<TextMeshProUGUI>();
+        moodSlider = dialogueUI.transform.Find("Mood").GetComponent<Slider>();
     }
     public void StartDialogue(GameObject npc)
     {
@@ -57,6 +63,11 @@ public class PlayerDialogue : MonoBehaviour
             else if (dialogueLine.option1NextId == -1)
             {
                 EndDialogue(npc);
+                break;
+            }
+            else if (dialogueLine.option1NextId == -2)
+            {
+                GameManager.Instance.EndLevel(moodSlider.value, npc.name);
                 break;
             }
             else if (dialogueLine.optionsBypass == true)
