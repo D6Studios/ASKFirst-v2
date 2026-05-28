@@ -8,6 +8,8 @@ TagManager:
   - MobileControls
   - DialogueUI
   - OptionsMenu
+  - NPC
+  - NPCFocusCamera
   layers:
   - Default
   - TransparentFX

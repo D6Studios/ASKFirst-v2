@@ -29,6 +29,7 @@ public class PlayerInteraction : MonoBehaviour
     /// </summary>
     VisualElement mobileControlsUI;
     VisualElement interactButton;
+    NPCFocusCamera npcFocusCamera;
     
     
 
@@ -39,7 +40,7 @@ public class PlayerInteraction : MonoBehaviour
         mobileControls = GameObject.FindGameObjectWithTag("MobileControls");
         mobileControlsUI = mobileControls.GetComponent<UIDocument>().rootVisualElement;
         interactButton = mobileControlsUI.Q<VisualElement>("ButtonInteract");
-
+        npcFocusCamera = GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>();
     }
 
     // Update is called once per frame
@@ -56,10 +57,12 @@ public class PlayerInteraction : MonoBehaviour
         }
         if (_input.interact && !isBusy && closestNPC != null)
         {
+            SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("pop"));
             closestNPC.GetComponent<NPCBehavior>().Interact();
             gameObject.GetComponent<PlayerDialogue>().StartDialogue(closestNPC);
             isBusy = true;
             Debug.Log("Interact");
+            npcFocusCamera.FocusOnNPC(closestNPC.transform);
         }
         
     }

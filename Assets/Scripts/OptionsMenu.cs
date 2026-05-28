@@ -23,21 +23,31 @@ public class OptionsMenu : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
-    public void SetMusicVolume (Slider MusicSlider)
+    public void SetMusicVolume ()
     {
         // Set the music volume based on the slider value
         float MusicVolume = MusicSlider.value;
+        if (MusicVolume == 0)
+        {
+            AudioMixer.SetFloat("Music", -80); // Set to minimum volume if slider is at 0 to avoid log10(0) error
+            return;
+        }
         AudioMixer.SetFloat("Music", Mathf.Log10(MusicVolume)*20); // Using this formula so that the value on the slider matches the audio mixer's values
     }
     
-    public void SetSFXVolume (Slider SfxSlider)
+    public void SetSFXVolume ()
     {
         // Set the SFX volume based on the slider value
         float SfxVolume = SfxSlider.value;
+        if (SfxVolume == 0)
+        {
+            AudioMixer.SetFloat("Sfx", -80); // Set to minimum volume if slider is at 0 to avoid log10(0) error
+            return;
+        }
         AudioMixer.SetFloat("Sfx", Mathf.Log10(SfxVolume)*20); // Using this formula so that the value on the slider matches the audio mixer's values
     }
 
-    public void SetLookSensitivity (Slider SensSlider)
+    public void SetLookSensitivity ()
     {
         // Set the look sensitivity based on the slider value
 

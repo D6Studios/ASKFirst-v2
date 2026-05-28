@@ -41,7 +41,7 @@ public class PlayerDialogue : MonoBehaviour
         mobileControls.GetComponent<MobileControls>().InteractEvent.Invoke(false);
         Debug.Log("Dialogue Ended with a mood score of: " + moodSlider.value); //Placeholder for mood system implementation
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>().isBusy = false;
-        
+        GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>().ResetFocus();
     }
     IEnumerator DialogueCoroutine(GameObject npc)
     {

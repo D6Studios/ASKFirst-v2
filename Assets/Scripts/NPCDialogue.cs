@@ -1,4 +1,3 @@
-using Unity.Android.Gradle;
 using UnityEngine;
 using System.Collections.Generic;
 
