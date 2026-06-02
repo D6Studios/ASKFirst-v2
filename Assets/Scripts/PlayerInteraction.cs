@@ -30,7 +30,7 @@ public class PlayerInteraction : MonoBehaviour
     VisualElement mobileControlsUI;
     VisualElement interactButton;
     NPCFocusCamera npcFocusCamera;
-    
+    GameObject optionsButton;
     
 
     void Start()
@@ -41,6 +41,8 @@ public class PlayerInteraction : MonoBehaviour
         mobileControlsUI = mobileControls.GetComponent<UIDocument>().rootVisualElement;
         interactButton = mobileControlsUI.Q<VisualElement>("ButtonInteract");
         npcFocusCamera = GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>();
+        optionsButton = GameObject.FindGameObjectWithTag("OptionsButton");
+
     }
 
     // Update is called once per frame
@@ -102,10 +104,12 @@ public class PlayerInteraction : MonoBehaviour
         if (isBusy)
         {
             mobileControlsUI.style.display = DisplayStyle.None;
+            optionsButton.SetActive(false);
         }
         else
         {
             mobileControlsUI.style.display = DisplayStyle.Flex;
+            optionsButton.SetActive(true);
 
         }
     }

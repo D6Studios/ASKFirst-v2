@@ -20,7 +20,8 @@ public class PlayerDialogue : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI option4Text;
     [SerializeField]
-    Slider moodSlider;
+    float mood;
+    Material moodSlider;
     int optionPicked;
     void Start()
     {
@@ -32,12 +33,14 @@ public class PlayerDialogue : MonoBehaviour
         option2Text = dialogueUI.transform.Find("Option 2").GetChild(0).GetComponent<TextMeshProUGUI>();
         option3Text = dialogueUI.transform.Find("Option 3").GetChild(0).GetComponent<TextMeshProUGUI>();
         option4Text = dialogueUI.transform.Find("Option 4").GetChild(0).GetComponent<TextMeshProUGUI>();
-        moodSlider = dialogueUI.transform.Find("Mood").GetComponent<Slider>();
+        mood = 5;
+        moodSlider = dialogueUI.transform.Find("Mood/FillShader").GetComponent<Image>().material;
+        moodSlider.SetFloat("_stepValue", mood);
     }
     public void StartDialogue(GameObject npc)
     {
         dialogueUI.enabled = true;
-        moodSlider.value=5;
+        
         StartCoroutine(DialogueCoroutine(npc));
 
     }
@@ -45,7 +48,7 @@ public class PlayerDialogue : MonoBehaviour
     {
         dialogueUI.enabled = false;
         mobileControls.GetComponent<MobileControls>().InteractEvent.Invoke(false);
-        Debug.Log("Dialogue Ended with a mood score of: " + moodSlider.value); //Placeholder for mood system implementation
+        Debug.Log("Dialogue Ended with a mood score of: " + mood); //Placeholder for mood system implementation
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>().isBusy = false;
         GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>().ResetFocus();
     }
@@ -67,7 +70,7 @@ public class PlayerDialogue : MonoBehaviour
             }
             else if (dialogueLine.option1NextId == -2)
             {
-                GameManager.Instance.EndLevel(moodSlider.value, npc.name);
+                GameManager.Instance.EndLevel(mood, npc.name);
                 break;
             }
             else if (dialogueLine.optionsBypass == true)
@@ -186,15 +189,16 @@ public class PlayerDialogue : MonoBehaviour
         }
         moodUpdating = true;
         float elapsedTime = 0f;
-        float startValue = moodSlider.value;
-        float targetValue = Mathf.Clamp(moodSlider.value + moodChange, moodSlider.minValue, moodSlider.maxValue);
+        float startValue = mood;
+        float targetValue = Mathf.Clamp(mood + moodChange, 0, 10);
         while (elapsedTime < 0.4f)
         {
-            moodSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / 0.4f);
+            mood = Mathf.Lerp(startValue, targetValue, elapsedTime / 0.4f);
+            moodSlider.SetFloat("_stepValue", mood);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        moodSlider.value = targetValue;
+        mood = targetValue;
         moodUpdating = false;
     }
 }

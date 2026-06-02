@@ -10,6 +10,8 @@ TagManager:
   - OptionsMenu
   - NPC
   - NPCFocusCamera
+  - OptionsButton
+  - CardLogo
   layers:
   - Default
   - TransparentFX
