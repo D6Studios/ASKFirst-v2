@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 public class EndScreen : MonoBehaviour
 {
-     public Image[] stars;
+    public Image[] stars;
 
     public Sprite fullStar;
     public Sprite halfStar;
     public Sprite emptyStar;
-    [SerializeField] 
+    [SerializeField]
     private float starWaitTime = 0.1f;
     public Sprite correctCardSprite;
     public Sprite incorrectCardSprite;
@@ -19,7 +19,7 @@ public class EndScreen : MonoBehaviour
     void Start()
     {
         UpdateStars(GameManager.Instance.currentScore);
-        UpdateCards(GameManager.Instance.mistakes);
+        UpdateCards(GameManager.Instance.mistakesMade);
     }
 
     public void UpdateStars(float value)
@@ -61,8 +61,8 @@ public class EndScreen : MonoBehaviour
         {
             GameObject card = Instantiate(cardPrefab, cardParent);
             Debug.Log("Creating card for mistake: " + mistake.title);
-            Debug.Log("Mistake details - Wrong: " + mistake.wrong + ", Title: " + mistake.title + ", Hint: " + mistake.hint);
-            if (mistake.wrong)
+            Debug.Log("Mistake details - Positive: " + mistake.positive + ", Title: " + mistake.title + ", Hint: " + mistake.hint);
+            if (!mistake.positive)
             {
                 card.GetComponent<EndScreenCard>().SetCard(mistake.title, mistake.hint, incorrectCardSprite);
             }

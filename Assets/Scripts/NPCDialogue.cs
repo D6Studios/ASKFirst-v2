@@ -8,27 +8,55 @@ public class NPCDialogue : MonoBehaviour
     int dialogueIndex = 0;
     void Start()
     {
-        TextAsset dialogueFile = Resources.Load<TextAsset>("ASK First Branching Test");
+        TextAsset dialogueFile = Resources.Load<TextAsset>("ASKFirstDialogue"); // Load dialogue from Resources folder
         string[] allLines = dialogueFile.text.Split('\n');
         for (int i = 0; i < allLines.Length; i++)
         {
-            if (allLines[i].StartsWith(gameObject.name +","))
+            if (allLines[i].StartsWith(gameObject.name +",")) //Filter lines for this NPC based on name
             {
-                string[] splitLine = allLines[i].Split(',');
+                string[] splitLine = allLines[i].Split(','); //Split line into components
                 foreach (string line in splitLine)
                 {
-                    line.Trim();
+                    line.Trim(); //Trim whitespace from each component
+                    if (line.Contains("|||"))
+                {
+                    line.Replace("|||", ",");
                 }
-                Debug.Log(splitLine[2] + ", " + splitLine[3] + ", " +splitLine[4] + ", " + splitLine[5] + ", " + splitLine[6] + ", " + splitLine[7] + ", " + splitLine[8] + ", " + splitLine[9] + ", " + splitLine[10] + ", " + splitLine[11] + ", " + splitLine[12]);
+                }
                 DialogueLines currentDialogueLine;
                 if (bool.Parse(splitLine[4]) == false)
                 {
-                     currentDialogueLine = new DialogueLines(int.Parse(splitLine[2]), splitLine[3], bool.Parse(splitLine[4]), splitLine[5], splitLine[8], splitLine[11], splitLine[14], int.Parse(splitLine[6]), int.Parse(splitLine[9]), int.Parse(splitLine[12]), int.Parse(splitLine[15]), int.Parse(splitLine[7]), int.Parse(splitLine[10]), int.Parse(splitLine[13]), int.Parse(splitLine[16]));
-
+                    currentDialogueLine = new DialogueLines(int.Parse(splitLine[2]), //ID
+                    splitLine[3], //Line
+                    bool.Parse(splitLine[4]), //Options Bypass
+                    splitLine[5], //Option 1
+                    int.Parse(splitLine[6]), //Option 1 Next ID
+                    int.Parse(splitLine[7]), //Option 1 Mood Change
+                    int.Parse(splitLine[8]), //Option 1 Mistake ID
+                    splitLine[9], //Option 2
+                    int.Parse(splitLine[10]), //Option 2 Next ID
+                    int.Parse(splitLine[11]), //Option 2 Mood Change
+                    int.Parse(splitLine[12]), //Option 2 Mistake ID
+                    splitLine[13], //Option 3
+                    int.Parse(splitLine[14]), //Option 3 Next ID
+                    int.Parse(splitLine[15]), //Option 3 Mood Change
+                    int.Parse(splitLine[16]),//Option 3 Mistake ID
+                    splitLine[17], //Option 4
+                    int.Parse(splitLine[18]), //Option 4 Next ID   
+                    int.Parse(splitLine[19]), //Option 4 Mood Change
+                    int.Parse(splitLine[20]) //Option 4 Mistake ID
+                    );  
                 }
                 else
                 {
-                    currentDialogueLine = new DialogueLines(int.Parse(splitLine[2]), splitLine[3], bool.Parse(splitLine[4]),null, null, null, null, int.Parse(splitLine[6]));
+                    currentDialogueLine = new DialogueLines(int.Parse(splitLine[2]), //ID
+                    splitLine[3], //Line
+                    bool.Parse(splitLine[4]), //Options Bypass
+                    splitLine[5], //Option 1
+                    int.Parse(splitLine[6])//Option 1 Next ID
+
+                    
+                    );  
                 }
 
                 //Add lines to batch

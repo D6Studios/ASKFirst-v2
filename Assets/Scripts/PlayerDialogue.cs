@@ -28,7 +28,7 @@ public class PlayerDialogue : MonoBehaviour
         dialogueUI = GameObject.FindGameObjectWithTag("DialogueUI").GetComponent<Canvas>();
         dialogueUI.enabled = false;
         mobileControls = GameObject.FindGameObjectWithTag("MobileControls");
-        dialogueText= dialogueUI.transform.Find("DialogueBox/DialogueText").GetComponent<TextMeshProUGUI>();
+        dialogueText = dialogueUI.transform.Find("DialogueBox/DialogueText").GetComponent<TextMeshProUGUI>();
         option1Text = dialogueUI.transform.Find("Option 1").GetChild(0).GetComponent<TextMeshProUGUI>();
         option2Text = dialogueUI.transform.Find("Option 2").GetChild(0).GetComponent<TextMeshProUGUI>();
         option3Text = dialogueUI.transform.Find("Option 3").GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -40,7 +40,7 @@ public class PlayerDialogue : MonoBehaviour
     public void StartDialogue(GameObject npc)
     {
         dialogueUI.enabled = true;
-        
+
         StartCoroutine(DialogueCoroutine(npc));
 
     }
@@ -48,20 +48,19 @@ public class PlayerDialogue : MonoBehaviour
     {
         dialogueUI.enabled = false;
         mobileControls.GetComponent<MobileControls>().InteractEvent.Invoke(false);
-        Debug.Log("Dialogue Ended with a mood score of: " + mood); //Placeholder for mood system implementation
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>().isBusy = false;
         GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>().ResetFocus();
     }
     IEnumerator DialogueCoroutine(GameObject npc)
     {
-        DialogueLines dialogueLine=null;
-        Debug.Log(npc);
+        DialogueLines dialogueLine = null;
+
         while (true)
         {
             if (dialogueLine == null)
             {
                 dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(0);
-                Debug.Log(dialogueLine);
+
             }
             else if (dialogueLine.option1NextId == -1)
             {
@@ -75,28 +74,34 @@ public class PlayerDialogue : MonoBehaviour
             }
             else if (dialogueLine.optionsBypass == true)
             {
-                dialogueLine=npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
-                Debug.Log(dialogueLine);
+                dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
+
             }
             else if (dialogueLine.optionsBypass == false)
             {
                 switch (optionPicked)
                 {
                     case 1:
+                        GameManager.Instance.AddMistake(dialogueLine.option1MistakeId);
                         dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
                         break;
                     case 2:
+                        GameManager.Instance.AddMistake(dialogueLine.option2MistakeId);
                         dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option2NextId);
                         break;
                     case 3:
+                        GameManager.Instance.AddMistake(dialogueLine.option3MistakeId);
                         dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option3NextId);
                         break;
                     case 4:
+                        GameManager.Instance.AddMistake(dialogueLine.option4MistakeId);
                         dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option4NextId);
                         break;
                 }
+
+
             }
-            
+
             if (dialogueLine == null)
             {
                 break;
@@ -107,14 +112,14 @@ public class PlayerDialogue : MonoBehaviour
                 if (dialogueLine.optionsBypass == false)
                 {
                     //Enable option buttons
-                        option2Text.transform.parent.gameObject.SetActive(true);
-                        option3Text.transform.parent.gameObject.SetActive(true);
-                        option4Text.transform.parent.gameObject.SetActive(true);
+                    option2Text.transform.parent.gameObject.SetActive(true);
+                    option3Text.transform.parent.gameObject.SetActive(true);
+                    option4Text.transform.parent.gameObject.SetActive(true);
                     //Set option text
-                        option1Text.text = dialogueLine.option1;
-                        option2Text.text = dialogueLine.option2;
-                        option3Text.text = dialogueLine.option3;
-                        option4Text.text = dialogueLine.option4;
+                    option1Text.text = dialogueLine.option1;
+                    option2Text.text = dialogueLine.option2;
+                    option3Text.text = dialogueLine.option3;
+                    option4Text.text = dialogueLine.option4;
                 }
                 else
                 {
@@ -159,14 +164,14 @@ public class PlayerDialogue : MonoBehaviour
                 }
             }
         }
-        
 
-        
-        
+
+
+
     }
     IEnumerator TextScrolling(string dialogueLine)
     {
-        Debug.Log(dialogueLine);
+
         textScrolling = true;
         dialogueText.text = "";
         foreach (char c in dialogueLine)
@@ -179,7 +184,7 @@ public class PlayerDialogue : MonoBehaviour
     public void OptionSelect(int optionId)
     {
         advanceDialogue = true;
-        optionPicked = optionId;        
+        optionPicked = optionId;
     }
     IEnumerator MoodChange(int moodChange)
     {
