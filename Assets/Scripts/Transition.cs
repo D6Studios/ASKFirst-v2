@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 public class Transition : MonoBehaviour
 {
-   public  Canvas mainMenu;
+    public Canvas mainMenu;
     public Canvas levelSelect;
     public Canvas videoMenu;
     void Start()
@@ -10,7 +11,6 @@ public class Transition : MonoBehaviour
         videoMenu.enabled = true;
         mainMenu.enabled = false;
         levelSelect.enabled = false;
-        skipVideo();
     }
     public void SwitchToLevelSelect()
     {
@@ -21,6 +21,8 @@ public class Transition : MonoBehaviour
     public void skipVideo()
     {
         videoMenu.enabled = false;
+        videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().Stop();
         mainMenu.enabled = true;
+
     }
 }
