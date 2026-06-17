@@ -16,7 +16,6 @@ public class Transition : MonoBehaviour
     {
         mainMenu.enabled = false;
         levelSelect.enabled = true;
-        SceneManager.LoadScene("Level1_Scene");
     }
     public void skipVideo()
     {
