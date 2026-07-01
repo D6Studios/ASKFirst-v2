@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -14,7 +15,10 @@ public class OptionsMenu : MonoBehaviour
 
     void Start()
     {
-        GameObject.FindWithTag("OptionsMenu").SetActive(false);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         mobileControls = GameObject.FindGameObjectWithTag("MobileControls").GetComponent<MobileControls>();
     }
 
@@ -54,5 +58,13 @@ public class OptionsMenu : MonoBehaviour
         // Set the look sensitivity based on the slider value
         float Sensitivity = SensSlider.value;
         mobileControls.sensitivityMultiplier = Sensitivity; // Set the sensitivity multiplier in the MobileControls script
+    }
+    public void pauseGame()
+    {
+        GameManager.Instance.PauseGame();
+    }
+    public void resumeGame()
+    {
+        GameManager.Instance.ResumeGame();
     }
 }

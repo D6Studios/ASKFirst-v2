@@ -20,7 +20,7 @@ public class PlayerDialogue : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI option4Text;
     [SerializeField]
-    float mood;
+    public float mood;
     Material moodSlider;
     int optionPicked;
     void Start()
@@ -39,18 +39,19 @@ public class PlayerDialogue : MonoBehaviour
     }
     public void StartDialogue(GameObject npc)
     {
-        dialogueUI.enabled = true;
 
+        GameManager.Instance.DisplayDialogueUI();
         StartCoroutine(DialogueCoroutine(npc));
 
     }
     public void EndDialogue(GameObject npc)
     {
-        dialogueUI.enabled = false;
+        GameManager.Instance.DisplayNormalUI();
         mobileControls.GetComponent<MobileControls>().InteractEvent.Invoke(false);
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>().isBusy = false;
         GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>().ResetFocus();
     }
+    /*
     IEnumerator DialogueCoroutine(GameObject npc)
     {
         DialogueLines dialogueLine = null;
@@ -159,6 +160,103 @@ public class PlayerDialogue : MonoBehaviour
                             break;
                         case 4:
                             StartCoroutine(MoodChange(dialogueLine.option4MoodChange));
+                            break;
+                    }
+                }
+            }
+        }
+
+
+
+
+    }
+    */
+    IEnumerator DialogueCoroutine(GameObject npc)
+    {
+        DialogueLines dialogueLine = null;
+
+        while (true)
+        {
+            if (dialogueLine == null)
+            {
+                dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(0);
+
+            }
+            else if (dialogueLine.option1NextId == -1)
+            {
+                EndDialogue(npc);
+                break;
+            }
+            else if (dialogueLine.option1NextId == -2)
+            {
+                GameManager.Instance.EndLevel(mood, npc.name);
+                break;
+            }
+            else if (dialogueLine.optionsBypass == true)
+            {
+                dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
+
+            }
+            else if (dialogueLine.optionsBypass == false)
+            {
+                switch (optionPicked)
+                {
+                    case 1:
+                        GameManager.Instance.AddMistake(dialogueLine.option1MistakeId);
+                        dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
+                        break;
+                    case 2:
+                        GameManager.Instance.AddMistake(dialogueLine.option2MistakeId);
+                        dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option2NextId);
+                        break;
+                }
+
+
+            }
+
+            if (dialogueLine == null)
+            {
+                break;
+            }
+            else
+            {
+                Coroutine textScroll = StartCoroutine(TextScrolling(dialogueLine.line));
+                if (dialogueLine.optionsBypass == false)
+                {
+                    //Enable option buttons
+                    option2Text.transform.parent.gameObject.SetActive(true);
+                    //Set option text
+                    option1Text.text = dialogueLine.option1;
+                    option2Text.text = dialogueLine.option2;
+                }
+                else
+                {
+                    //Disable option buttons
+                    option2Text.transform.parent.gameObject.SetActive(false);
+                    //Clear option text
+                    option1Text.text = "...";
+                    option2Text.text = "";
+                }
+                yield return new WaitUntil(() => advanceDialogue);
+                if (textScrolling == true)
+                {
+                    textScrolling = false;
+                    advanceDialogue = false;
+                    StopCoroutine(textScroll);
+                    dialogueText.text = dialogueLine.line;
+                    yield return new WaitUntil(() => advanceDialogue);
+                }
+                StopCoroutine(textScroll);
+                advanceDialogue = false;
+                if (dialogueLine.optionsBypass == false)
+                {
+                    switch (optionPicked)
+                    {
+                        case 1:
+                            StartCoroutine(MoodChange(dialogueLine.option1MoodChange));
+                            break;
+                        case 2:
+                            StartCoroutine(MoodChange(dialogueLine.option2MoodChange));
                             break;
                     }
                 }

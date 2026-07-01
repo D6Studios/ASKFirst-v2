@@ -12,6 +12,9 @@ TagManager:
   - NPCFocusCamera
   - OptionsButton
   - CardLogo
+  - Timer
+  - OptionsUI
+  - GameUI
   layers:
   - Default
   - TransparentFX

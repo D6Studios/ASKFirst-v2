@@ -6779,6 +6779,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7978506373841626392, guid: f3ad3f0d38ffc4a4e905a259215d3b11, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -147
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978506373841626392, guid: f3ad3f0d38ffc4a4e905a259215d3b11, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8209856514329659357, guid: f3ad3f0d38ffc4a4e905a259215d3b11, type: 3}
       propertyPath: m_Pivot.x
       value: 0

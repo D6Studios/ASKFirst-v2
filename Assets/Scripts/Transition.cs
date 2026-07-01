@@ -11,6 +11,8 @@ public class Transition : MonoBehaviour
         videoMenu.enabled = true;
         mainMenu.enabled = false;
         levelSelect.enabled = false;
+        GameManager.Instance.HideAll();
+
     }
     public void SwitchToLevelSelect()
     {

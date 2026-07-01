@@ -45,4 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   currentScore: 0
+  mistakesMade: []
   mistakes: []
+  player: {fileID: 0}
