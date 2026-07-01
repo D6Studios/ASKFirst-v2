@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 990d82c440b068d4f879a5ca7986ceb9
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -36,8 +36,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -51,7 +49,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 250
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -78,6 +105,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -340,8 +370,7 @@ ModelImporter:
     - name: mixamorig:Hips
       parentName: Idle(Clone)
       position: {x: 0.00052443176, y: 0.58785903, z: 0.0020397508}
-      rotation: {x: -1.588186e-18, y: -0.0000000029103826, z: 0.0000000038198773,
-        w: 1}
+      rotation: {x: -1.588186e-18, y: -0.0000000029103826, z: 0.0000000038198773, w: 1}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: mixamorig:LeftUpLeg
       parentName: mixamorig:Hips
@@ -401,8 +430,7 @@ ModelImporter:
     - name: mixamorig:Spine1
       parentName: mixamorig:Spine
       position: {x: -0, y: 0.0754583, z: -3.3353673e-10}
-      rotation: {x: 0.0000018700957, y: 0.0000000055414056, z: 0.0000000019900968,
-        w: 1}
+      rotation: {x: 0.0000018700957, y: 0.0000000055414056, z: 0.0000000019900968, w: 1}
       scale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
     - name: mixamorig:Spine2
       parentName: mixamorig:Spine1
@@ -417,8 +445,7 @@ ModelImporter:
     - name: mixamorig:Head
       parentName: mixamorig:Neck
       position: {x: -0, y: 0.14258331, z: 0.0072116083}
-      rotation: {x: -0.000000014901161, y: -0.0000000014551911, z: 0.0000000029956484,
-        w: 1}
+      rotation: {x: -0.000000014901161, y: -0.0000000014551911, z: 0.0000000029956484, w: 1}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: mixamorig:HeadTop_End
       parentName: mixamorig:Head
