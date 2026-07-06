@@ -26,4 +26,9 @@ public class Transition : MonoBehaviour
         mainMenu.enabled = true;
 
     }
+    public void OptionsMenu()
+    {
+        GameManager.Instance.PauseGame();
+    }
+
 }

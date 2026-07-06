@@ -50,6 +50,7 @@ public class PlayerDialogue : MonoBehaviour
         mobileControls.GetComponent<MobileControls>().InteractEvent.Invoke(false);
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>().isBusy = false;
         GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>().ResetFocus();
+        npc.GetComponent<NPCBehavior>().ChangeState("Idle");
     }
     /*
     IEnumerator DialogueCoroutine(GameObject npc)
@@ -174,6 +175,7 @@ public class PlayerDialogue : MonoBehaviour
     IEnumerator DialogueCoroutine(GameObject npc)
     {
         DialogueLines dialogueLine = null;
+        NPCAnimator npcAnimator = npc.GetComponent<NPCAnimator>();
 
         while (true)
         {
@@ -254,11 +256,28 @@ public class PlayerDialogue : MonoBehaviour
                     {
                         case 1:
                             StartCoroutine(MoodChange(dialogueLine.option1MoodChange));
+                            if (dialogueLine.option1MoodChange >= 0)
+                            {
+                                npcAnimator.Animate("Happy");
+                            }
+                            else if (dialogueLine.option1MoodChange < 0)
+                            {
+                                npcAnimator.Animate("Upset");
+                            }
                             break;
                         case 2:
                             StartCoroutine(MoodChange(dialogueLine.option2MoodChange));
+                            if (dialogueLine.option2MoodChange >= 0)
+                            {
+                                npcAnimator.Animate("Happy");
+                            }
+                            else if (dialogueLine.option2MoodChange < 0)
+                            {
+                                npcAnimator.Animate("Upset");
+                            }
                             break;
                     }
+
                 }
             }
         }
