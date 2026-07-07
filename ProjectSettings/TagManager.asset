@@ -15,6 +15,7 @@ TagManager:
   - Timer
   - OptionsUI
   - GameUI
+  - StartButton
   layers:
   - Default
   - TransparentFX
