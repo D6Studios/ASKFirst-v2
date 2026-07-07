@@ -19,7 +19,15 @@ public class OptionsMenu : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        mobileControls = GameObject.FindGameObjectWithTag("MobileControls").GetComponent<MobileControls>();
+        try
+        {
+            mobileControls = GameObject.FindGameObjectWithTag("MobileControls").GetComponent<MobileControls>();
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("MobileControls not found in the scene: " + e.Message);
+        }
+
     }
 
     // Update is called once per frame

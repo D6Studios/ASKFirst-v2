@@ -46,10 +46,39 @@ public class GameManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        dialogueUI = GameObject.FindGameObjectWithTag("DialogueUI").GetComponent<Canvas>();
-        optionsUI = GameObject.FindGameObjectWithTag("OptionsUI").GetComponent<Canvas>();
-        gameUI = GameObject.FindGameObjectWithTag("GameUI").GetComponent<Canvas>();
-        optionsMenu = GameObject.FindGameObjectWithTag("OptionsMenu");
+        try
+        {
+            dialogueUI = GameObject.FindGameObjectWithTag("DialogueUI").GetComponent<Canvas>();
+
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("DialogueUI not found in the scene: " + e.Message);
+        }
+        try
+        {
+            optionsUI = GameObject.FindGameObjectWithTag("OptionsUI").GetComponent<Canvas>();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("OptionsUI not found in the scene: " + e.Message);
+        }
+        try
+        {
+            gameUI = GameObject.FindGameObjectWithTag("GameUI").GetComponent<Canvas>();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("GameUI not found in the scene: " + e.Message);
+        }
+        try
+        {
+            optionsMenu = GameObject.FindGameObjectWithTag("OptionsMenu");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("OptionsMenu not found in the scene: " + e.Message);
+        }
         if (scene.name == "MainMenu")
         {
             HideAll();

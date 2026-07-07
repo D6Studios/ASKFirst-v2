@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 public class NPCBehavior : MonoBehaviour
 {
     public float playerDistance;
@@ -9,10 +10,15 @@ public class NPCBehavior : MonoBehaviour
     NPCAnimator npcAnimator;
     Coroutine currentCoroutine;
     public string currentState;
+    NavMeshAgent agent;
+    [SerializeField] int idleWaitTime;
+    [SerializeField] Transform[] patrolPoints;
+    int currentPatrolIndex = 0;
     void Start()
     {
         NPCOutline = gameObject.GetComponentInChildren<Outline>();
         npcAnimator = gameObject.GetComponent<NPCAnimator>();
+        agent = gameObject.GetComponent<NavMeshAgent>();
         if (NPCOutline != null)
         {
             NPCOutline.enabled = false;
@@ -59,7 +65,13 @@ public class NPCBehavior : MonoBehaviour
         npcAnimator.Animate("Walking");
         while (currentState == "Walking")
         {
-
+            agent.SetDestination(patrolPoints[currentPatrolIndex].position);
+            if ((Mathf.Floor(transform.position.x) == Mathf.Floor(patrolPoints[currentPatrolIndex].position.x) && Mathf.Floor(transform.position.z) == Mathf.Floor(patrolPoints[currentPatrolIndex].position.z)))
+            {
+                currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length; // Move to the next patrol point
+                ChangeState("Idle");
+                yield break;
+            }
             yield return null;
         }
     }
@@ -77,8 +89,8 @@ public class NPCBehavior : MonoBehaviour
         npcAnimator.Animate("Idle");
         while (currentState == "Idle")
         {
-            Debug.Log("NPC is idle.");
-            yield return new WaitForSeconds(1f); // Wait for 1 second before checking again
+            yield return new WaitForSeconds(idleWaitTime);
+            ChangeState("Walking");
         }
     }
     IEnumerator Talking()
