@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 1021496641103578709}
   - component: {fileID: 3536628972977821503}
   - component: {fileID: 4816394417955945045}
+  - component: {fileID: 1724590194199172270}
   m_Layer: 5
   m_Name: OptionsUI
   m_TagString: OptionsUI
@@ -107,6 +108,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8199490462807082632}
+  - {fileID: 3246981345887093546}
   - {fileID: 3514884948228593635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -179,6 +181,28 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!95 &1724590194199172270
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260906817007893106}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a5f289cfa4cac347aa8305618e9d50c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &265048040207089857
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +499,7 @@ GameObject:
   - component: {fileID: 2241566362736972886}
   - component: {fileID: 1003889525555417335}
   m_Layer: 5
-  m_Name: PauseButon
+  m_Name: PauseButton
   m_TagString: OptionsButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1735,12 +1759,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3514884948228593635}
+  m_Father: {fileID: 8076694682306737102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.852}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 44, y: -10}
-  m_SizeDelta: {x: -21.1862, y: 276.1416}
+  m_AnchoredPosition: {x: 869, y: 44.896893}
+  m_SizeDelta: {x: -65.1862, y: 385.93542}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5212051632939788178
 CanvasRenderer:
@@ -1901,18 +1925,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8717289556178727909}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 831688369184030249}
         m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: resumeGame
@@ -2732,7 +2744,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3246981345887093546}
   - {fileID: 1259076063142358016}
   - {fileID: 3466331863268501517}
   - {fileID: 4841475127612304308}
@@ -2742,7 +2753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 400, y: 249.8969}
+  m_AnchoredPosition: {x: 1247, y: 249.8969}
   m_SizeDelta: {x: 800, y: 499.79382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8439652933460701373

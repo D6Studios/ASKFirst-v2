@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
     Canvas dialogueUI;
     Canvas optionsUI;
     Canvas gameUI;
-    GameObject optionsMenu;
+    Animator optionsMenu;
+    private MobileControls mobileControls;
+    public float Sensitivity = 1.0f;
+
 
     void Start()
     {
@@ -46,6 +49,9 @@ public class GameManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        //Get UI references
+        //
+        Time.timeScale = 1f; // Reset time scale to normal when a new scene is loaded
         Debug.Log("Scene loaded: " + scene.name);
         try
         {
@@ -74,7 +80,7 @@ public class GameManager : MonoBehaviour
         }
         try
         {
-            optionsMenu = GameObject.FindGameObjectWithTag("OptionsMenu");
+            optionsMenu = GameObject.FindGameObjectWithTag("OptionsUI").GetComponent<Animator>();
             Debug.Log("OptionsMenu found and assigned in GameManager.");
         }
         catch (System.Exception e)
@@ -91,6 +97,7 @@ public class GameManager : MonoBehaviour
         {
             StartLevel();
         }
+
 
     }
 
@@ -161,20 +168,21 @@ public class GameManager : MonoBehaviour
         dialogueUI.enabled = false;
         optionsUI.enabled = true;
         gameUI.enabled = true;
-        optionsMenu.SetActive(false);
+        optionsMenu.SetBool("IsOpen", false);
     }
 
     public void PauseGame()
     {
         gameUI.enabled = false;
         Time.timeScale = 0f; // Pause the game
-        optionsMenu.SetActive(true); // Show the options menu
+        optionsUI.enabled = true;
+        optionsMenu.SetBool("IsOpen", true); // Show the options menu
     }
     public void ResumeGame()
     {
         gameUI.enabled = true;
         Time.timeScale = 1f; // Resume the game
-        optionsMenu.SetActive(false); // Hide the options menu
+        optionsMenu.SetBool("IsOpen", false); // Hide the options menu
     }
     public void HideAll()
     {
@@ -182,6 +190,6 @@ public class GameManager : MonoBehaviour
         optionsUI.enabled = false;
         gameUI.enabled = false;
         if (optionsMenu == null) Debug.LogWarning("OptionsMenu is null in HideAll.");
-        optionsMenu.SetActive(false);
+        optionsMenu.SetBool("IsOpen", false);
     }
 }

@@ -11,25 +11,13 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Slider MusicSlider;
     [SerializeField] private Slider SfxSlider;
     [SerializeField] private Slider SensSlider;
-    private MobileControls mobileControls;
+
 
     void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
-    }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        try
-        {
-            mobileControls = GameObject.FindGameObjectWithTag("MobileControls").GetComponent<MobileControls>();
-            Debug.Log("MobileControls found and assigned in OptionsMenu.");
-        }
-        catch (Exception e)
-        {
-            Debug.LogWarning("MobileControls not found in the scene: " + e.Message);
-        }
-
+        SensSlider.value = GameManager.Instance.Sensitivity;
+        MusicSlider.value = SoundManager.Instance.MusicVolume;
+        SfxSlider.value = SoundManager.Instance.SFXVolume;
     }
 
     // Update is called once per frame
@@ -41,8 +29,8 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetMusicVolume()
     {
-        // Set the music volume based on the slider value
-        float MusicVolume = MusicSlider.value;
+        SoundManager.Instance.MusicVolume = MusicSlider.value;
+        float MusicVolume = SoundManager.Instance.MusicVolume;
         if (MusicVolume == 0)
         {
             AudioMixer.SetFloat("Music", -80); // Set to minimum volume if slider is at 0 to avoid log10(0) error
@@ -53,8 +41,8 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetSFXVolume()
     {
-        // Set the SFX volume based on the slider value
-        float SfxVolume = SfxSlider.value;
+        SoundManager.Instance.SFXVolume = SfxSlider.value;
+        float SfxVolume = SoundManager.Instance.SFXVolume;
         if (SfxVolume == 0)
         {
             AudioMixer.SetFloat("Sfx", -80); // Set to minimum volume if slider is at 0 to avoid log10(0) error
@@ -67,7 +55,7 @@ public class OptionsMenu : MonoBehaviour
     {
         // Set the look sensitivity based on the slider value
         float Sensitivity = SensSlider.value;
-        mobileControls.sensitivityMultiplier = Sensitivity; // Set the sensitivity multiplier in the MobileControls script
+        GameManager.Instance.Sensitivity = Sensitivity;
     }
     public void pauseGame()
     {

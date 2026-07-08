@@ -30,7 +30,7 @@ public class MobileControls : MonoBehaviour
 
     private VirtualJoystick m_MoveJoystick;
     private VirtualJoystick m_LookJoystick;
-    public float sensitivityMultiplier = 1.0f;
+    public float sensitivityMultiplier => GameManager.Instance.Sensitivity;
 
     private void Awake()
     {

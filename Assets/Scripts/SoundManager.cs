@@ -4,6 +4,8 @@ public class SoundManager : MonoBehaviour
 {
     AudioSource sfxAudioSource;
     AudioSource bgmAudioSource;
+    public float MusicVolume = 0.5f;
+    public float SFXVolume = 0.5f;
     public static SoundManager Instance { get; private set; }
     void Start()
     {
