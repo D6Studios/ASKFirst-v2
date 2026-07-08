@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Scene loaded: " + scene.name);
         try
         {
             dialogueUI = GameObject.FindGameObjectWithTag("DialogueUI").GetComponent<Canvas>();
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
         try
         {
             optionsMenu = GameObject.FindGameObjectWithTag("OptionsMenu");
+            Debug.Log("OptionsMenu found and assigned in GameManager.");
         }
         catch (System.Exception e)
         {
@@ -81,6 +83,8 @@ public class GameManager : MonoBehaviour
         }
         if (scene.name == "MainMenu")
         {
+            if (optionsMenu == null) Debug.LogWarning("Check1");
+
             HideAll();
         }
         if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Level3")
@@ -177,6 +181,7 @@ public class GameManager : MonoBehaviour
         dialogueUI.enabled = false;
         optionsUI.enabled = false;
         gameUI.enabled = false;
+        if (optionsMenu == null) Debug.LogWarning("OptionsMenu is null in HideAll.");
         optionsMenu.SetActive(false);
     }
 }
