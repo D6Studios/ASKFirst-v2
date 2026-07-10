@@ -15,7 +15,7 @@ public class NPCAnimator : MonoBehaviour
 
     void Start()
     {
-        NPCAnimatorController = GetComponent<Animator>();
+        NPCAnimatorController = GetComponentInChildren<Animator>();
         Debug.Log("NPCAnimator: Animator component found and assigned.");
     }
     public void Animate(string newState)

@@ -16,12 +16,14 @@ public class OptionsMenu : MonoBehaviour
     void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         try
         {
             mobileControls = GameObject.FindGameObjectWithTag("MobileControls").GetComponent<MobileControls>();
+            Debug.Log("MobileControls found and assigned in OptionsMenu.");
         }
         catch (Exception e)
         {
