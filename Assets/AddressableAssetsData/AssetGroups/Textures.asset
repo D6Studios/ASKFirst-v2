@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Textures
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Textures
+  m_GUID: aee2c1df2b19dfd42a3d52a4c2ddf284
+  m_SerializeEntries:
+  - m_GUID: 2041b71c56db8c64e95bd698a830a85b
+    m_Address: Assets/Materials/floraatlas2/Plane_standardSurface1_AO.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 321a88d820036364a9765d8b13f29372
+    m_Address: Assets/Materials/floraatlas/Plane_standardSurface1_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fb9f328d1b8bd84cb4ff4a6d4411973
+    m_Address: Assets/Materials/floraatlas/Plane_standardSurface1_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45a4d060c5c681f44bda29cd1c68f2df
+    m_Address: Assets/Materials/floraatlas2/Plane_standardSurface1_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 470cd48822830004387a851898f42490
+    m_Address: Assets/Materials/floraatlas2/Plane_standardSurface1_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 520a6f1578ea095448742c4cec09fcf2
+    m_Address: Assets/Materials/floraatlas/Plane_standardSurface1_AO.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e2f8f46212263149a25215171ac8e49
+    m_Address: Assets/Materials/floraatlas2/Plane_standardSurface1_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a94ef26a25f51441a43f57ff9c365af
+    m_Address: Assets/Materials/floraatlas2/Plane_standardSurface1_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9045a0c4d61779142b275d97a6ebd3e3
+    m_Address: Assets/Materials/floraatlas/Plane_standardSurface1_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2b0dace60d36d04d95355dc4bbf2b3e
+    m_Address: Assets/Materials/floraatlas/Plane_standardSurface1_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca358d49ed7774245b46d77e00d5556b
+    m_Address: Assets/Materials/floraatlas/Plane_standardSurface1_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd4cc10e564b75d4492e0e3695a3be81
+    m_Address: Assets/Materials/floraatlas2/Plane_standardSurface1_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a7c257bf6201a724b9fc6981aa10ef97, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 926eef2208eb9fd4a8623224013600a7, type: 2}
+    - {fileID: 11400000, guid: 03da01ea3c8ab2542bb5a38648820294, type: 2}

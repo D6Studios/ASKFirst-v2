@@ -2932,7 +2932,7 @@ VideoPlayer:
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 2
   m_AspectRatio: 3
-  m_DataSource: 0
+  m_DataSource: 1
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
@@ -2940,7 +2940,7 @@ VideoPlayer:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: 
+  m_Url: https://b8888fb0-9a9a-4559-9af8-3749a8683cd3.client-api.unity3dusercontent.com/client_api/v1/environments/production/buckets/7ce1c4ee-c517-498e-873a-6b0f88b9eb03/release_by_badge/latest/entry_by_path/content/?path=Askfirst.mp4
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
