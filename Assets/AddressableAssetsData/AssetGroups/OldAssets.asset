@@ -1,0 +1,748 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: OldAssets
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: OldAssets
+  m_GUID: 38c661c41323c6f4a9f59b29e5d5747f
+  m_SerializeEntries:
+  - m_GUID: 02edbfc12b75eb447ac7bfede6fa62fb
+    m_Address: Assets/NPCs/ScanningNPCIndian (2).prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03c5b3eb380e0a84ea89d77b22433f7a
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/FemStaffTextures/strafv2_lambert22_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 081f2b658e2b617448b3b2e0c571ff11
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/sus/Npc1_lambert23_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ad4b457212524e49b1a274e6020ecd3
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc1Textures/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ea6739ab09ab274ab102e82f42492c6
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP3Textures/npc2_lambert24_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fba9a326e909db49b79b1c59a03f7cd
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/shocked/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13477977b0fa64c449a6a0c98cb684e1
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP3Textures/npc2_lambert24_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 161b1f14e0f5c394aaa44a518a965cbe
+    m_Address: Assets/NPCs/Staff.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18e70150e8304854f98e73d7bf8490a0
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/HoodieGuyMaterials/theif_pasted__lambert4_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1cca94594a55fc648b92fa2a2aaed507
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/worried/npc3_lambert1_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1dcde2ac1b64deb4ab87f923cb10626e
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP4Textures/npc2_lambert24_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ffa86300f099f94887aa298d273c0a7
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 5/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2067f95962dd07943af95ccb0e5cee72
+    m_Address: Assets/NPCs/ScanningNPCYP (3).prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2174073befcb07241b6bac76ce121a11
+    m_Address: Assets/NPCs/NTUC.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 232311273e4d2e0448be0523b7328dbe
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 5/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28d55f129d5d8854cb022bb1a6c227ca
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 5/Npc1_lambert23_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29992c7df9b91924b91ffaaf03be6a72
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/HoodieGuyMaterials/theif_pasted__lambert4_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b35be67c7c775e43bda47f573a21468
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/neutral/Npc1_lambert23_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e2d2508dec9e5d418a1c51159c0554d
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/sneak/npc2_lambert24_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3022352a203c1b54f99d0cc12c417bbf
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/sneak/npc2_lambert24_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30723a8f6a03e104695daa432f9eae85
+    m_Address: Assets/Materials/AtlasSupermarket/Plane_lambert2_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31c7945d4fb1687488aa6ff01f753b95
+    m_Address: Assets/Materials/AtlasSupermarket/plane_lambert2_Roughness.1001 1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31f6a4c9ff321dd45a2a132d97d5ed88
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/surprise/npc3_lambert1_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3275df98dfd9d6e4bac73f599bf5a7ff
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/angy/npc2_lambert24_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 339cca9cff040a54aa0f09081a5c581e
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/Npc1_lambert23_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3563784a206e852488d9bfffe7a46a34
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/awk/Npc1_lambert23_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3629d258d4f52b84cad57736bf8c2dcf
+    m_Address: Assets/Materials/AtlasSupermarket/plane_lambert2_Normal.1001 1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 370c21c9c9a9f694cb744a2b0b789ce4
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/MaleStaffTextures/strafv2_lambert22_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a3b7929089a1bb48a84cbb81d7af9be
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc2Textures/Npc1_lambert23_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c690e45c0ca5854096466a2c01d9abd
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 5/npc2_lambert24_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4095e40b59db6eb4a9c6c410f466b1a6
+    m_Address: Assets/NPCs/ScanningNPCIndian.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46e3c99a296c9574ba0d30ab99997aa3
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/worried/npc3_lambert1_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4754c629c8fe73348bbf7e2d1b90138d
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 5/female char_lambert22_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4792b615111bfbf4a9f3a6fdca047e89
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/Npc1_lambert23_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c155da11f24ce14db877e8b55abf5cc
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP4Textures/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c3cdd2802090df4e9eddca674f9cdeb
+    m_Address: Assets/Materials/AtlasSupermarket/Plane_lambert2_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4dc33c22e9e299146ba821d34dbe1381
+    m_Address: Assets/NPCs/ScanningNPCIndian 1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4dd24f20fd58e284c8feae8c8dd84a96
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/sus/npc3_lambert1_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4de05636c06bcc14c880ef2b0d7487db
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/surprise/npc3_lambert1_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4fcd3e727a9ab5d468b7c0624739eafb
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/default/npc3_lambert1_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 548cd86b971b1044f993b054de59aa8e
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP2Textures/npc2_lambert24_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55ae903bfb4155d43ab39653d1938a50
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 4/Npc1_lambert23_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57121deef12706745bb0f914bc8d192f
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP2Textures/npc2_lambert24_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b55432f67bb86748b42e6c9349ba8b8
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 5/Npc1_lambert23_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5bd5b26677eb132468c21a60abedb9a8
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 4/npc2_lambert24_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c1c306590684da4d9b245d5a69c5dc0
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 4/female char_lambert22_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5efbafb5a904a2248b58456efc6fa02f
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP2Textures/npc2_lambert24_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62a4acfa1b0f6ee4a9da0b42401f0ffa
+    m_Address: Assets/NPCs/YP.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 634739bdc9ade424a8ec0f970f522163
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/sus/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63c9f70881f5025489b7be41e6aed226
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/surprise/npc3_lambert1_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69b4686d5165a074bae9b72da1d8caf3
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 5/Npc1_lambert23_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a604391e5f579b44a94c6efaa450d7b
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc1Textures/Npc1_lambert23_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f52897b1e12ec74a9f833fabe16b9ae
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/MaleStaffTextures/strafv2_lambert22_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7043e86527266fb4f8132d028cd63747
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP4Textures/npc2_lambert24_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7397c482a5b853f4facd9be3ad36c9b4
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/neutral/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73dc3a11dce470143a2b4be3a319d240
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/angy/npc2_lambert24_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74f1f089f6899d24f84a94647245d164
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 5/female char_lambert22_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7785b150cb4216044a1ac11b4118a543
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/HoodieGuyMaterials/theif_pasted__lambert4_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 793f0427fcaf4a6409ea2a84d9ced11f
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 4/npc2_lambert24_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ba3aa75336af9d449a546065af90c90
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/default/npc3_lambert1_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d7cb1b5d7ea3834297c432f6d3aa0ae
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fb88be6ce8651e4d83b6b0f67da5e70
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/MaleStaffTextures/strafv2_lambert22_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 82956122ebaa67142b08bc1dd3f6f3e3
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 5/female char_lambert22_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 843f4c9db46674b43bdcc1710f573586
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 4/npc2_lambert24_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84cfbb382a8b66d4b88f705bdd19bf1a
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc2Textures/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 851a5911d0fc9ed47807521da3ca576f
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 4/female char_lambert22_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 882dce16cdfd43a4f9ad61b1cf688153
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 5/female char_lambert22_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a931fd56874edf4b9371f7258e6925d
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/neutral/Npc1_lambert23_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d086ec07b01c294b954e64ae524e964
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/panic/npc2_lambert24_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8efd7ea37f95a2f469ce207ba2e37d05
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/MaleStaffTextures/strafv2_lambert22_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 904f4963f0cac1049b34955e575fa47f
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc1Textures/Npc1_lambert23_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90cbd4b7e3e1d58468a68962ced72184
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/Default/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 926329f8d1d49424c9a7b034c8738d43
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/default/Npc1_lambert23_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9297edfb3d887554bb3a821b6fcb8ab6
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 4/female char_lambert22_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92bf92dedbb686048b57789502ffc4a5
+    m_Address: Assets/Materials/AtlasSupermarket/Plane_lambert2_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93f0bbf6b612a144b916cd675361582a
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 4/female char_lambert22_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 958680db04769df468e984c2d7b1c5c2
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/default/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98902ecbdec102a4db4913f2a05c364a
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/sus/Npc1_lambert23_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99f87a7016cd563449f790f1a0126bb0
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 4/Npc1_lambert23_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cb78670bafdcc94081e571ca81819fd
+    m_Address: Assets/Materials/AtlasSupermarket/Plane_lambert2_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cc8c252cc9734149955b26b737921c3
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/sus/npc3_lambert1_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e02db701d3bc5742ac42dda7301e70d
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP3Textures/npc2_lambert24_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fcfc3aff09d05042967bc1fed7223d2
+    m_Address: Assets/NPCs/ScanningNPCIndian (1).prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0c89abbd994af24898e13a100ac1455
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/default/npc3_lambert1_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a458259a0206e3a448a2aba193ac3622
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/bored/npc2_lambert24_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a466a52d712482447b37fa12f8382218
+    m_Address: Assets/Materials/AtlasSupermarket/plane_lambert2_Height.1001 1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a632edcab663dea4699d978347d9f941
+    m_Address: Assets/Materials/AtlasSupermarket/Plane_lambert2_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6e047f973799fe499d3bc17cca44afd
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP2Textures/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a99b320fda3ce1844a02a22bfd47358a
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/sus/npc3_lambert1_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9f5c598c79d06a4cbc835ba4973b367
+    m_Address: Assets/Materials/AtlasSupermarket/plane_lambert2_BaseColor.1001 1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab5933a6a311a8f45b823bd03e97a18e
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP4Textures/npc2_lambert24_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad257b8a35b3c9a4a8730b3873687be8
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 4/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b047d8a76425a704492b5b8c6953d8f6
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/shocked/Npc1_lambert23_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1b7d31beba8ce548a79248a370ff087
+    m_Address: Assets/NPCs/boy.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2148e18ed3c6804bbb7af7365ef332f
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 5/female char_lambert22_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba1d5710073580f4f846347b91569a2f
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/bored/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba27d9ef5bbf11948910a3a4ad5843c3
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP3Textures/npc2_lambert24_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd2f828d734983249a5e93b2ab30cfff
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/angy/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdc7c7e851e6869468cf362428d72f1d
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3_lambert1_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be3244304c7bc2344ab94f1204ab9956
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/bored/npc2_lambert24_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bee9df76ae34f024f98252c5698a2339
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 5/npc2_lambert24_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3266f3d470ef9c4aa8b594057189a8a
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/Default/npc2_lambert24_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3fa3f7308f7da54f9b10964bdd63c37
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/default/Npc1_lambert23_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4ea580468bfcbb4fb9a728250519544
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5520048732ccc445b34620c1619306c
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc2Textures/Npc1_lambert23_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c71caa29c788c5048a7d32dc0c6c209b
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/awk/Npc1_lambert23_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c786fbc0a4c635d4182e5272ace86a3c
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3_lambert1_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7d91beb47ff64149adc75f5d30154f6
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc1Textures/Npc1_lambert23_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c81f1d3bf6bf8384ca39808b1fc13305
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/panic/npc2_lambert24_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccdc0b98fd9046f4fb832e1a603aa6c0
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Girl 4/female char_lambert22_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd137185e45bd634da0d51cc31732f4c
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 5/npc2_lambert24_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce410150bf171604a975cbf37830ea04
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/awk/Npc1_lambert23_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d134dbe19d9c4dc4b842fb0a076c9f79
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/FemStaffTextures/strafv2_lambert22_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2b30fa3f9fdec3499c2cc115b1ccd51
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/npc2_lambert24_BaseMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d36be45f82fd62b4fac8a6b60371ad11
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 4/npc2_lambert24_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d382e093466831d4ca7d77d8a1bc9a07
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 5/Npc1_lambert23_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5045775ee3d0ee428c583dbfd23ccf2
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 5/npc2_lambert24_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d51381ea7708c8b409eb4caaf9263ebb
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/FemStaffTextures/strafv2_lambert22_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7332bf287748594b81495583f921d6d
+    m_Address: Assets/NPCs/ScanningNPCYP.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9714fc5f662ed3498700713d91fdee9
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/FemStaffTextures/strafv2_lambert22_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db533d780297101408e310681bf94a6b
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/HoodieGuyMaterials/theif_pasted__lambert4_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ded668ee83dcaf849a2a4ffe0747c78f
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3/worried/npc3_lambert1_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1a13b596d996694ba18b06e00719f6e
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/sneak/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e227e4ab29cd11e45883cb5f220aa029
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/YP 4/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2a3b17584fcfed4d9dd33144313b901
+    m_Address: Assets/Materials/AtlasSupermarket/plane_lambert2_Metallic.1001 1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3e834d4b03a0f04da19684654d7118b
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/npc2_lambert24_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4325b42dc3183644834549a9963f90a
+    m_Address: Assets/NPCs/ScanningNPCYP (2).prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8e194069c0fc644ab5a7105c1bf5821
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/BoyMaterials/npc3_lambert1_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea70909a576cc3147bee963ff57946b2
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP3Textures/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eda74d22b9087dd47b5a91a317b9781c
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc2Textures/Npc1_lambert23_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edb615d266c37044b89089a480a69d56
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc1Textures/Npc1_lambert23_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee980386f2f1dd44486dcd8cbc731b55
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/FemStaffTextures/strafv2_lambert22_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: efed21557293a1549a3c03ad0c3e0ec3
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 4/Npc1_lambert23_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3c35e2317c6d564a84706787dc1f5e2
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/Unc2Textures/Npc1_lambert23_BaseColor.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7071e1481478904cb48ed92c4d9af32
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/IndTextures/shocked/Npc1_lambert23_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7675d082cec8da48a69397da5c59acd
+    m_Address: Assets/NPCs/ScanningNPCYP (1).prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8d681bc20fe44042a2b610c730fd8ed
+    m_Address: Assets/NPCs/Other NPC variants/NewVariants/Unc 4/Npc1_lambert23_Height.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f917f3761a04fdf44997d8a25fff0c2e
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/Default/npc2_lambert24_MaskMap.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb0903eacbfc3ec468469454aae9ae21
+    m_Address: Assets/NPCs/Woman.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb77639570f495846a8a04de5ff69a38
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP2Textures/npc2_lambert24_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb9ec96a3409b9d41a4b2c0e35bcbf3b
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/MaleStaffTextures/strafv2_lambert22_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc3ccf2ae74fb014f918af2c9544fb98
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP1Textures/panic/npc2_lambert24_Normal.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc4301ab2d86eed4c81744344ffb3d51
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/YP4Textures/npc2_lambert24_Metallic.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc93f9e0df822b34fbb815191df26a0a
+    m_Address: Assets/NPCs/Materials/CharacterMaterials/HoodieGuyMaterials/theif_pasted__lambert4_Roughness.1001.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe3fa0979421a2a4da5394b410f1b3ef
+    m_Address: Assets/NPCs/facemask.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a7c257bf6201a724b9fc6981aa10ef97, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 088c07862060b074896b9be3dedd22a3, type: 2}
+    - {fileID: 11400000, guid: 61e432870d9035d4c9de6200ec7a6932, type: 2}

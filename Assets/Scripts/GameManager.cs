@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
+using UnityEngine.AddressableAssets;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -114,7 +115,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Level Ended with a mood score of: " + moodScore + " from NPC: " + npcName); //Placeholder for level end implementation
         GameManager.Instance.currentScore = moodScore;
         StopCoroutine(levelTimerCoroutine);
-        SceneManager.LoadScene("Level End");
+        Addressables.LoadSceneAsync("Assets/Scenes/Level End.unity");
+        // SceneManager.LoadScene("Level End");
     }
     public void AddMistake(int mistakeId)
     {

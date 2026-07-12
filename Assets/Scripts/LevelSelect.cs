@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
 
 public class LevelSelect : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class LevelSelect : MonoBehaviour
     }
     public void StartLevel()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level" + (currentLevel + 1));
+
+        Addressables.LoadSceneAsync("Assets/Scenes/Level" + (currentLevel + 1) + ".unity");
     }
 }

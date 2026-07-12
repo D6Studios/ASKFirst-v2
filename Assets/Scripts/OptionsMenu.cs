@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class OptionsMenu : MonoBehaviour
     public void ExitToMainMenu()
     {
         // Load the main menu scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        Addressables.LoadSceneAsync("Assets/Scenes/MainMenu.unity");
     }
 
     public void SetMusicVolume()
