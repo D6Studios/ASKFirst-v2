@@ -55,11 +55,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c577a990bb7e2db44b751824a54f4d42
-    m_Address: Assets/Prefab/NPC (Change name).prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d15cd744de4064e41ad329fbe813f8e3
     m_Address: Assets/Prefab/LevelEssentials/SoundManager.prefab
     m_ReadOnly: 0

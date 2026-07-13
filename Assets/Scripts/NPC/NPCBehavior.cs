@@ -11,9 +11,9 @@ public class NPCBehavior : MonoBehaviour
     Coroutine currentCoroutine;
     public string currentState;
     NavMeshAgent agent;
-    [SerializeField] int idleWaitTime;
     [SerializeField] Transform[] patrolPoints;
     int currentPatrolIndex = 0;
+    [SerializeField] Vector2 idleWaitTime;
     void Start()
     {
         NPCOutline = gameObject.GetComponentInChildren<Outline>();
@@ -62,6 +62,7 @@ public class NPCBehavior : MonoBehaviour
     }
     IEnumerator Walking()
     {
+        agent.isStopped = false;
         npcAnimator.Animate("Walking");
         while (currentState == "Walking")
         {
@@ -86,20 +87,35 @@ public class NPCBehavior : MonoBehaviour
     }
     IEnumerator Idle()
     {
+        agent.isStopped = true;
         npcAnimator.Animate("Idle");
         while (currentState == "Idle")
         {
-            yield return new WaitForSeconds(idleWaitTime);
+            float waitTime = Random.Range(idleWaitTime.x, idleWaitTime.y);
+            yield return new WaitForSeconds(waitTime);
             ChangeState("Walking");
         }
     }
     IEnumerator Talking()
     {
+        agent.isStopped = true;
+        StartCoroutine(TurnToPlayer());
         npcAnimator.Animate("InteractedWith");
         while (currentState == "Talking")
         {
             Debug.Log("NPC is talking.");
             yield return new WaitForSeconds(1f); // Wait for 1 second before checking again
+        }
+    }
+    IEnumerator TurnToPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, 0, directionToPlayer.z));
+        while (transform.rotation != lookRotation)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+            yield return null;
         }
     }
 }

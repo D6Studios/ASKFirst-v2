@@ -60,6 +60,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59303b04fb6e433438c82b35dbad3693
+    m_Address: Assets/Sprites/clock.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6524d1c6818e7ad499d55f00874ab723
     m_Address: Assets/Sprites/interactIcon.png
     m_ReadOnly: 0
@@ -77,6 +82,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7db6f16c4c6ac884eb31fbbcc4dc900f
     m_Address: Assets/Sprites/MainMenu/UIButtonBlue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e451e458d0ae284bb520fdf19a51d23
+    m_Address: Assets/Sprites/clockHand.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
