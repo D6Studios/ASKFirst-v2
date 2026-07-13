@@ -32,7 +32,6 @@ public class LevelSelect : MonoBehaviour
     }
     public void StartLevel()
     {
-
-        Addressables.LoadSceneAsync("Assets/Scenes/Level" + (currentLevel + 1) + ".unity");
+        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (currentLevel + 1) + ".unity"));
     }
 }

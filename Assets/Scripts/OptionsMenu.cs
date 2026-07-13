@@ -24,8 +24,7 @@ public class OptionsMenu : MonoBehaviour
     // Update is called once per frame
     public void ExitToMainMenu()
     {
-        // Load the main menu scene
-        Addressables.LoadSceneAsync("Assets/Scenes/MainMenu.unity");
+        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/MainMenu.unity"));
     }
 
     public void SetMusicVolume()

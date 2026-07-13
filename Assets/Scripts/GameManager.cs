@@ -115,8 +115,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Level Ended with a mood score of: " + moodScore + " from NPC: " + npcName); //Placeholder for level end implementation
         GameManager.Instance.currentScore = moodScore;
         StopCoroutine(levelTimerCoroutine);
-        Addressables.LoadSceneAsync("Assets/Scenes/Level End.unity");
-        // SceneManager.LoadScene("Level End");
+        StartCoroutine(LoadScene("Assets/Scenes/Level End.unity"));
     }
     public void AddMistake(int mistakeId)
     {
@@ -194,4 +193,13 @@ public class GameManager : MonoBehaviour
         if (optionsMenu == null) Debug.LogWarning("OptionsMenu is null in HideAll.");
         optionsMenu.SetBool("IsOpen", false);
     }
+    public IEnumerator LoadScene(string sceneName)
+    {
+        var asyncLoad = Addressables.LoadSceneAsync(sceneName);
+        while (!asyncLoad.IsDone)
+        {
+            yield return null;
+        }
+    }
 }
+

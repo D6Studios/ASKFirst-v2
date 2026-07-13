@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.AddressableAssets;
 public class EndScreen : MonoBehaviour
 {
     public Image[] stars;
@@ -74,6 +74,6 @@ public class EndScreen : MonoBehaviour
     }
     public void ReturnToMainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/MainMenu.unity"));
     }
 }
