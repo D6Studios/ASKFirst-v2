@@ -57,7 +57,7 @@ Material:
     - _StencilWriteMask: 255
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
-    - _stepValue: 0.004054785
+    - _stepValue: 0.008058786
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _FullColor: {r: 0.15690091, g: 0.7169812, b: 0, a: 1}

@@ -52,126 +52,6 @@ public class PlayerDialogue : MonoBehaviour
         GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>().ResetFocus();
         npc.GetComponent<NPCBehavior>().ChangeState("Idle");
     }
-    /*
-    IEnumerator DialogueCoroutine(GameObject npc)
-    {
-        DialogueLines dialogueLine = null;
-
-        while (true)
-        {
-            if (dialogueLine == null)
-            {
-                dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(0);
-
-            }
-            else if (dialogueLine.option1NextId == -1)
-            {
-                EndDialogue(npc);
-                break;
-            }
-            else if (dialogueLine.option1NextId == -2)
-            {
-                GameManager.Instance.EndLevel(mood, npc.name);
-                break;
-            }
-            else if (dialogueLine.optionsBypass == true)
-            {
-                dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
-
-            }
-            else if (dialogueLine.optionsBypass == false)
-            {
-                switch (optionPicked)
-                {
-                    case 1:
-                        GameManager.Instance.AddMistake(dialogueLine.option1MistakeId);
-                        dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
-                        break;
-                    case 2:
-                        GameManager.Instance.AddMistake(dialogueLine.option2MistakeId);
-                        dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option2NextId);
-                        break;
-                    case 3:
-                        GameManager.Instance.AddMistake(dialogueLine.option3MistakeId);
-                        dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option3NextId);
-                        break;
-                    case 4:
-                        GameManager.Instance.AddMistake(dialogueLine.option4MistakeId);
-                        dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option4NextId);
-                        break;
-                }
-
-
-            }
-
-            if (dialogueLine == null)
-            {
-                break;
-            }
-            else
-            {
-                Coroutine textScroll = StartCoroutine(TextScrolling(dialogueLine.line));
-                if (dialogueLine.optionsBypass == false)
-                {
-                    //Enable option buttons
-                    option2Text.transform.parent.gameObject.SetActive(true);
-                    option3Text.transform.parent.gameObject.SetActive(true);
-                    option4Text.transform.parent.gameObject.SetActive(true);
-                    //Set option text
-                    option1Text.text = dialogueLine.option1;
-                    option2Text.text = dialogueLine.option2;
-                    option3Text.text = dialogueLine.option3;
-                    option4Text.text = dialogueLine.option4;
-                }
-                else
-                {
-                    //Disable option buttons
-                    option2Text.transform.parent.gameObject.SetActive(false);
-                    option3Text.transform.parent.gameObject.SetActive(false);
-                    option4Text.transform.parent.gameObject.SetActive(false);
-                    //Clear option text
-                    option1Text.text = "...";
-                    option2Text.text = "";
-                    option3Text.text = "";
-                    option4Text.text = "";
-                }
-                yield return new WaitUntil(() => advanceDialogue);
-                if (textScrolling == true)
-                {
-                    textScrolling = false;
-                    advanceDialogue = false;
-                    StopCoroutine(textScroll);
-                    dialogueText.text = dialogueLine.line;
-                    yield return new WaitUntil(() => advanceDialogue);
-                }
-                StopCoroutine(textScroll);
-                advanceDialogue = false;
-                if (dialogueLine.optionsBypass == false)
-                {
-                    switch (optionPicked)
-                    {
-                        case 1:
-                            StartCoroutine(MoodChange(dialogueLine.option1MoodChange));
-                            break;
-                        case 2:
-                            StartCoroutine(MoodChange(dialogueLine.option2MoodChange));
-                            break;
-                        case 3:
-                            StartCoroutine(MoodChange(dialogueLine.option3MoodChange));
-                            break;
-                        case 4:
-                            StartCoroutine(MoodChange(dialogueLine.option4MoodChange));
-                            break;
-                    }
-                }
-            }
-        }
-
-
-
-
-    }
-    */
     IEnumerator DialogueCoroutine(GameObject npc)
     {
         DialogueLines dialogueLine = null;
@@ -184,37 +64,47 @@ public class PlayerDialogue : MonoBehaviour
                 dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(0);
 
             }
-            else if (dialogueLine.option1NextId == -1)
-            {
-                EndDialogue(npc);
-                break;
-            }
-            else if (dialogueLine.option1NextId == -2)
-            {
-                GameManager.Instance.EndLevel(mood, npc.name);
-                break;
-            }
-            else if (dialogueLine.optionsBypass == true)
-            {
-                dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
-
-            }
-            else if (dialogueLine.optionsBypass == false)
+            else
             {
                 switch (optionPicked)
                 {
                     case 1:
                         GameManager.Instance.AddMistake(dialogueLine.option1MistakeId);
-                        dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
+                        if (dialogueLine.option1NextId == -1)
+                        {
+                            EndDialogue(npc);
+                            break;
+                        }
+                        else if (dialogueLine.option1NextId == -2)
+                        {
+                            GameManager.Instance.EndLevel(mood, npc.name);
+                            break;
+                        }
+                        else
+                        {
+                            dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
+                        }
                         break;
                     case 2:
                         GameManager.Instance.AddMistake(dialogueLine.option2MistakeId);
-                        dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option2NextId);
+                        if (dialogueLine.option2NextId == -1)
+                        {
+                            EndDialogue(npc);
+                            break;
+                        }
+                        else if (dialogueLine.option2NextId == -2)
+                        {
+                            GameManager.Instance.EndLevel(mood, npc.name);
+                            break;
+                        }
+                        else
+                        {
+                            dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option2NextId);
+                        }
                         break;
                 }
-
-
             }
+
 
             if (dialogueLine == null)
             {

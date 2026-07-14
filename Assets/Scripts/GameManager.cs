@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     Animator optionsMenu;
     private MobileControls mobileControls;
     public float Sensitivity = 1.0f;
-
+    private int maxTime = 60; // Maximum time for the level in seconds
 
     void Start()
     {
@@ -137,13 +137,15 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LevelTimer()
     {
-        levelTimer = 60;
+        levelTimer = maxTime;
         TextMeshProUGUI timerText = gameUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        GameObject timerObject = gameUI.transform.GetChild(2).gameObject;
         timerText.text = levelTimer.ToString("D2") + "s"; // Display time in seconds with leading zero
 
         while (true)
         {
             timerText.text = levelTimer.ToString("D2") + "s"; // Display time in seconds with leading zero
+            timerObject.transform.rotation = Quaternion.Euler(0, 0, (360 / maxTime * levelTimer));
             yield return new WaitForSeconds(1f);
             if (!player.GetComponent<PlayerInteraction>().isBusy)
             {

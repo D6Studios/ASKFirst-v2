@@ -3,25 +3,30 @@ using UnityEngine.UI;
 using TMPro;
 public class EndScreenCard : MonoBehaviour
 {
-    public  TextMeshProUGUI title;
+    public TextMeshProUGUI title;
     public TextMeshProUGUI hintText;
-    public Image[] cardImages;
+    public Image cardImages;
     void Awake()
     {
         title = gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         hintText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        cardImages = new Image[2];
-        cardImages[0] = gameObject.transform.GetChild(2).GetComponent<Image>();
-        cardImages[1] = gameObject.transform.GetChild(3).GetComponent<Image>();
+        cardImages = gameObject.transform.GetChild(2).GetComponent<Image>();
 
     }
-    public void SetCard(string titleText, string hint, Sprite cardSprite)
+    public void SetCard(string titleText, string hint, Sprite cardSprite, bool correct)
     {
+        if (correct)
+        {
+            title.color = Color.green;
+        }
+        else
+        {
+            title.color = Color.red;
+        }
         title.text = titleText;
         hintText.text = hint;
-        foreach (Image img in cardImages)
-        {
-            img.sprite = cardSprite;
-        }
+
+        cardImages.sprite = cardSprite;
+
     }
 }

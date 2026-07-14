@@ -64,11 +64,11 @@ public class EndScreen : MonoBehaviour
             Debug.Log("Mistake details - Positive: " + mistake.positive + ", Title: " + mistake.title + ", Hint: " + mistake.hint);
             if (!mistake.positive)
             {
-                card.GetComponent<EndScreenCard>().SetCard(mistake.title, mistake.hint, incorrectCardSprite);
+                card.GetComponent<EndScreenCard>().SetCard(mistake.title, mistake.hint, incorrectCardSprite, false);
             }
             else
             {
-                card.GetComponent<EndScreenCard>().SetCard(mistake.title, mistake.hint, correctCardSprite);
+                card.GetComponent<EndScreenCard>().SetCard(mistake.title, mistake.hint, correctCardSprite, true);
             }
         }
     }

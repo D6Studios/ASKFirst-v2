@@ -9,4 +9,7 @@ Jane,0,1,Sorry I'm having trouble finding something. Could you help me find the 
 Jane,0,2,Ohh Thank you!,TRUE,,-1,,,,,,,,,,,,,,
 Jane,0,3,Oh… I see…,TRUE,,-1,,,,,,,,,,,,,,
 Jane,0,4,What??? I'm just shopping…,TRUE,,-1,,,,,,,,,,,,,,
-Jane,0,5,Ok! Thank you :),TRUE,,-1,,,,,,,,,,,,,,
+Jane,0,5,Ok! Thank you :),TRUE,,-1,,-1,,,,,,,,,,,,
+Jonkler,0,0,TEST,FALSE,POS,1,1,2,NEG,1,-1,1,placehold,0,0,0,placehold,0,0,0
+Jonkler,0,1,TEST,FALSE,POS,2,1,2,NEG,2,-1,1,placehold,0,0,0,placehold,0,0,0
+Jonkler,0,2,TEST,FALSE,POS,-2,1,2,NEG,-2,-1,1,placehold,0,0,0,placehold,0,0,0
