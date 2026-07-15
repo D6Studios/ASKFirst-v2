@@ -85,23 +85,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 798c12286dfef0b47a8b7421fba27d2b
-    m_Address: Assets/Models Rescaled/Fridge.fbx
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 802e6d29f4790424c87e00b448088957
-    m_Address: Assets/Models Rescaled/WallFreezer.fbx
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8bbd192431531824a80814ae62429e4d
     m_Address: Assets/Models Rescaled/Floor.fbx
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 95227a39faa62234d8a4ff2a305d5775
-    m_Address: Assets/Models Rescaled/Camera.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
