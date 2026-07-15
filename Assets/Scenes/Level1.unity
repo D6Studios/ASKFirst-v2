@@ -456,6 +456,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -94.9
       objectReference: {fileID: 0}
+    - target: {fileID: 2018729738023864325, guid: 84156c3d05e29e14385cd39220d28439, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018729738023864325, guid: 84156c3d05e29e14385cd39220d28439, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3370009084777287828, guid: 84156c3d05e29e14385cd39220d28439, type: 3}
       propertyPath: m_margin.w
       value: 10.983874
@@ -1796,12 +1804,24 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3536628972977821503, guid: 85d72e0ef037604498e53431ef264000, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536628972977821503, guid: 85d72e0ef037604498e53431ef264000, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3651823439550478448, guid: 85d72e0ef037604498e53431ef264000, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3651823439550478448, guid: 85d72e0ef037604498e53431ef264000, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415614302320264916, guid: 85d72e0ef037604498e53431ef264000, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4563179730097840441, guid: 85d72e0ef037604498e53431ef264000, type: 3}
@@ -6713,6 +6733,14 @@ PrefabInstance:
     - target: {fileID: 2893848720803995313, guid: f3ad3f0d38ffc4a4e905a259215d3b11, type: 3}
       propertyPath: m_Name
       value: GameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847900232826331401, guid: f3ad3f0d38ffc4a4e905a259215d3b11, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847900232826331401, guid: f3ad3f0d38ffc4a4e905a259215d3b11, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8209856514329659357, guid: f3ad3f0d38ffc4a4e905a259215d3b11, type: 3}
       propertyPath: m_Pivot.x
