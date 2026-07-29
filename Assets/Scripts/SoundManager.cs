@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
         }
         bgmAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
         sfxAudioSource = transform.GetChild(1).GetComponent<AudioSource>();
-        PlayBGM(Resources.Load<AudioClip>("bgm"));
+        //PlayBGM(Resources.Load<AudioClip>("bgm"));
     }
     public void PlaySound(AudioClip clip)
     {
