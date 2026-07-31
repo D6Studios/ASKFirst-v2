@@ -33,7 +33,7 @@ public class PlayerDialogue : MonoBehaviour
         option2Text = dialogueUI.transform.Find("Option 2").GetChild(0).GetComponent<TextMeshProUGUI>();
         option3Text = dialogueUI.transform.Find("Option 3").GetChild(0).GetComponent<TextMeshProUGUI>();
         option4Text = dialogueUI.transform.Find("Option 4").GetChild(0).GetComponent<TextMeshProUGUI>();
-        mood = 5;
+        mood = 10;
         moodSlider = dialogueUI.transform.Find("Mood/FillShader").GetComponent<Image>().material;
         moodSlider.SetFloat("_stepValue", mood);
     }
@@ -77,6 +77,7 @@ public class PlayerDialogue : MonoBehaviour
                         }
                         else if (dialogueLine.option1NextId == -2)
                         {
+                            EndDialogue(npc);
                             GameManager.Instance.EndLevel(mood, npc.name);
                             break;
                         }
@@ -126,7 +127,7 @@ public class PlayerDialogue : MonoBehaviour
                     //Disable option buttons
                     option2Text.transform.parent.gameObject.SetActive(false);
                     //Clear option text
-                    option1Text.text = "...";
+                    option1Text.text = "→";
                     option2Text.text = "";
                 }
                 yield return new WaitUntil(() => advanceDialogue);

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class NPCDialogue : MonoBehaviour
 {
@@ -8,44 +9,40 @@ public class NPCDialogue : MonoBehaviour
     int dialogueIndex = 0;
     void Start()
     {
-        TextAsset dialogueFile = Resources.Load<TextAsset>("ASKFirstDialogue2Options"); // Load dialogue from Resources folder
+        TextAsset dialogueFile = Resources.Load<TextAsset>("ASKFirstDialogueTab"); // Load dialogue from Resources folder
         string[] allLines = dialogueFile.text.Split('\n');
         for (int i = 0; i < allLines.Length; i++)
         {
-            if (allLines[i].StartsWith(gameObject.name + ",")) //Filter lines for this NPC based on name
+            if (allLines[i].StartsWith(gameObject.name + "\t")) //Filter lines for this NPC based on name
             {
-                string[] splitLine = allLines[i].Split(','); //Split line into components
-                foreach (string line in splitLine)
-                {
-                    line.Trim(); //Trim whitespace from each component
-                    if (line.Contains("|||"))
-                    {
-                        line.Replace("|||", ",");
-                    }
-                }
+                string[] splitLine = allLines[i].Split('\t'); //Split line into components
+                Debug.Log("Split Line: " + string.Join(", ", splitLine));
                 DialogueLines currentDialogueLine;
                 if (bool.Parse(splitLine[4]) == false)
                 {
-                    currentDialogueLine = new DialogueLines(int.Parse(splitLine[2]), //ID
-                    splitLine[3], //Line
-                    bool.Parse(splitLine[4]), //Options Bypass
-                    splitLine[5], //Option 1
-                    int.Parse(splitLine[6]), //Option 1 Next ID
-                    int.Parse(splitLine[7]), //Option 1 Mood Change
-                    int.Parse(splitLine[8]), //Option 1 Mistake ID
-                    splitLine[9], //Option 2
-                    int.Parse(splitLine[10]), //Option 2 Next ID
-                    int.Parse(splitLine[11]), //Option 2 Mood Change
-                    int.Parse(splitLine[12]), //Option 2 Mistake ID
-                    splitLine[13], //Option 3
-                    int.Parse(splitLine[14]), //Option 3 Next ID
-                    int.Parse(splitLine[15]), //Option 3 Mood Change
-                    int.Parse(splitLine[16]),//Option 3 Mistake ID
-                    splitLine[17], //Option 4
-                    int.Parse(splitLine[18]), //Option 4 Next ID   
-                    int.Parse(splitLine[19]), //Option 4 Mood Change
-                    int.Parse(splitLine[20]) //Option 4 Mistake ID
-                    );
+                    try
+                    {
+                        currentDialogueLine = new DialogueLines(int.Parse(splitLine[2]), //ID
+                        splitLine[3], //Line
+                        bool.Parse(splitLine[4]), //Options Bypass
+                        splitLine[5], //Option 1
+                        int.Parse(splitLine[6]), //Option 1 Next ID
+                        int.Parse(splitLine[7]), //Option 1 Mood Change
+                        int.Parse(splitLine[8]), //Option 1 Mistake ID
+                        splitLine[9], //Option 2
+                        int.Parse(splitLine[10]), //Option 2 Next ID
+                        int.Parse(splitLine[11]), //Option 2 Mood Change
+                        int.Parse(splitLine[12]) //Option 2 Mistake ID
+                        );
+                    }
+                    catch (FormatException e)
+                    {
+                        //find which field is causing the error
+                        Debug.LogError("FormatException: " + e.Message + " in line: " + allLines[i]);
+
+                        continue; //Skip this line and continue with the next one
+                    }
+
                 }
                 else
                 {
