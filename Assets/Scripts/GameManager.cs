@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.AddressableAssets;
 public class GameManager : MonoBehaviour
 {
+    public bool viewedTrainingVideo = false;
     public static GameManager Instance { get; private set; }
     public float currentScore;
     public List<Mistake> mistakesMade;
