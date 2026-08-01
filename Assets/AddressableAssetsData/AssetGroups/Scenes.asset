@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28e7b18bfaddf9943ae1558cf99e7d64
+    m_Address: Assets/Scenes/Level2.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 531ca70e6d796dd48944e2f70e54f62f
     m_Address: Assets/Prefab/NPC (Change This Name).prefab
     m_ReadOnly: 0

@@ -14,8 +14,8 @@ Lvl1 Shplif	0	0	O-oh! Hi...	FALSE	Why are you acting suspicious?	1	-5	1	Hi can I
 Lvl1 Shplif	0	1	I'm not suspicious!! I'm just s-shopping here! ...like any other customer..!	TRUE		3														
 Lvl1 Shplif	0	2	Ah... no.. I-I'll get going now..!	TRUE		-2														
 Lvl1 Shplif	0	3	Ugh..! Whatever! I'm leaving!	TRUE		-2														
-Lvl2 Shplif	0	0	....Oh....hi..	FALSE	Are you nervous?	1	-3		Hi! Are you looking for anything specific that I can help you with?	2	2	-1								
-Lvl2 Shplif	0	1	W..what? Why are you asking me that?	FALSE	You're sweating a lot.	2	-7		"Sorry, I was just asking incase you needed help with anything."	3	3									
+Lvl2 Shplif	0	0	....Oh....hi..	FALSE	Are you nervous?	1	-4	3	Hi! Are you looking for anything specific that I can help you with?	3	2	-1								
+Lvl2 Shplif	0	1	W..what? Why are you asking me that?	FALSE	You're sweating a lot.	2	-6	4	"Sorry, I was just asking incase you needed help with anything."	3	3	5								
 Lvl2 Shplif	0	2	And..?  Mind your own business..! I'm getting out of here!	TRUE		-2														
 Lvl2 Shplif	0	3	I wasn't looking for anything... 	TRUE		4														
 Lvl2 Shplif	0	4	"I'll be going now, but thanks for asking."	TRUE		-2														
@@ -30,29 +30,3 @@ Lvl4 Shplif	0	2	"I'm not up to anything! Ugh, whatever. You just lost yourself a
 Lvl4 Shplif	0	3	"No, I don't need any. Don't worry about it."	FALSE	Are you sure?	4	-5		"No no, I insist. Allow me to assist you."	5	2									
 Lvl4 Shplif	0	4	"Yes, I'm sure. Goodbye."	TRUE		-2														
 Lvl4 Shplif	0	5	"Ah... hm. Nevermind, I think I'm done shopping now. Goodbye."	FALSE		-2														
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
-																				
