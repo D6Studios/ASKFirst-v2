@@ -19,8 +19,8 @@ Lvl2 Shplif	0	1	W..what? Why are you asking me that?	FALSE	You're sweating a lot
 Lvl2 Shplif	0	2	And..?  Mind your own business..! I'm getting out of here!	TRUE		-2														
 Lvl2 Shplif	0	3	I wasn't looking for anything... 	TRUE		4														
 Lvl2 Shplif	0	4	"I'll be going now, but thanks for asking."	TRUE		-2														
-Lvl3 Shplif	0	0	Hey.	FALSE	"Hey, can I help you with anything?"	3	2	-1	What are you up to?	1	-5									
-Lvl3 Shplif	0	1	I'm not doing anything. Just browsing.	FALSE	Are you sure?	2	-4		"Oh, well in that case. I'll stay by your side in case you do need my help!"	3	1									
+Lvl3 Shplif	0	0	Hey.	FALSE	"Hey, can I help you with anything?"	3	2	-1	What are you up to?	1	-5	1								
+Lvl3 Shplif	0	1	I'm not doing anything. Just browsing.	FALSE	Are you sure?	2	-4	3	"Oh, well in that case. I'll stay by your side in case you do need my help!"	3	1	-1								
 Lvl3 Shplif	0	2	"Yes, I'm sure. Goodbye."	TRUE		-2														
 Lvl3 Shplif	0	3	Oh. Sure...	TRUE		4														
 Lvl3 Shplif	0	4	"You know what? Nevermind, I think I'll be leaving now. Thanks."	TRUE		-2														

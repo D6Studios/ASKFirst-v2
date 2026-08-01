@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
 
             HideAll();
         }
-        if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Level3")
+        if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Level3" || scene.name == "Level4" || scene.name == "Level5")
         {
             StartLevel();
         }
