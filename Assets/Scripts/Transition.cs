@@ -14,7 +14,7 @@ public class Transition : MonoBehaviour
         mainMenu.enabled = true;
         levelSelect.enabled = false;
         GameManager.Instance.HideAll();
-
+        videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().loopPointReached += OnVideoFinished;
     }
     public void SwitchToLevelSelect()
     {
@@ -58,5 +58,10 @@ public class Transition : MonoBehaviour
     {
         GameManager.Instance.PauseGame();
     }
-
+    void OnVideoFinished(VideoPlayer vp)
+    {
+        videoMenu.enabled = false;
+        levelSelect.enabled = true;
+        videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().loopPointReached -= OnVideoFinished;
+    }
 }

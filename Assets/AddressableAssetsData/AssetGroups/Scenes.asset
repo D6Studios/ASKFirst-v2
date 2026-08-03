@@ -30,6 +30,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ef7e69ba8d82034d9d97fef9add23b0
+    m_Address: Assets/Scenes/Level3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 613f3f8d2d978954cbc44e30e087edd2
     m_Address: Assets/Prefab/LevelEssentials/GameManager.prefab
     m_ReadOnly: 0

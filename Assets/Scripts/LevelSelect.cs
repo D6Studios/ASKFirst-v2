@@ -32,6 +32,10 @@ public class LevelSelect : MonoBehaviour
     }
     public void StartLevel()
     {
-        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (currentLevel + 1) + ".unity"));
+        if (currentLevel == 0)
+        {
+            StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Tutorial.unity"));
+        }
+        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (currentLevel) + ".unity"));
     }
 }
