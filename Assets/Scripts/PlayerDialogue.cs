@@ -127,7 +127,7 @@ public class PlayerDialogue : MonoBehaviour
                     //Disable option buttons
                     option2Text.transform.parent.gameObject.SetActive(false);
                     //Clear option text
-                    option1Text.text = "→";
+                    option1Text.text = "Next →";
                     option2Text.text = "";
                 }
                 yield return new WaitUntil(() => advanceDialogue);

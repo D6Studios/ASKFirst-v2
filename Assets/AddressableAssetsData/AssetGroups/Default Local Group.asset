@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 01b33e1fbf5d86d4d91935546255b994
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 16af8e1b26fb69e40b8435e2142fb3b3
+    m_Address: Assets/Sprites/MainMenu/StartButton.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f411c934dda62c49b70424fa650f1b3
+    m_Address: Assets/Prefab/Sweat.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54f6ae6cb73294f4cbff03e3c3126ae9
+    m_Address: Assets/Prefab/LevelEssentials/Navmesh.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1b0b147d2ef4cb469970a1dcf5d1815
+    m_Address: Assets/Sprites/Sweat.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a7c257bf6201a724b9fc6981aa10ef97, type: 2}
   m_SchemaSet:

@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 105e579f28540de4f8fd35fad3d30ba7
+    m_Address: Assets/Sprites/dialogueOption.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 233d8fe6fc41c804b8cc76251af771d7
     m_Address: Assets/Sprites/XLogo.png
     m_ReadOnly: 0
@@ -70,6 +75,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6898e88b45b54aa4895850f9b47ab4f3
+    m_Address: Assets/Sprites/rPrinterBottom.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 721c658c27749654fbe6b6153e45505e
     m_Address: Assets/Sprites/MainMenu/ASKFirstLogoShadow.png
     m_ReadOnly: 0
@@ -87,6 +97,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e451e458d0ae284bb520fdf19a51d23
     m_Address: Assets/Sprites/clockHand.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fb79aee8ccd406418408e118407ae94
+    m_Address: Assets/Sprites/Sweat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8bffdb9c720d0ea4cb108f30d5aef7e0
+    m_Address: Assets/Sprites/MainMenu/NPLogo.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -122,6 +142,21 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: baff29e874fb40b48ad22a968585fac6
     m_Address: Assets/Sprites/MainMenu/LogoBackground.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8324a89d949e92498c9868cea7f44b8
+    m_Address: Assets/Sprites/MainMenu/Reference.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cbb9222a702f7d748b9c89fccde06ea4
+    m_Address: Assets/Sprites/MainMenu/LevelSelect.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d91a9d857d4b2dc4990f84b4bb0b23d1
+    m_Address: Assets/Sprites/rPrinterTop.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

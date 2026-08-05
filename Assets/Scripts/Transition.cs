@@ -58,7 +58,7 @@ public class Transition : MonoBehaviour
     {
         GameManager.Instance.PauseGame();
     }
-    void OnVideoFinished(VideoPlayer vp)
+    public void OnVideoFinished(VideoPlayer vp)
     {
         videoMenu.enabled = false;
         levelSelect.enabled = true;

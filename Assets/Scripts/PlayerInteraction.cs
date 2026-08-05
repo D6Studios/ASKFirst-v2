@@ -31,7 +31,8 @@ public class PlayerInteraction : MonoBehaviour
     VisualElement interactButton;
     NPCFocusCamera npcFocusCamera;
     GameObject optionsButton;
-    
+    [SerializeField] Transform spawnPoint;
+    [SerializeField] float interactDistance = 4f;
 
     void Start()
     {
@@ -49,12 +50,13 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         Interact();
-        CheckClosestNPC();
+        Raycast();
         CheckMobileControls();
     }
     void Interact()
     {
-        if(_input.interact)        {
+        if (_input.interact)
+        {
             Debug.Log("Interact button pressed");
         }
         if (_input.interact && !isBusy && closestNPC != null)
@@ -66,37 +68,55 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Interact");
             npcFocusCamera.FocusOnNPC(closestNPC.transform);
         }
-        
+
     }
-    void CheckClosestNPC()
+    void Raycast()
     {
-        if (closestNPC == null)
+        RaycastHit hitInfo;
+        if (Physics.Raycast(spawnPoint.position, spawnPoint.forward, out hitInfo, interactDistance))
+        {
+            //show a line in the scene view for debugging purposes
+            Debug.DrawLine(spawnPoint.position, hitInfo.point, Color.red);
+            GameObject hitObject = hitInfo.collider.gameObject;
+            if (hitObject.CompareTag("NPC"))
+            {
+                interactButton.style.display = DisplayStyle.Flex;
+                NPCProximity(hitObject);
+
+            }
+            else
+            {
+                interactButton.style.display = DisplayStyle.None;
+                if (closestNPC != null)
+                {
+                    closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
+                }
+                closestNPC = null;
+            }
+        }
+        else
         {
             interactButton.style.display = DisplayStyle.None;
-            return;
-        };
-        interactButton.style.display = DisplayStyle.Flex;
-        closestNPCDistance = Vector3.Distance(transform.position, closestNPC.transform.position);
-        if (closestNPCDistance > closestNPC.GetComponent<NPCBehavior>().interactDistance)
-        {
-            closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
-            closestNPC = null;
-            closestNPCDistance = Mathf.Infinity;
-        }
-    }
-    public void NPCInProximity(GameObject npc)
-    {
-        float distance = Vector3.Distance(transform.position, npc.transform.position);
-        if (distance < closestNPCDistance)
-        {
             if (closestNPC != null)
             {
                 closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
             }
-            closestNPC = npc;
-            closestNPC.GetComponent<NPCBehavior>().OutlineNPC(true);
-            closestNPCDistance = distance;
+            closestNPC = null;
         }
+
+    }
+    public void NPCProximity(GameObject npc)
+    {
+        float distance = Vector3.Distance(transform.position, npc.transform.position);
+
+        if (closestNPC != null)
+        {
+            closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
+        }
+        closestNPC = npc;
+        closestNPC.GetComponent<NPCBehavior>().OutlineNPC(true);
+        closestNPCDistance = distance;
+
     }
     void CheckMobileControls()
     {

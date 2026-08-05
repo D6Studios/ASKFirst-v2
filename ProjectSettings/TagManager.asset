@@ -16,6 +16,7 @@ TagManager:
   - OptionsUI
   - GameUI
   - StartButton
+  - FaceMask
   layers:
   - Default
   - TransparentFX

@@ -5,7 +5,7 @@ public class NPCBehavior : MonoBehaviour
 {
     public float playerDistance;
     [SerializeField]
-    public float interactDistance = 3f;
+    public float DangerDistance = 2f;
     Outline NPCOutline;
     NPCAnimator npcAnimator;
     Coroutine currentCoroutine;
@@ -14,11 +14,13 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField] Transform[] patrolPoints;
     int currentPatrolIndex = 0;
     [SerializeField] Vector2 idleWaitTime;
+    FacialExpressions facialExpressions;
     void Start()
     {
         NPCOutline = gameObject.GetComponentInChildren<Outline>();
         npcAnimator = gameObject.GetComponent<NPCAnimator>();
         agent = gameObject.GetComponent<NavMeshAgent>();
+        facialExpressions = gameObject.GetComponent<FacialExpressions>();
         if (NPCOutline != null)
         {
             NPCOutline.enabled = false;
@@ -33,9 +35,10 @@ public class NPCBehavior : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerDistance = Vector3.Distance(player.transform.position, gameObject.transform.position);
-        if (playerDistance <= interactDistance)
+        if (playerDistance < DangerDistance)
         {
-            player.GetComponent<PlayerInteraction>().NPCInProximity(gameObject);
+            Debug.Log("Player is too close! NPC is suspicious.");
+            //@TODO: Implement behavior when player is too close
         }
     }
     public void Interact()
@@ -89,6 +92,7 @@ public class NPCBehavior : MonoBehaviour
     {
         agent.isStopped = true;
         npcAnimator.Animate("Idle");
+        facialExpressions.IsNeutral();
         while (currentState == "Idle")
         {
             float waitTime = Random.Range(idleWaitTime.x, idleWaitTime.y);
@@ -101,6 +105,7 @@ public class NPCBehavior : MonoBehaviour
         agent.isStopped = true;
         StartCoroutine(TurnToPlayer());
         npcAnimator.Animate("InteractedWith");
+        facialExpressions.IsThinking();
         while (currentState == "Talking")
         {
             Debug.Log("NPC is talking.");

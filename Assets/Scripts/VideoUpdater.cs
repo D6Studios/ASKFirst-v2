@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.EventSystems;
 public class VideoUpdater : MonoBehaviour
 {
     [SerializeField]
@@ -18,9 +19,13 @@ public class VideoUpdater : MonoBehaviour
     void Update()
     {
         if (!isPrepared) return;
-        if (video.isPlaying)
+        if (video.isPlaying && !isDragging)
         {
-            videoSlider.value = (float)video.time;
+            videoSlider.SetValueWithoutNotify((float)video.time);
+        }
+        if (videoSlider.value >= videoSlider.maxValue)
+        {
+            video.transform.parent.gameObject.SetActive(false);
         }
     }
     public void UpdateVideoTime()
@@ -31,5 +36,17 @@ public class VideoUpdater : MonoBehaviour
     {
         videoSlider.maxValue = (float)vp.length;
         isPrepared = true;
+    }
+    bool isDragging;
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        isDragging = true;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        isDragging = false;
+        video.time = videoSlider.value;
     }
 }
