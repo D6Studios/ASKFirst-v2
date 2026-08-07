@@ -57,30 +57,30 @@ public class MobileControls : MonoBehaviour
         {
             MoveEvent.Invoke(mov * MoveMagnitudeMultiplier);
         }); ;
-
-        m_LookJoystick = new VirtualJoystick(joystickLook);
-        m_LookJoystick.JoystickEvent.AddListener(mov =>
-        {
-            if (InvertLookY)
-                mov.y *= -1;
-
-            LookEvent.Invoke(mov * LookMagnitudeMultiplier * sensitivityMultiplier);
-        });
-
-        var interactButton = m_Document.rootVisualElement.Q<VisualElement>("ButtonInteract");
-        interactButton.RegisterCallback<PointerEnterEvent>(evt => { InteractEvent.Invoke(true); });
-        interactButton.RegisterCallback<PointerLeaveEvent>(evt => { InteractEvent.Invoke(false); });
-
-        // Removed controls from original layout
-        // Left here to serve as reference for future inputs
         /*
-        var jumpButton = m_Document.rootVisualElement.Q<VisualElement>("ButtonJump");
-        jumpButton.RegisterCallback<PointerEnterEvent>(evt => { JumpEvent.Invoke(true); });
-        jumpButton.RegisterCallback<PointerLeaveEvent>(evt => { JumpEvent.Invoke(false); });
-        
-        var sprintButton = m_Document.rootVisualElement.Q<VisualElement>("ButtonSprint");
-        sprintButton.RegisterCallback<PointerEnterEvent>(evt => { SprintEvent.Invoke(true); });
-        sprintButton.RegisterCallback<PointerLeaveEvent>(evt => { SprintEvent.Invoke(false); });
-        */
+                m_LookJoystick = new VirtualJoystick(joystickLook);
+                m_LookJoystick.JoystickEvent.AddListener(mov =>
+                {
+                    if (InvertLookY)
+                        mov.y *= -1;
+
+                    LookEvent.Invoke(mov * LookMagnitudeMultiplier * sensitivityMultiplier);
+                });
+
+                var interactButton = m_Document.rootVisualElement.Q<VisualElement>("ButtonInteract");
+                interactButton.RegisterCallback<PointerEnterEvent>(evt => { InteractEvent.Invoke(true); });
+                interactButton.RegisterCallback<PointerLeaveEvent>(evt => { InteractEvent.Invoke(false); });
+
+                // Removed controls from original layout
+                // Left here to serve as reference for future inputs
+                
+                var jumpButton = m_Document.rootVisualElement.Q<VisualElement>("ButtonJump");
+                jumpButton.RegisterCallback<PointerEnterEvent>(evt => { JumpEvent.Invoke(true); });
+                jumpButton.RegisterCallback<PointerLeaveEvent>(evt => { JumpEvent.Invoke(false); });
+
+                var sprintButton = m_Document.rootVisualElement.Q<VisualElement>("ButtonSprint");
+                sprintButton.RegisterCallback<PointerEnterEvent>(evt => { SprintEvent.Invoke(true); });
+                sprintButton.RegisterCallback<PointerLeaveEvent>(evt => { SprintEvent.Invoke(false); });
+                */
     }
 }
