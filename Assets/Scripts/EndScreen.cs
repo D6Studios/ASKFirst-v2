@@ -16,10 +16,12 @@ public class EndScreen : MonoBehaviour
     public Sprite incorrectCardSprite;
     public GameObject cardPrefab;
     public Transform cardParent;
+    [SerializeField] GameObject restartButton;
     void Start()
     {
         UpdateStars(GameManager.Instance.currentScore);
         UpdateCards(GameManager.Instance.mistakesMade);
+        UpdateWin(GameManager.Instance.currentLevel, (int)GameManager.Instance.currentScore);
     }
 
     public void UpdateStars(float value)
@@ -75,5 +77,29 @@ public class EndScreen : MonoBehaviour
     public void ReturnToMainMenu()
     {
         StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/MainMenu.unity"));
+    }
+    public void RestartLevel()
+    {
+        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (GameManager.Instance.currentLevel) + ".unity"));
+    }
+    void UpdateWin(int currentLevel, int currentScore)
+    {
+        if (currentScore >= 10) // replace with your actual score threshold for winning
+        {
+            restartButton.SetActive(false); // Hide the restart button on win
+            if (!(GameManager.Instance.levelUnlocked > currentLevel)) // Check if the next level is already unlocked
+            {
+                GameManager.Instance.levelUnlocked = currentLevel + 1; // Unlock the next level
+            }
+        }
+        else
+        {
+            UpdateLose();
+        }
+    }
+    void UpdateLose()
+    {
+        restartButton.SetActive(true); // Show the restart button on lose
+        // Implement lose logic here if needed
     }
 }

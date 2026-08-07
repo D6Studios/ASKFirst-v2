@@ -7,17 +7,26 @@ public class Transition : MonoBehaviour
     public Canvas levelSelect;
     public Canvas videoMenu;
     public GameObject pauseOverlay;
+    public Canvas formSGUI;
+    [SerializeField] private LevelSelect levelSelectScript;
 
     void Start()
     {
         videoMenu.enabled = false;
         mainMenu.enabled = true;
         levelSelect.enabled = false;
+        formSGUI.enabled = false;
         GameManager.Instance.HideAll();
         videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().loopPointReached += OnVideoFinished;
+        if (GameManager.Instance.levelUnlocked == 5)
+        {
+            formSGUI.enabled = true;
+        }
+
     }
     public void SwitchToLevelSelect()
     {
+        levelSelectScript.UpdateLevelUnlock(GameManager.Instance.levelUnlocked);
         if (!GameManager.Instance.viewedTrainingVideo)
         {
             videoMenu.enabled = true;

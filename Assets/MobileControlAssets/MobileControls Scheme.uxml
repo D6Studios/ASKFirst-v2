@@ -6,7 +6,7 @@
                 <ui:VisualElement name="JoystickHandle" picking-mode="Ignore" usage-hints="DynamicTransform" class="touchscreen-button" style="background-image: url(&quot;project://database/Assets/Sprites/MoveIcon.png?fileID=21300000&amp;guid=54b353134057700478e418f5c2c129a3&amp;type=3#MoveIcon&quot;);"/>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="JoystickLook" style="right: 115px; bottom: 187px;">
+        <ui:VisualElement name="JoystickLook" enabled="false" style="right: 115px; bottom: 187px;">
             <ui:VisualElement name="JoystickBackground">
                 <ui:VisualElement name="JoystickHandle" picking-mode="Ignore" usage-hints="DynamicTransform" enabled="true" class="touchscreen-button" style="background-image: url(&quot;project://database/Assets/Sprites/LookIcon.png?fileID=21300000&amp;guid=ae4d60162df12ef46ad67bd1f5afa73c&amp;type=3#LookIcon&quot;);"/>
             </ui:VisualElement>

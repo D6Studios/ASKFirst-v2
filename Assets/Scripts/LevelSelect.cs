@@ -8,6 +8,8 @@ public class LevelSelect : MonoBehaviour
     public int currentLevel = 0;
     public Vector3 offset = new Vector3(0, 2, 0);
     [SerializeField] Sprite[] images;
+    [SerializeField] Sprite lockedImage;
+    [SerializeField] Sprite unlockedImage;
     Image levelImage;
     GameObject startButton;
     void Start()
@@ -32,10 +34,27 @@ public class LevelSelect : MonoBehaviour
     }
     public void StartLevel()
     {
+        GameManager.Instance.currentLevel = currentLevel;
         if (currentLevel == 0)
         {
             StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Tutorial.unity"));
         }
         StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (currentLevel) + ".unity"));
+    }
+    public void UpdateLevelUnlock(int levelIndex)
+    {
+        for (int i = 0; i < levels.Length; i++)
+        {
+            if (i <= levelIndex)
+            {
+                levels[i].GetComponent<Image>().sprite = unlockedImage;
+                levels[i].GetComponent<Button>().interactable = true;
+            }
+            else
+            {
+                levels[i].GetComponent<Image>().sprite = lockedImage;
+                levels[i].GetComponent<Button>().interactable = false;
+            }
+        }
     }
 }
