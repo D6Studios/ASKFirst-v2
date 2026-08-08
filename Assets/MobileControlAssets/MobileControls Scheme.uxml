@@ -6,6 +6,5 @@
                 <ui:VisualElement name="JoystickHandle" picking-mode="Ignore" usage-hints="DynamicTransform" class="touchscreen-button" style="background-image: url(&quot;project://database/Assets/Sprites/MoveIcon.png?fileID=21300000&amp;guid=54b353134057700478e418f5c2c129a3&amp;type=3#MoveIcon&quot;);"/>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button text="" name="ButtonInteract" style="background-image: url(&quot;project://database/Assets/Sprites/Interact.png?fileID=21300000&amp;guid=e7e2178cb80bc4c418c1111f2ca8543a&amp;type=3#Interact&quot;); background-color: rgba(255, 255, 255, 0); bottom: 43px; right: 228px; font-size: 73px; -unity-text-align: middle-center; width: 152.3991px; height: 130px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
     </ui:VisualElement>
 </ui:UXML>

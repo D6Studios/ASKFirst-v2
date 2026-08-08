@@ -1,6 +1,7 @@
 using UnityEngine;
 using StarterAssets;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class PlayerInteraction : MonoBehaviour
     /// dialogueUI is a UI canvas that is used to display dialogue options and text when the player interacts with an NPC. It can be activated or deactivated based on the player's interaction state.
     /// </summary>
     VisualElement mobileControlsUI;
-    VisualElement interactButton;
+    [SerializeField] UnityEngine.UI.Button interactButton;
     NPCFocusCamera npcFocusCamera;
     GameObject optionsButton;
     [SerializeField] Transform spawnPoint;
@@ -40,7 +41,7 @@ public class PlayerInteraction : MonoBehaviour
         closestNPCDistance = Mathf.Infinity;
         mobileControls = GameObject.FindGameObjectWithTag("MobileControls");
         mobileControlsUI = mobileControls.GetComponent<UIDocument>().rootVisualElement;
-        interactButton = mobileControlsUI.Q<VisualElement>("ButtonInteract");
+
         npcFocusCamera = GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>();
         optionsButton = GameObject.FindGameObjectWithTag("OptionsButton");
 
@@ -49,17 +50,17 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Interact();
         Raycast();
         CheckMobileControls();
-    }
-    void Interact()
-    {
-        if (_input.interact)
+        if (isBusy)
         {
-            Debug.Log("Interact button pressed");
+            interactButton.gameObject.SetActive(false);
         }
-        if (_input.interact && !isBusy && closestNPC != null)
+
+    }
+    public void Interact()
+    {
+        if (!isBusy && closestNPC != null)
         {
             SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("pop"));
             closestNPC.GetComponent<NPCBehavior>().Interact();
@@ -80,13 +81,13 @@ public class PlayerInteraction : MonoBehaviour
             GameObject hitObject = hitInfo.collider.gameObject;
             if (hitObject.CompareTag("NPC"))
             {
-                interactButton.style.display = DisplayStyle.Flex;
+                interactButton.gameObject.SetActive(true);
                 NPCProximity(hitObject);
 
             }
             else
             {
-                interactButton.style.display = DisplayStyle.None;
+                interactButton.gameObject.SetActive(false);
                 if (closestNPC != null)
                 {
                     closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
@@ -96,7 +97,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
-            interactButton.style.display = DisplayStyle.None;
+            interactButton.gameObject.SetActive(false);
             if (closestNPC != null)
             {
                 closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);

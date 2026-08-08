@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Sprites
   m_GUID: 14a83bd026f9f73439cd346c33cb9aeb
   m_SerializeEntries:
+  - m_GUID: 050d64169e46b594cb89bf735561fc46
+    m_Address: Assets/Sprites/dialogueBox 1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 054714dd04df1be47bd82ad63d6c0e6b
     m_Address: Assets/Sprites/EmptyStar.png
     m_ReadOnly: 0
