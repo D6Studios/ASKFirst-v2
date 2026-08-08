@@ -662,7 +662,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1045548986447181175, guid: 93ad8972222adfa42acaff56147bcbae, type: 3}
   m_PrefabInstance: {fileID: 275557728}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
 --- !u!1 &104850243 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6733487121780204679, guid: 10469b63d404f9a47a97b33fbb1e3a61, type: 3}
@@ -680,7 +679,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09b0f5918707244bb9787b36c32c1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-=======
 --- !u!1001 &102416782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -738,7 +736,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d424490a5cab604c9e852ddad0e0b6d, type: 3}
->>>>>>> Stashed changes
 --- !u!1001 &123023870
 PrefabInstance:
   m_ObjectHideFlags: 0
