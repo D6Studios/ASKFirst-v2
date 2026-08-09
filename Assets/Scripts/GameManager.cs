@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
     {
         mistakesMade = new Mistake[3];
         DisplayNormalUI();
-        levelTimerCoroutine = StartCoroutine(LevelTimer());
+        //levelTimerCoroutine = StartCoroutine(LevelTimer());
         gameObject.GetComponent<LevelObjectives>().ResetObjectives();
         player = GameObject.FindWithTag("Player");
     }
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Level Ended with a mood score of: " + moodScore + " from NPC: " + npcName); //Placeholder for level end implementation
         GameManager.Instance.currentScore = moodScore;
-        StopCoroutine(levelTimerCoroutine);
+        //StopCoroutine(levelTimerCoroutine);
         StartCoroutine(LoadScene("Assets/Scenes/Level End.unity"));
     }
     public void AddMistake(int mistakeId)

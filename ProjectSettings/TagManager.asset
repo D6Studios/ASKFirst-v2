@@ -19,6 +19,7 @@ TagManager:
   - FaceMask
   - Objective
   - ObjectiveSlider
+  - Exit
   layers:
   - Default
   - TransparentFX

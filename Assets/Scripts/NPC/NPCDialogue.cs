@@ -9,14 +9,14 @@ public class NPCDialogue : MonoBehaviour
     int dialogueIndex = 0;
     void Start()
     {
-        TextAsset dialogueFile = Resources.Load<TextAsset>("ASKFirstDialogueTab"); // Load dialogue from Resources folder
+        TextAsset dialogueFile = Resources.Load<TextAsset>("ASKFirstDialogueFinal"); // Load dialogue from Resources folder
         string[] allLines = dialogueFile.text.Split('\n');
         for (int i = 0; i < allLines.Length; i++)
         {
             if (allLines[i].StartsWith(gameObject.name + "\t")) //Filter lines for this NPC based on name
             {
                 string[] splitLine = allLines[i].Split('\t'); //Split line into components
-                Debug.Log("Split Line: " + string.Join(", ", splitLine));
+                //Debug.Log("Split Line: " + string.Join(", ", splitLine));
                 DialogueLines currentDialogueLine;
                 if (bool.Parse(splitLine[4]) == false)
                 {
@@ -57,7 +57,7 @@ public class NPCDialogue : MonoBehaviour
                 }
 
                 //Add lines to batch
-                Debug.Log("Batch ID: " + splitLine[1]);
+                //Debug.Log("Batch ID: " + splitLine[1]);
                 if (dialogueLineBatches.Count <= int.Parse(splitLine[1]))
                 {
                     dialogueLineBatches.Add(new DialogueLineBatch(splitLine[1], new List<DialogueLines>()));
