@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2511004467040411984}
   - component: {fileID: 903771178809635885}
+  - component: {fileID: 5095733677430400215}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,7 +45,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e82c795d32ea9e4581a057e8cdd5f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  currentLevel: 0
+  viewedTrainingVideo: 0
+  levelUnlocked: 1
   currentScore: 0
   mistakesMade: []
   mistakes: []
+  levelTimer: 0
   player: {fileID: 0}
+  Sensitivity: 1
+--- !u!114 &5095733677430400215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4774144916023366713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eec554e04dde1045b9229cfd8982222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelObjectives

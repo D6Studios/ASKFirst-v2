@@ -15,6 +15,7 @@ public class NPCBehavior : MonoBehaviour
     int currentPatrolIndex = 0;
     [SerializeField] Vector2 idleWaitTime;
     FacialExpressions facialExpressions;
+    [SerializeField] public bool isShoplifter = false;
     void Start()
     {
         NPCOutline = gameObject.GetComponentInChildren<Outline>();

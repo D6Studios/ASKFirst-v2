@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public int currentLevel = 0;
     public bool viewedTrainingVideo = false;
-    public int levelUnlocked = 1;
+    public int levelUnlocked = 5;
     public static GameManager Instance { get; private set; }
     public float currentScore;
     public List<Mistake> mistakesMade;
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
         mistakesMade.Clear();
         DisplayNormalUI();
         levelTimerCoroutine = StartCoroutine(LevelTimer());
-
+        gameObject.GetComponent<LevelObjectives>().ResetObjectives();
         player = GameObject.FindWithTag("Player");
     }
     public void EndLevel(float moodScore, string npcName)

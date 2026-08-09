@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 public class PlayerDialogue : MonoBehaviour
 {
     Canvas dialogueUI;
@@ -78,7 +79,8 @@ public class PlayerDialogue : MonoBehaviour
                         else if (dialogueLine.option1NextId == -2)
                         {
                             EndDialogue(npc);
-                            GameManager.Instance.EndLevel(mood, npc.name);
+                            GameManager.Instance.GetComponent<LevelObjectives>().UpdateObjectives(npc.GetComponent<NPCBehavior>(), mood);
+
                             break;
                         }
                         else
@@ -95,7 +97,7 @@ public class PlayerDialogue : MonoBehaviour
                         }
                         else if (dialogueLine.option2NextId == -2)
                         {
-                            GameManager.Instance.EndLevel(mood, npc.name);
+                            GameManager.Instance.GetComponent<LevelObjectives>().UpdateObjectives(npc.GetComponent<NPCBehavior>(), mood);
                             break;
                         }
                         else
