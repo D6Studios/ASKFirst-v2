@@ -5,28 +5,22 @@ public class EndScreenCard : MonoBehaviour
 {
     public TextMeshProUGUI title;
     public TextMeshProUGUI hintText;
-    public Image cardImages;
-    void Awake()
+    [SerializeField]
+    public Sprite[] cardImages;
+    public void SetCard(string catagory, string hint, bool isCorrect)
     {
-        title = gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        hintText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        cardImages = gameObject.transform.GetChild(2).GetComponent<Image>();
-
-    }
-    public void SetCard(string titleText, string hint, Sprite cardSprite, bool correct)
-    {
-        if (correct)
+        TextMeshProUGUI categoryText = gameObject.transform.Find("Catagory").GetComponent<TextMeshProUGUI>();
+        categoryText.text = catagory;
+        TextMeshProUGUI hintText = gameObject.transform.Find("HintText").GetComponent<TextMeshProUGUI>();
+        hintText.text = hint; // Set the hint text as needed
+        Image image = gameObject.transform.Find("Logo").GetComponent<Image>();
+        if (isCorrect)
         {
-            title.color = Color.green;
+            image.sprite = cardImages[0];
         }
         else
         {
-            title.color = Color.red;
+            image.sprite = cardImages[1];
         }
-        title.text = titleText;
-        hintText.text = hint;
-
-        cardImages.sprite = cardSprite;
-
     }
 }

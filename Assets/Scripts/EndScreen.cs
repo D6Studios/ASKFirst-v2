@@ -57,20 +57,42 @@ public class EndScreen : MonoBehaviour
         }
         yield return null;
     }
-    public void UpdateCards(List<Mistake> mistakes)
+    public void UpdateCards(Mistake[] mistakes)
     {
-        foreach (Mistake mistake in mistakes)
+        for (int i = 0; i < 3; i++)
         {
-            GameObject card = Instantiate(cardPrefab, cardParent);
-            Debug.Log("Creating card for mistake: " + mistake.title);
-            Debug.Log("Mistake details - Positive: " + mistake.positive + ", Title: " + mistake.title + ", Hint: " + mistake.hint);
-            if (!mistake.positive)
+            GameObject currentCard = Instantiate(cardPrefab, cardParent);
+
+            switch (i)
             {
-                card.GetComponent<EndScreenCard>().SetCard(mistake.title, mistake.hint, incorrectCardSprite, false);
-            }
-            else
-            {
-                card.GetComponent<EndScreenCard>().SetCard(mistake.title, mistake.hint, correctCardSprite, true);
+                case 0: //A card
+                    if (GameManager.Instance.mistakesMade[0] != null)
+                        currentCard.GetComponent<EndScreenCard>().SetCard("a", GameManager.Instance.mistakesMade[0].description, GameManager.Instance.mistakesMade[0].positive);
+                    else
+                    {
+                        currentCard.GetComponent<EndScreenCard>().SetCard("a", "", true);
+                    }
+                    break;
+                case 1://S card
+                    if (GameManager.Instance.mistakesMade[1] != null)
+                        currentCard.GetComponent<EndScreenCard>().SetCard("s", GameManager.Instance.mistakesMade[1].description, GameManager.Instance.mistakesMade[1].positive);
+                    else if (GameManager.Instance.mistakesMade[1] == null && GameManager.Instance.mistakesMade[0] == null && GameManager.Instance.mistakesMade[2] == null)
+                    {
+                        currentCard.GetComponent<EndScreenCard>().SetCard("s", "Good job! By implementing the A.S.K protocol and engaging the customer politely, maintaining safety coverage and discreetly monitoring their actions, you have successfully deterred potential theft without confrontation or disruption to the store.", true);
+                    }
+                    else
+                    {
+                        currentCard.GetComponent<EndScreenCard>().SetCard("s", "", true);
+                    }
+                    break;
+                case 2://K card
+                    if (GameManager.Instance.mistakesMade[2] != null)
+                        currentCard.GetComponent<EndScreenCard>().SetCard("k", GameManager.Instance.mistakesMade[2].description, GameManager.Instance.mistakesMade[2].positive);
+                    else
+                    {
+                        currentCard.GetComponent<EndScreenCard>().SetCard("k", "", true);
+                    }
+                    break;
             }
         }
     }

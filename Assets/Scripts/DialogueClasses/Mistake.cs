@@ -3,15 +3,16 @@ using UnityEngine;
 [System.Serializable]
 public class Mistake
 {
+    public string catagory;
+    public string description;
     public bool positive;
-    public string title;
-    public string hint;
     public int id;
-    public Mistake(int id, string title, string hint, bool positive)
+
+    public Mistake(string catagory, string description, bool positive, int id)
     {
-        this.id = id;
+        this.catagory = catagory;
+        this.description = description;
         this.positive = positive;
-        this.title = title;
-        this.hint = hint;
+        this.id = id;
     }
 }

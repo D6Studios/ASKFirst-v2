@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int levelUnlocked = 5;
     public static GameManager Instance { get; private set; }
     public float currentScore;
-    public List<Mistake> mistakesMade;
+    public Mistake[] mistakesMade;
     public List<Mistake> mistakes;
     private Coroutine levelTimerCoroutine;
     public int levelTimer;
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single); // Call OnSceneLoaded for the initial scene
         mistakes = new List<Mistake>();
-        TextAsset mistakeList = Resources.Load<TextAsset>("ASKFirstMistakeList");
+        TextAsset mistakeList = Resources.Load<TextAsset>("ASKFirstMistakes");
         string[] allLines = mistakeList.text.Split('\n');
         for (int i = 1; i < allLines.Length; i++)
         {
@@ -46,9 +46,14 @@ public class GameManager : MonoBehaviour
             {
                 continue; //Skip empty lines
             }
-            Debug.Log("Parsing mistake line: " + allLines[i]);
-            string[] splitLine = allLines[i].Split(',');
-            mistakes.Add(new Mistake(int.Parse(splitLine[0]), splitLine[1], splitLine[2].Replace("|||", ","), bool.Parse(splitLine[3])));
+            // Debug.Log("Parsing mistake line: " + allLines[i]);
+            string[] splitLine = allLines[i].Split('\t');
+
+            mistakes.Add(new Mistake(
+                splitLine[0],
+                splitLine[1],
+                bool.Parse(splitLine[2]),
+                int.Parse(splitLine[3])));
         }
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -107,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel()
     {
-        mistakesMade.Clear();
+        mistakesMade = new Mistake[3];
         DisplayNormalUI();
         levelTimerCoroutine = StartCoroutine(LevelTimer());
         gameObject.GetComponent<LevelObjectives>().ResetObjectives();
@@ -130,8 +135,19 @@ public class GameManager : MonoBehaviour
         Mistake mistake = mistakes.Find(m => m.id == mistakeId);
         if (mistake != null)
         {
-            mistakesMade.Add(mistake);
-            Debug.Log("Added mistake: " + mistake.title);
+            if (mistake.catagory == "a")
+            {
+                mistakesMade[0] = mistake;
+            }
+            else if (mistake.catagory == "s")
+            {
+                mistakesMade[1] = mistake;
+            }
+            else if (mistake.catagory == "k")
+            {
+                mistakesMade[2] = mistake;
+            }
+
         }
         else
         {

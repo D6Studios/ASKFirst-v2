@@ -1,0 +1,14 @@
+Category	Hint	Positive?	ID
+a	Avoid accusation or aggressive tones. Direct accusations can escalate quickly.	FALSE	0
+a	Always approach with service first.	FALSE	1
+a	"Offer helpful assistance, not accusations. Arguing can risk escalation and reputational harm."	FALSE	2
+s	Prioritise personal safety and the safety of others in the store by maintaining a safe distance when interacting with suspicious individual.	FALSE	3
+s	Never attempt to have any physical contact with the individual to prevent potential physical confrontation.	FALSE	4
+s	Disengage and alert security personnel if necessary.	FALSE	5
+s	Never risk physical contact. Safety first always!	FALSE	6
+k	Stay nearby while appearing busy. Continue with normal store duties while maintaining awareness of the person of concern. Communicate with your colleague and security where necessary.	FALSE	7
+k	Monitor discreetly by performing routine duties while keeping sight.	FALSE	8
+k	"When you notice potentially suspicious behaviour in customers, treat the situation as an opportunity to provide customer service."	FALSE	9
+k	Safety comes first. Keep clear sight lines and safe distance when engaging.	FALSE	10
+k	Know when to escalate and follow store protocols in a professional and calm manner.	FALSE	11
+k	"A subtle nod or a quick glance can signal to a colleague that you have got eyes on the situation. By keeping close, you remain ready to act if needed."	FALSE	12
