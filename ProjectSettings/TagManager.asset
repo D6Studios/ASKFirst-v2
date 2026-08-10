@@ -20,6 +20,7 @@ TagManager:
   - Objective
   - ObjectiveSlider
   - Exit
+  - TutorialCanvas
   layers:
   - Default
   - TransparentFX

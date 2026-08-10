@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-public class NPCBehavior : MonoBehaviour
+public class TutorialNPCBehavior : MonoBehaviour
 {
     public float playerDistance;
     [SerializeField]
@@ -18,7 +18,6 @@ public class NPCBehavior : MonoBehaviour
     FacialExpressions facialExpressions;
     [SerializeField] public bool isShoplifter = false;
     public bool interactedWith = false;
-
     Transform exit;
     void Start()
     {
@@ -26,7 +25,6 @@ public class NPCBehavior : MonoBehaviour
         npcAnimator = gameObject.GetComponent<NPCAnimator>();
         agent = gameObject.GetComponent<NavMeshAgent>();
         facialExpressions = gameObject.GetComponent<FacialExpressions>();
-        exit = GameObject.FindGameObjectWithTag("Exit").transform;
         if (NPCOutline != null)
         {
             NPCOutline.enabled = false;
@@ -127,11 +125,6 @@ public class NPCBehavior : MonoBehaviour
         {
             float waitTime = Random.Range(idleWaitTime.x, idleWaitTime.y);
             yield return new WaitForSeconds(waitTime);
-            if (patrolPoints.Length > 0)
-            {
-                ChangeState("Walking");
-            }
-
         }
     }
     IEnumerator Talking()

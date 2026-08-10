@@ -81,6 +81,7 @@ public class PlayerInteraction : MonoBehaviour
             GameObject hitObject = hitInfo.collider.gameObject;
             if (hitObject.CompareTag("NPC"))
             {
+
                 if (hitObject.GetComponent<NPCBehavior>().interactedWith)
                 {
                     interactButton.gameObject.SetActive(false);

@@ -106,6 +106,11 @@ public class GameManager : MonoBehaviour
         {
             StartLevel();
         }
+        if (scene.name == "Tutorial")
+        {
+            StartTutorial();
+        }
+
 
 
     }
@@ -117,6 +122,15 @@ public class GameManager : MonoBehaviour
         //levelTimerCoroutine = StartCoroutine(LevelTimer());
         gameObject.GetComponent<LevelObjectives>().ResetObjectives();
         player = GameObject.FindWithTag("Player");
+    }
+    public void StartTutorial()
+    {
+        mistakesMade = new Mistake[3];
+        DisplayNormalUI();
+        //levelTimerCoroutine = StartCoroutine(LevelTimer());
+        player = GameObject.FindWithTag("Player");
+        gameObject.GetComponent<LevelObjectives>().ResetObjectives();
+        GameObject.Find("TutorialManager").GetComponent<TutorialManager>().StartTutorial();
     }
     public void EndLevel(float moodScore, string npcName)
     {
