@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 public class TutorialManager : MonoBehaviour
 {
-    GameObject currentPopup;
+    public GameObject currentPopup;
     [SerializeField] GameObject tutorialPopupPrefab;
     GameObject tutorialCanvas;
     Vector2 deviceSize;
@@ -51,7 +51,7 @@ public class TutorialManager : MonoBehaviour
     public void ClosePopup()
     {
         continueTutorial = true;
-        GameObject.Destroy(currentPopup);
+        Destroy(currentPopup);
         currentPopup = null;
         // Implement the logic to close the popup
         Debug.Log("Popup closed");
@@ -150,6 +150,11 @@ public class TutorialManager : MonoBehaviour
         //End tutorial
         yield return new WaitUntil(() => continueTutorial == true);
         yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.mistakesMade = new Mistake[3];
+        for (int i = 0; i < GameManager.Instance.mistakesMade.Length; i++)
+        {
+            GameManager.Instance.mistakesMade[i] = new Mistake("", "", true, -1); // Initialize with default values
+        }
         GameManager.Instance.EndLevel(10, "tutorial");
     }
 }

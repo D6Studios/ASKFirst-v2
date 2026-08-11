@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class LevelObjectives : MonoBehaviour
 {
     List<NPCBehavior> npcObjectives;
@@ -11,13 +12,26 @@ public class LevelObjectives : MonoBehaviour
     Slider objectiveSlider;
     void Start()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        FindUI();
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Level3" || scene.name == "Level4" || scene.name == "Level5" || scene.name == "Tutorial")
+        {
+            FindUI();
+
+        }
+    }
+    public void FindUI()
+    {
         gameUI = GameObject.FindGameObjectWithTag("GameUI");
         objectiveText = GameObject.FindGameObjectWithTag("Objective").GetComponent<TextMeshProUGUI>();
         objectiveSlider = GameObject.FindGameObjectWithTag("ObjectiveSlider").GetComponent<Slider>();
-
     }
     public void ResetObjectives()
     {
+
         npcObjectives = new List<NPCBehavior>();
         GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
         foreach (GameObject npc in npcs)

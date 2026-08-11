@@ -39,6 +39,10 @@ public class NPCBehavior : MonoBehaviour
     }
     void CheckPlayerProximity()
     {
+        if (interactedWith)
+        {
+            return; // Skip proximity checks if the NPC has already been interacted with
+        }
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerDistance = Vector3.Distance(player.transform.position, gameObject.transform.position);
         if (isShoplifter)

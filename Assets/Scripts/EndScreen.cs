@@ -17,16 +17,17 @@ public class EndScreen : MonoBehaviour
     public GameObject cardPrefab;
     public Transform cardParent;
     [SerializeField] GameObject restartButton;
+    public int starScore = 0;
+    int currentLevel;
     void Start()
     {
-        UpdateStars(GameManager.Instance.currentScore);
         UpdateCards(GameManager.Instance.mistakesMade);
-        UpdateWin(GameManager.Instance.currentLevel, (int)GameManager.Instance.currentScore);
+        currentLevel = GameManager.Instance.currentLevel;
     }
 
-    public void UpdateStars(float value)
+    public void UpdateStars()
     {
-        StartCoroutine(IncrementStars(value));
+        StartCoroutine(IncrementStars(starScore));
     }
     IEnumerator IncrementStars(float targetScore)
     {
@@ -36,24 +37,15 @@ public class EndScreen : MonoBehaviour
         }
         for (int i = 0; i < stars.Length; i++)
         {
-            int starValue = (i * 2) + 2;
-
-            if (targetScore >= starValue)
+            if (i < targetScore)
             {
-                stars[i].sprite = halfStar;
-                yield return new WaitForSeconds(starWaitTime);
                 stars[i].sprite = fullStar;
-                yield return new WaitForSeconds(starWaitTime);
-            }
-            else if (targetScore == starValue - 1)
-            {
-                stars[i].sprite = halfStar;
-                yield return new WaitForSeconds(starWaitTime);
             }
             else
             {
                 stars[i].sprite = emptyStar;
             }
+            yield return new WaitForSeconds(starWaitTime);
         }
         yield return null;
     }
@@ -66,34 +58,49 @@ public class EndScreen : MonoBehaviour
             switch (i)
             {
                 case 0: //A card
-                    if (GameManager.Instance.mistakesMade[0] != null)
+                    if (GameManager.Instance.mistakesMade[0].id != -1)
                         currentCard.GetComponent<EndScreenCard>().SetCard("a", GameManager.Instance.mistakesMade[0].description, GameManager.Instance.mistakesMade[0].positive);
                     else
                     {
                         currentCard.GetComponent<EndScreenCard>().SetCard("a", "", true);
+                        starScore += 1;
                     }
                     break;
                 case 1://S card
-                    if (GameManager.Instance.mistakesMade[1] != null)
+                    if (GameManager.Instance.mistakesMade[1].id != -1)
                         currentCard.GetComponent<EndScreenCard>().SetCard("s", GameManager.Instance.mistakesMade[1].description, GameManager.Instance.mistakesMade[1].positive);
-                    else if (GameManager.Instance.mistakesMade[1] == null && GameManager.Instance.mistakesMade[0] == null && GameManager.Instance.mistakesMade[2] == null)
+                    else if (GameManager.Instance.mistakesMade[1].id == -1 && GameManager.Instance.mistakesMade[0].id == -1 && GameManager.Instance.mistakesMade[2].id == -1)
                     {
                         currentCard.GetComponent<EndScreenCard>().SetCard("s", "Good job! By implementing the A.S.K protocol and engaging the customer politely, maintaining safety coverage and discreetly monitoring their actions, you have successfully deterred potential theft without confrontation or disruption to the store.", true);
+                        starScore += 1;
+
                     }
                     else
                     {
                         currentCard.GetComponent<EndScreenCard>().SetCard("s", "", true);
+                        starScore += 1;
                     }
                     break;
                 case 2://K card
-                    if (GameManager.Instance.mistakesMade[2] != null)
+                    if (GameManager.Instance.mistakesMade[2].id != -1)
                         currentCard.GetComponent<EndScreenCard>().SetCard("k", GameManager.Instance.mistakesMade[2].description, GameManager.Instance.mistakesMade[2].positive);
                     else
                     {
                         currentCard.GetComponent<EndScreenCard>().SetCard("k", "", true);
+                        starScore += 1;
                     }
                     break;
             }
+
+        }
+        UpdateStars();
+        if (starScore == 3)
+        {
+            UpdateWin();
+        }
+        else
+        {
+            UpdateLose();
         }
     }
     public void ReturnToMainMenu()
@@ -104,19 +111,16 @@ public class EndScreen : MonoBehaviour
     {
         StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (GameManager.Instance.currentLevel) + ".unity"));
     }
-    void UpdateWin(int currentLevel, int currentScore)
+    void UpdateWin()
     {
-        if (currentScore >= 10) // replace with your actual score threshold for winning
+        restartButton.SetActive(false); // Hide the restart button on win
+        if (GameManager.Instance.levelUnlocked > GameManager.Instance.currentLevel)
         {
-            restartButton.SetActive(false); // Hide the restart button on win
-            if (!(GameManager.Instance.levelUnlocked > currentLevel)) // Check if the next level is already unlocked
-            {
-                GameManager.Instance.levelUnlocked = currentLevel + 1; // Unlock the next level
-            }
+            return;
         }
         else
         {
-            UpdateLose();
+            GameManager.Instance.levelUnlocked = GameManager.Instance.currentLevel + 1;
         }
     }
     void UpdateLose()

@@ -9,6 +9,7 @@ public class Transition : MonoBehaviour
     public GameObject pauseOverlay;
     public Canvas formSGUI;
     [SerializeField] private LevelSelect levelSelectScript;
+    bool videoManually = false;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class Transition : MonoBehaviour
         levelSelect.enabled = false;
         formSGUI.enabled = false;
         GameManager.Instance.HideAll();
-        videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().loopPointReached += OnVideoFinished;
+
         if (GameManager.Instance.levelUnlocked == 5)
         {
             formSGUI.enabled = true;
@@ -29,6 +30,8 @@ public class Transition : MonoBehaviour
         levelSelectScript.UpdateLevelUnlock(GameManager.Instance.levelUnlocked);
         if (!GameManager.Instance.viewedTrainingVideo)
         {
+            videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().loopPointReached += OnVideoFinished;
+            videoManually = false;
             videoMenu.enabled = true;
             mainMenu.enabled = false;
             levelSelect.enabled = false;
@@ -70,7 +73,30 @@ public class Transition : MonoBehaviour
     public void OnVideoFinished(VideoPlayer vp)
     {
         videoMenu.enabled = false;
-        levelSelect.enabled = true;
+        if (!videoManually)
+        {
+            levelSelect.enabled = true;
+        }
+        else
+        {
+            mainMenu.enabled = true;
+        }
         videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().loopPointReached -= OnVideoFinished;
+    }
+    public void PlayTrainingVideo()
+    {
+        videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().loopPointReached += OnVideoFinished;
+        videoManually = true;
+        videoMenu.enabled = true;
+        mainMenu.enabled = false;
+        levelSelect.enabled = false;
+        videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().Play();
+        pauseOverlay.SetActive(false);
+    }
+    public void StartTutorial()
+    {
+        int currentLevel = 0;
+        GameManager.Instance.currentLevel = currentLevel;
+        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Tutorial.unity"));
     }
 }

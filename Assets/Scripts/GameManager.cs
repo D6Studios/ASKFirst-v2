@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public float Sensitivity = 1.0f;
     private int maxTime = 60; // Maximum time for the level in seconds
 
-    void Start()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    void Start()
+    {
+
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single); // Call OnSceneLoaded for the initial scene
         mistakes = new List<Mistake>();
@@ -105,6 +109,8 @@ public class GameManager : MonoBehaviour
         if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Level3" || scene.name == "Level4" || scene.name == "Level5")
         {
             StartLevel();
+            LevelObjectives levelObjectives = gameObject.GetComponent<LevelObjectives>();
+            levelObjectives.FindUI();
         }
         if (scene.name == "Tutorial")
         {
@@ -118,6 +124,10 @@ public class GameManager : MonoBehaviour
     public void StartLevel()
     {
         mistakesMade = new Mistake[3];
+        for (int i = 0; i < mistakesMade.Length; i++)
+        {
+            mistakesMade[i] = new Mistake("", "", true, -1); // Initialize with default values
+        }
         DisplayNormalUI();
         //levelTimerCoroutine = StartCoroutine(LevelTimer());
         gameObject.GetComponent<LevelObjectives>().ResetObjectives();
@@ -131,6 +141,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         gameObject.GetComponent<LevelObjectives>().ResetObjectives();
         GameObject.Find("TutorialManager").GetComponent<TutorialManager>().StartTutorial();
+
     }
     public void EndLevel(float moodScore, string npcName)
     {
