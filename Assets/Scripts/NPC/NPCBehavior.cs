@@ -18,6 +18,7 @@ public class NPCBehavior : MonoBehaviour
     FacialExpressions facialExpressions;
     [SerializeField] public bool isShoplifter = false;
     public bool interactedWith = false;
+    [SerializeField] public bool isLevel2NPC = false;
 
     Transform exit;
     void Start()
@@ -31,7 +32,16 @@ public class NPCBehavior : MonoBehaviour
         {
             NPCOutline.enabled = false;
         }
-        ChangeState("Idle");
+        if (isLevel2NPC) //Hard coded cos we ran out of time. Sorry!
+        {
+
+            ChangeState("Walking");
+
+        }
+        else
+        {
+            ChangeState("Idle");
+        }
     }
     void Update()
     {
@@ -123,6 +133,7 @@ public class NPCBehavior : MonoBehaviour
     }
     IEnumerator Idle()
     {
+
         agent.updateRotation = true; // Re-enable automatic rotation
         agent.isStopped = true;
         npcAnimator.Animate("Idle");
@@ -131,7 +142,7 @@ public class NPCBehavior : MonoBehaviour
         {
             float waitTime = Random.Range(idleWaitTime.x, idleWaitTime.y);
             yield return new WaitForSeconds(waitTime);
-            if (patrolPoints.Length > 0)
+            if (patrolPoints.Length > 0 && !isLevel2NPC)
             {
                 ChangeState("Walking");
             }

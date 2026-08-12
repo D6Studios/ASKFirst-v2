@@ -31,7 +31,8 @@ public class LevelObjectives : MonoBehaviour
     }
     public void ResetObjectives()
     {
-
+        FindUI();
+        Debug.Log("Resetting objectives for the new level.");
         npcObjectives = new List<NPCBehavior>();
         GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
         foreach (GameObject npc in npcs)

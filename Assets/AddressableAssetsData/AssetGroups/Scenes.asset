@@ -45,11 +45,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 28e7b18bfaddf9943ae1558cf99e7d64
-    m_Address: Assets/Scenes/Level2.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c23f6cba72656e43be5e55bc8138f89
     m_Address: Assets/Models Rescaled/Wobbler1.fbx
     m_ReadOnly: 0
@@ -132,6 +127,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 742c99d2e4f7ddb4f8d0e674e3dd9144
     m_Address: Assets/Models Rescaled/CounterNumber.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78cce7cae84f7c64b83476936e423db6
+    m_Address: Assets/Scenes/Level2.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
