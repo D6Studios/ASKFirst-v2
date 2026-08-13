@@ -39,6 +39,7 @@ public class Transition : MonoBehaviour
             videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().Play();
             pauseOverlay.SetActive(false);
             GameManager.Instance.viewedTrainingVideo = true;
+            PlayerPrefs.SetInt("ViewedTrainingVideo", 1);
         }
         else
         {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using TMPro;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Audio;
 public class GameManager : MonoBehaviour
 {
     public int currentLevel = 0;
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     private MobileControls mobileControls;
     public float Sensitivity = 1.0f;
     private int maxTime = 60; // Maximum time for the level in seconds
-
+    [SerializeField] private AudioMixer audioMixer;
     void Awake()
     {
         if (Instance == null)
@@ -38,6 +39,48 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        if (PlayerPrefs.HasKey("LevelUnlocked"))
+        {
+            GameManager.Instance.levelUnlocked = PlayerPrefs.GetInt("LevelUnlocked");
+        }
+        else
+        {
+            GameManager.Instance.levelUnlocked = 0; // Default value if the key doesn't exist
+        }
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            GameManager.Instance.Sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        }
+        else
+        {
+            GameManager.Instance.Sensitivity = 1.0f; // Default value if the key doesn't exist
+        }
+        if (PlayerPrefs.HasKey("ViewedTrainingVideo"))
+        {
+            GameManager.Instance.viewedTrainingVideo = PlayerPrefs.GetInt("ViewedTrainingVideo") == 1;
+        }
+        else
+        {
+            GameManager.Instance.viewedTrainingVideo = false; // Default value if the key doesn't exist
+        }
+        if (PlayerPrefs.HasKey("Music"))
+        {
+            audioMixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat("Music")) * 20); // Using this formula so that the value on the slider matches the audio mixer's values
+        }
+        else
+        {
+            audioMixer.SetFloat("Music", Mathf.Log10(0.5f) * 20); // Default value if the key doesn't exist
+        }
+        if (PlayerPrefs.HasKey("Sfx"))
+        {
+            audioMixer.SetFloat("Sfx", Mathf.Log10(PlayerPrefs.GetFloat("Sfx")) * 20); // Using this formula so that the value on the slider matches the audio mixer's values
+        }
+        else
+        {
+            audioMixer.SetFloat("Sfx", Mathf.Log10(0.5f) * 20); // Default value if the key doesn't exist
+        }
+
+
 
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single); // Call OnSceneLoaded for the initial scene

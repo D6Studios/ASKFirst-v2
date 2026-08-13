@@ -6474,7 +6474,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 903771178809635885, guid: 613f3f8d2d978954cbc44e30e087edd2, type: 3}
       propertyPath: levelUnlocked
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2511004467040411984, guid: 613f3f8d2d978954cbc44e30e087edd2, type: 3}
       propertyPath: m_LocalPosition.x

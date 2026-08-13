@@ -54,6 +54,7 @@ MonoBehaviour:
   levelTimer: 0
   player: {fileID: 0}
   Sensitivity: 1
+  audioMixer: {fileID: 24100000, guid: f0e05a03af03f6a49bcfa1df38c9ae38, type: 2}
 --- !u!114 &5095733677430400215
 MonoBehaviour:
   m_ObjectHideFlags: 0

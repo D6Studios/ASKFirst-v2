@@ -37,6 +37,7 @@ public class OptionsMenu : MonoBehaviour
             return;
         }
         AudioMixer.SetFloat("Music", Mathf.Log10(MusicVolume) * 20); // Using this formula so that the value on the slider matches the audio mixer's values
+        PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
     }
 
     public void SetSFXVolume()
@@ -49,6 +50,7 @@ public class OptionsMenu : MonoBehaviour
             return;
         }
         AudioMixer.SetFloat("Sfx", Mathf.Log10(SfxVolume) * 20); // Using this formula so that the value on the slider matches the audio mixer's values
+        PlayerPrefs.SetFloat("SfxVolume", SfxVolume);
     }
 
     public void SetLookSensitivity()
@@ -56,6 +58,7 @@ public class OptionsMenu : MonoBehaviour
         // Set the look sensitivity based on the slider value
         float Sensitivity = SensSlider.value;
         GameManager.Instance.Sensitivity = Sensitivity;
+        PlayerPrefs.SetFloat("Sensitivity", Sensitivity);
     }
     public void pauseGame()
     {

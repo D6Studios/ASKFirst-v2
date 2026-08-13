@@ -24,14 +24,7 @@ public class EndScreen : MonoBehaviour
     {
         UpdateCards(GameManager.Instance.mistakesMade);
         currentLevel = GameManager.Instance.currentLevel;
-        if (PlayerPrefs.HasKey("LevelUnlocked"))
-        {
-            GameManager.Instance.levelUnlocked = PlayerPrefs.GetInt("LevelUnlocked");
-        }
-        else
-        {
-            GameManager.Instance.levelUnlocked = 0; // Default value if the key doesn't exist
-        }
+
 
     }
 
