@@ -214,6 +214,18 @@ MonoBehaviour:
           m_StringArgument: MainMenuTransition
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1457096329}
+        m_TargetAssemblyTypeName: Transition, Assembly-CSharp
+        m_MethodName: StartClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &70065622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3051,7 +3063,7 @@ MonoBehaviour:
   currentLevel: 0
   offset: {x: 0, y: 300, z: 0}
   images:
-  - {fileID: 21300000, guid: e7e2178cb80bc4c418c1111f2ca8543a, type: 3}
+  - {fileID: 21300000, guid: 09234b9866b95f048993fec6271ac55d, type: 3}
   - {fileID: 21300000, guid: 623b547a832d73042b2dfaf08541a484, type: 3}
   - {fileID: 21300000, guid: fe5197bc4bd0149448af68ba305ddda1, type: 3}
   - {fileID: 21300000, guid: 21b9d70f2318538428ff45171c6f2b6c, type: 3}
@@ -5468,8 +5480,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c8324a89d949e92498c9868cea7f44b8, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 09234b9866b95f048993fec6271ac55d, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6462,7 +6474,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 903771178809635885, guid: 613f3f8d2d978954cbc44e30e087edd2, type: 3}
       propertyPath: levelUnlocked
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2511004467040411984, guid: 613f3f8d2d978954cbc44e30e087edd2, type: 3}
       propertyPath: m_LocalPosition.x

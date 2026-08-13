@@ -203,6 +203,16 @@ public class PlayerDialogue : MonoBehaviour
     }
     public void OptionSelect(int optionId)
     {
+        if (optionId == 1)
+        {
+            SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("pop"));
+        }
+        else if (optionId == 2)
+        {
+            SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("pop"));
+        }
+
+
         advanceDialogue = true;
         optionPicked = optionId;
     }

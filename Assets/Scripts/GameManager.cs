@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel()
     {
+        SoundManager.Instance.PlayBGM(Resources.Load<AudioClip>("BGM"));
         mistakesMade = new Mistake[3];
         for (int i = 0; i < mistakesMade.Length; i++)
         {
@@ -135,6 +136,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartTutorial()
     {
+        SoundManager.Instance.PlayBGM(Resources.Load<AudioClip>("BGM"));
         mistakesMade = new Mistake[3];
         DisplayNormalUI();
         //levelTimerCoroutine = StartCoroutine(LevelTimer());
@@ -145,6 +147,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndLevel(float moodScore, string npcName)
     {
+        SoundManager.Instance.StopBGM();
         Debug.Log("Level Ended with a mood score of: " + moodScore + " from NPC: " + npcName); //Placeholder for level end implementation
         GameManager.Instance.currentScore = moodScore;
         //StopCoroutine(levelTimerCoroutine);

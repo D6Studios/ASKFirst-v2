@@ -27,6 +27,7 @@ public class Transition : MonoBehaviour
     }
     public void SwitchToLevelSelect()
     {
+
         levelSelectScript.UpdateLevelUnlock(GameManager.Instance.levelUnlocked);
         if (!GameManager.Instance.viewedTrainingVideo)
         {
@@ -69,6 +70,7 @@ public class Transition : MonoBehaviour
     public void OptionsMenu()
     {
         GameManager.Instance.PauseGame();
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
     }
     public void OnVideoFinished(VideoPlayer vp)
     {
@@ -98,5 +100,10 @@ public class Transition : MonoBehaviour
         int currentLevel = 0;
         GameManager.Instance.currentLevel = currentLevel;
         StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Tutorial.unity"));
+    }
+    public void StartClicked()
+    {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
+
     }
 }

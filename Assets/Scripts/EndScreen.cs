@@ -17,16 +17,27 @@ public class EndScreen : MonoBehaviour
     public GameObject cardPrefab;
     public Transform cardParent;
     [SerializeField] GameObject restartButton;
+    [SerializeField] GameObject nextButton;
     public int starScore = 0;
     int currentLevel;
     void Start()
     {
         UpdateCards(GameManager.Instance.mistakesMade);
         currentLevel = GameManager.Instance.currentLevel;
+        if (PlayerPrefs.HasKey("LevelUnlocked"))
+        {
+            GameManager.Instance.levelUnlocked = PlayerPrefs.GetInt("LevelUnlocked");
+        }
+        else
+        {
+            GameManager.Instance.levelUnlocked = 0; // Default value if the key doesn't exist
+        }
+
     }
 
     public void UpdateStars()
     {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("reciept"));
         StartCoroutine(IncrementStars(starScore));
     }
     IEnumerator IncrementStars(float targetScore)
@@ -105,15 +116,25 @@ public class EndScreen : MonoBehaviour
     }
     public void ReturnToMainMenu()
     {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
         StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/MainMenu.unity"));
     }
     public void RestartLevel()
     {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
         StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (GameManager.Instance.currentLevel) + ".unity"));
+    }
+    public void NextLevel()
+    {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
+        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (GameManager.Instance.currentLevel + 1) + ".unity"));
+        GameManager.Instance.currentLevel += 1;
     }
     void UpdateWin()
     {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("win"));
         restartButton.SetActive(false); // Hide the restart button on win
+        nextButton.SetActive(true); // Show the next button on win
         if (GameManager.Instance.levelUnlocked > GameManager.Instance.currentLevel)
         {
             return;
@@ -121,11 +142,14 @@ public class EndScreen : MonoBehaviour
         else
         {
             GameManager.Instance.levelUnlocked = GameManager.Instance.currentLevel + 1;
+            PlayerPrefs.SetInt("LevelUnlocked", GameManager.Instance.levelUnlocked);
         }
     }
     void UpdateLose()
     {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("lose"));
         restartButton.SetActive(true); // Show the restart button on lose
+        nextButton.SetActive(false); // Hide the next button on lose
         // Implement lose logic here if needed
     }
 }

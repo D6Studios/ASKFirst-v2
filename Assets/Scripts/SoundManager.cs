@@ -32,4 +32,8 @@ public class SoundManager : MonoBehaviour
         bgmAudioSource.clip = clip;
         bgmAudioSource.Play();
     }
+    public void StopBGM()
+    {
+        bgmAudioSource.Stop();
+    }
 }
