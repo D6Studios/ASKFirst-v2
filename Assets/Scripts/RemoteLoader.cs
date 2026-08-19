@@ -8,6 +8,8 @@ public class RemoteLoader : MonoBehaviour
     public string fileContent;
     public string mistakesUrl = "https://b8888fb0-9a9a-4559-9af8-3749a8683cd3.client-api.unity3dusercontent.com/client_api/v1/environments/production/buckets/7ce1c4ee-c517-498e-873a-6b0f88b9eb03/release_by_badge/latest/entry_by_path/content/?path=ASKFirstMistakes.txt";
     public string mistakesContent;
+    public string formSGLinksUrl = "https://b8888fb0-9a9a-4559-9af8-3749a8683cd3.client-api.unity3dusercontent.com/client_api/v1/environments/production/buckets/7ce1c4ee-c517-498e-873a-6b0f88b9eb03/release_by_badge/latest/entry_by_path/content/?path=formsglinks.txt";
+    public string formSGLinksContent;
     public static RemoteLoader Instance { get; private set; }
     void Start()
     {
@@ -22,6 +24,7 @@ public class RemoteLoader : MonoBehaviour
         }
         StartCoroutine(DownloadNPCLines(fileUrl));
         StartCoroutine(DownloadMistakes(mistakesUrl));
+        StartCoroutine(DownloadFormSGLinks(formSGLinksUrl));
 
     }
 
@@ -61,6 +64,25 @@ public class RemoteLoader : MonoBehaviour
 
             mistakesContent = www.downloadHandler.text;
             Debug.Log(mistakesContent);
+        }
+    }
+    IEnumerator DownloadFormSGLinks(string url)
+    {
+        Debug.Log("Waiting for response...");
+
+        UnityWebRequest www = UnityWebRequest.Get(url);
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Failed to download: " + www.error);
+        }
+        else
+        {
+            Debug.Log("Response received!");
+
+            formSGLinksContent = www.downloadHandler.text;
+            Debug.Log(formSGLinksContent);
         }
     }
 }
