@@ -85,8 +85,8 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single); // Call OnSceneLoaded for the initial scene
         mistakes = new List<Mistake>();
-        TextAsset mistakeList = Resources.Load<TextAsset>("ASKFirstMistakes");
-        string[] allLines = mistakeList.text.Split('\n');
+        string mistakeList = RemoteLoader.Instance.mistakesContent;
+        string[] allLines = mistakeList.Split('\n');
         for (int i = 1; i < allLines.Length; i++)
         {
             if (string.IsNullOrWhiteSpace(allLines[i]))

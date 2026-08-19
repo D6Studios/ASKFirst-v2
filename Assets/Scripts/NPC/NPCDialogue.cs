@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
+
 public class NPCDialogue : MonoBehaviour
 {
     string currentDialogueLine;
@@ -9,8 +10,9 @@ public class NPCDialogue : MonoBehaviour
     int dialogueIndex = 0;
     void Start()
     {
-        TextAsset dialogueFile = Resources.Load<TextAsset>("ASKFirstDialogueFinal"); // Load dialogue from Resources folder
-        string[] allLines = dialogueFile.text.Split('\n');
+
+        string dialogueFile = RemoteLoader.Instance.fileContent;
+        string[] allLines = dialogueFile.Split('\n');
         for (int i = 0; i < allLines.Length; i++)
         {
             if (allLines[i].StartsWith(gameObject.name + "\t")) //Filter lines for this NPC based on name
