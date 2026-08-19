@@ -10,15 +10,20 @@ public class FormSGRedirect : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         currentURL = Application.absoluteURL;
         urlCode = currentURL.Split('?')[1];
-        formSGLinksJSON = Resources.Load<TextAsset>("formsglinks");
-        RegionList regionList = JsonUtility.FromJson<RegionList>(formSGLinksJSON.text);
+        string formSGLinksContent = RemoteLoader.Instance.formSGLinksContent;
+        string[] pairs = formSGLinksContent.Split("\n");
 
 
-        foreach (Region region in regionList.Regions)
+
+        foreach (string pair in pairs)
         {
-            regionDictionary[region.name] = region.url;
+            string[] keyValue = pair.Split('|');
+
+            regionDictionary[keyValue[0]] = keyValue[1];
+            Debug.Log("Key: " + keyValue[0] + ", Value: " + keyValue[1]);
         }
 
     }
@@ -31,19 +36,9 @@ public class FormSGRedirect : MonoBehaviour
         }
         else
         {
-            Application.OpenURL(regionDictionary[1.ToString()]); // Default to the first region if the code is not found
+            Application.OpenURL(regionDictionary["alpha"]); // Default to the first region if the code is not found
             Debug.LogError("Region code not found in the dictionary: " + urlCode);
         }
     }
 }
-[System.Serializable]
-public class Region
-{
-    public string name;
-    public string url;
-}
-[System.Serializable]
-public class RegionList
-{
-    public Region[] Regions;
-}
+
