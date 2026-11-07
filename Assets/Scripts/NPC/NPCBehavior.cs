@@ -19,8 +19,13 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField] public bool isShoplifter = false;
     public bool interactedWith = false;
     [SerializeField] public bool isLevel2NPC = false;
+    [SerializeField] SafeDistanceIndicator safeDistanceIndicator;
+    public bool safeDistanceBreached = false;
+    bool playerTooClose = false;
+    bool encounterActive = true;
 
     Transform exit;
+    Transform player;
     void Start()
     {
         NPCOutline = gameObject.GetComponentInChildren<Outline>();
@@ -28,6 +33,12 @@ public class NPCBehavior : MonoBehaviour
         agent = gameObject.GetComponent<NavMeshAgent>();
         facialExpressions = gameObject.GetComponent<FacialExpressions>();
         exit = GameObject.FindGameObjectWithTag("Exit").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (safeDistanceIndicator != null)
+        {
+            safeDistanceIndicator.SetRadius(DangerDistance);
+            safeDistanceIndicator.gameObject.SetActive(isShoplifter);
+        }
         if (NPCOutline != null)
         {
             NPCOutline.enabled = false;
@@ -49,33 +60,30 @@ public class NPCBehavior : MonoBehaviour
     }
     void CheckPlayerProximity()
     {
-        if (interactedWith)
+        if (!isShoplifter || !encounterActive)
         {
-            return; // Skip proximity checks if the NPC has already been interacted with
+            return; // Safe-distance monitoring only applies to shoplifter NPCs, and only for the duration of the encounter (approach through end of conversation)
         }
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerDistance = Vector3.Distance(player.transform.position, gameObject.transform.position);
-        if (isShoplifter)
+        playerDistance = Vector3.Distance(player.position, gameObject.transform.position);
+        bool tooClose = playerDistance < DangerDistance;
+        if (tooClose && !playerTooClose)
         {
-            if (playerDistance < DangerDistance)
-            {
-
-                int randomMistakeIndex = Random.Range(0, 1);
-                if (randomMistakeIndex == 0)
-                {
-                    GameManager.Instance.AddMistake(4);
-                }
-                else if (randomMistakeIndex == 1)
-                {
-                    GameManager.Instance.AddMistake(6);
-                }
-            }
-
-            if (playerDistance < 1)
-            {
-                GameManager.Instance.AddMistake(10);
-            }
+            safeDistanceBreached = true;
+            if (SafeDistanceWarningUI.Instance != null) SafeDistanceWarningUI.Instance.ShowWarning();
+            if (safeDistanceIndicator != null) safeDistanceIndicator.SetBreached(true);
         }
+        else if (!tooClose && playerTooClose)
+        {
+            if (safeDistanceIndicator != null) safeDistanceIndicator.SetBreached(false);
+        }
+        playerTooClose = tooClose;
+    }
+
+    // Called by PlayerDialogue.EndDialogue once the conversation with this NPC is over.
+    public void EndEncounter()
+    {
+        encounterActive = false;
+        if (safeDistanceIndicator != null) safeDistanceIndicator.gameObject.SetActive(false);
     }
 
     public void Interact()
@@ -164,8 +172,7 @@ public class NPCBehavior : MonoBehaviour
     }
     IEnumerator TurnToPlayer()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+        Vector3 directionToPlayer = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, 0, directionToPlayer.z));
         while (transform.rotation != lookRotation)
         {
@@ -177,7 +184,7 @@ public class NPCBehavior : MonoBehaviour
     {
         agent.updateRotation = true; // Re-enable automatic rotation
         agent.isStopped = false;
-        gameObject.GetComponent<NavMeshAgent>().speed = 1.7f; // Increase speed for leaving
+        agent.speed = 1.7f; // Increase speed for leaving
         npcAnimator.Animate("Walking");
 
         while (currentState == "Leaving")

@@ -151,9 +151,21 @@ public class GameManager : MonoBehaviour
         }
         if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Level3" || scene.name == "Level4" || scene.name == "Level5")
         {
-            StartLevel();
             LevelObjectives levelObjectives = gameObject.GetComponent<LevelObjectives>();
-            levelObjectives.FindUI();
+            LevelIntro levelIntro = FindObjectOfType<LevelIntro>();
+            if (levelIntro != null)
+            {
+                levelIntro.PlayIntro(() =>
+                {
+                    StartLevel();
+                    levelObjectives.FindUI();
+                });
+            }
+            else
+            {
+                StartLevel();
+                levelObjectives.FindUI();
+            }
         }
         if (scene.name == "Tutorial")
         {

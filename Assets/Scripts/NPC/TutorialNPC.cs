@@ -18,6 +18,10 @@ public class TutorialNPCBehavior : MonoBehaviour
     FacialExpressions facialExpressions;
     [SerializeField] public bool isShoplifter = false;
     public bool interactedWith = false;
+    [SerializeField] SafeDistanceIndicator safeDistanceIndicator;
+    public bool safeDistanceBreached = false;
+    bool playerTooClose = false;
+    bool encounterActive = true;
     Transform exit;
     void Start()
     {
@@ -25,6 +29,11 @@ public class TutorialNPCBehavior : MonoBehaviour
         npcAnimator = gameObject.GetComponent<NPCAnimator>();
         agent = gameObject.GetComponent<NavMeshAgent>();
         facialExpressions = gameObject.GetComponent<FacialExpressions>();
+        if (safeDistanceIndicator != null)
+        {
+            safeDistanceIndicator.SetRadius(DangerDistance);
+            safeDistanceIndicator.gameObject.SetActive(isShoplifter);
+        }
         if (NPCOutline != null)
         {
             NPCOutline.enabled = false;
@@ -37,29 +46,31 @@ public class TutorialNPCBehavior : MonoBehaviour
     }
     void CheckPlayerProximity()
     {
+        if (!isShoplifter || !encounterActive)
+        {
+            return; // Safe-distance monitoring only applies to shoplifter NPCs, and only for the duration of the encounter (approach through end of conversation)
+        }
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerDistance = Vector3.Distance(player.transform.position, gameObject.transform.position);
-        if (isShoplifter)
+        bool tooClose = playerDistance < DangerDistance;
+        if (tooClose && !playerTooClose)
         {
-            if (playerDistance < DangerDistance)
-            {
-
-                int randomMistakeIndex = Random.Range(0, 1);
-                if (randomMistakeIndex == 0)
-                {
-                    GameManager.Instance.AddMistake(4);
-                }
-                else if (randomMistakeIndex == 1)
-                {
-                    GameManager.Instance.AddMistake(6);
-                }
-            }
-
-            if (playerDistance < 1)
-            {
-                GameManager.Instance.AddMistake(10);
-            }
+            safeDistanceBreached = true;
+            if (SafeDistanceWarningUI.Instance != null) SafeDistanceWarningUI.Instance.ShowWarning();
+            if (safeDistanceIndicator != null) safeDistanceIndicator.SetBreached(true);
         }
+        else if (!tooClose && playerTooClose)
+        {
+            if (safeDistanceIndicator != null) safeDistanceIndicator.SetBreached(false);
+        }
+        playerTooClose = tooClose;
+    }
+
+    // Called by PlayerDialogue.EndDialogue once the conversation with this NPC is over.
+    public void EndEncounter()
+    {
+        encounterActive = false;
+        if (safeDistanceIndicator != null) safeDistanceIndicator.gameObject.SetActive(false);
     }
 
     public void Interact()

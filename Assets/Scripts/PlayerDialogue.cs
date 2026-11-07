@@ -51,16 +51,22 @@ public class PlayerDialogue : MonoBehaviour
         mobileControls.GetComponent<MobileControls>().InteractEvent.Invoke(false);
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>().isBusy = false;
         GameObject.FindGameObjectWithTag("NPCFocusCamera").GetComponent<NPCFocusCamera>().ResetFocus();
-        npc.GetComponent<NPCBehavior>().interactedWith = true;
-        if (!npc.GetComponent<NPCBehavior>().isShoplifter)
+        NPCBehavior npcBehavior = npc.GetComponent<NPCBehavior>();
+        npcBehavior.interactedWith = true;
+        npcBehavior.EndEncounter();
+        if (!npcBehavior.isShoplifter)
         {
-            npc.GetComponent<NPCBehavior>().ChangeState("Idle");
+            npcBehavior.ChangeState("Idle");
         }
         else
         {
-            npc.GetComponent<NPCBehavior>().ChangeState("Leaving");
+            npcBehavior.ChangeState("Leaving");
         }
-
+        if (npcBehavior.safeDistanceBreached)
+        {
+            GameManager.Instance.AddMistake(4);
+            if (AskReminderPopup.Instance != null) AskReminderPopup.Instance.Show();
+        }
 
     }
     IEnumerator DialogueCoroutine(GameObject npc)

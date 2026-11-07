@@ -74,3 +74,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /ServerData
+
+# Unity crash/auto-save recovery scenes
+/[Aa]ssets/_Recovery/
+
+# Stray Burst/WebGL build output that keeps getting copied to project root
+/Data/

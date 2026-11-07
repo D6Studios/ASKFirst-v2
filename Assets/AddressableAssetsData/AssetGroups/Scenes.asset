@@ -30,8 +30,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15282d6c2c12c52468c5b9947d1021d5
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/YP_Rescale.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1b7d0510bd18c6046babf778923252c4
     m_Address: Assets/Models Rescaled/WoodBasket.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ce62197424deb74d9b2d520ad5477af
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/BasketHolder.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -45,8 +55,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2bdbcb6a13204254fb8efed525f9907d
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/SideShelf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c23f6cba72656e43be5e55bc8138f89
     m_Address: Assets/Models Rescaled/Wobbler1.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d4ff9da6d261e345ba980e5cfbc6644
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/ScannerHolder.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -55,13 +75,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 321e94e447968a645a9f03bd8a0da5db
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/SelfCheckout.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 329ebcc2efc99ff40841f6aae868ddb3
     m_Address: Assets/Models Rescaled/Doors.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3341f61e239b5284992b12a8a1617f7a
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/CounterNumber.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 35ee7220cb57b984b8d7ae49f343e5be
     m_Address: Assets/Models Rescaled/SelfCheckout.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3609b104808530d45ba59e159b8279c8
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/StylizedTable.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e72a58822b4f094999b558936cb703e
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Basket Table.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -77,6 +117,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4647b253f31cf624bb244d82e0a7a73c
     m_Address: Assets/Models Rescaled/ShoppingCart.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b15f6ed31ac86f44bb5dfaf42d03550
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Wobbler2.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -100,8 +145,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5396e6cd475c2dd4f89146c82bf73479
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/WoodBasket.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 550d8405d6a164043b22b581859c0211
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Light.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5a9322b633ba8a74d96c04e07b236510
     m_Address: Assets/Scenes/Tutorial.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d77d84cbae4fd34383a1806eb7e251b
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/CheckoutCounter.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -120,6 +180,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65d07f1955ad00b4fa87519539867d45
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/CashRegister.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6deaf5e5258c7374694eaa2de8a12a2d
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Self Checkout Set.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74263af2753e2bf47add19b7b91b73da
     m_Address: Assets/Sprites/LevelScreenshots/Lvl4.png
     m_ReadOnly: 0
@@ -130,8 +200,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 754ec5d89189cb44eaeece17768ef630
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/BoxFreezer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76e0c9ac19620b046ab4f36f974f7f3b
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/ShoppingCart.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7878bac8fb0dd1f42943112665a3b42f
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Camera.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 78cce7cae84f7c64b83476936e423db6
     m_Address: Assets/Scenes/Level2.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b6d6a5133d139d45a7de33ee63fac9d
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Self Checkout Set Reverse.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 837c8973559783e42baaa40e019689bd
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Wobbler1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -155,8 +250,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87cce3da668f43943b11b4c532f7fda9
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/ExitScanner.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8bbd192431531824a80814ae62429e4d
     m_Address: Assets/Models Rescaled/Floor.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fd5b6a652d5add40abdf028de9d2a17
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/WallFreezer.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -165,8 +270,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9125a14fc3f00c14ab38bf2fd0cf6427
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Shelf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92eb7750528ce6548aaf5c48e6a45998
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/FruitsShelf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93ad8972222adfa42acaff56147bcbae
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Floor2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93bc9e3e25f882e4988f4e250ef6a3a8
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/UpperWallExtension.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 955184832e2caf34ea8b25e58801bef7
     m_Address: Assets/Models Rescaled/Shelf.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a63fbadde4d77940b1c2e87c81b6f21
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Wall.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -180,8 +310,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c8e7565aa4b2bc44b1c927f0e6b94f7
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/UpperWallExtensionCorner.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a24329183c0bfa541846f8f4c077b010
     m_Address: Assets/Scenes/Level4.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2996843759a8fd4daf8c0fabb87abe3
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Basket.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -205,8 +345,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b543bc060f69e324b988bbb9610dc5e9
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Doors.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6c4997879748db4c927c3157181dfb1
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/DoorCover.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c5aa33426e77c374b866d6be05a731a8
     m_Address: Assets/Models/UpperWallExtension.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c85111885c060d347863925c08a8ed86
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/MiniShelf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1211d5388c5b054f91c57ed29392fd5
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/light 1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -230,6 +390,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e43842af2ded89a4d8a47dc7a7e2dbee
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/FruitsBasket.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eab06a51e113bd942921b868f5bbc610
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Floor.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f15e7899d2fb44f4cb9a57dab28ba422
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Ceiling.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3ad3f0d38ffc4a4e905a259215d3b11
     m_Address: Assets/Prefab/LevelEssentials/GameUI.prefab
     m_ReadOnly: 0
@@ -240,6 +415,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f79ee2da419333c4bbae62a89d80b4af
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Fridge.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7c61acd4d99084468a2ec03961c8413
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/ToteBag.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8797d0f5f28357458855c094713d11c
     m_Address: Assets/Scenes/Level End.unity
     m_ReadOnly: 0
@@ -247,6 +432,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f886a2b83377c364f93daeb3369c8818
     m_Address: Assets/Models Rescaled/BasketHolder.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8f649c88c85afa4dbb6e70eb7d5aeaf
+    m_Address: Assets/Prefab/Rescaled Level Prefabs/Railing.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
