@@ -42,7 +42,8 @@ public class PlayerDialogue : MonoBehaviour
     {
 
         GameManager.Instance.DisplayDialogueUI();
-        StartCoroutine(DialogueCoroutine(npc));
+        AmbientNPC ambient = npc.GetComponent<AmbientNPC>();
+        StartCoroutine(ambient != null ? AmbientDialogueCoroutine(npc, ambient) : DialogueCoroutine(npc));
 
     }
     public void EndDialogue(GameObject npc)
@@ -64,7 +65,8 @@ public class PlayerDialogue : MonoBehaviour
         }
         if (npcBehavior.safeDistanceBreached)
         {
-            GameManager.Instance.AddMistake(4);
+            // Any breach shows the reminder, but only getting really close counts against the score
+            if (npcBehavior.penaltyDistanceBreached) GameManager.Instance.AddMistake(4);
             if (AskReminderPopup.Instance != null) AskReminderPopup.Instance.Show();
         }
 
@@ -194,6 +196,35 @@ public class PlayerDialogue : MonoBehaviour
 
 
 
+    }
+    // Player speaks first: pick an approach line, NPC replies, player closes with closingLine.
+    IEnumerator AmbientDialogueCoroutine(GameObject npc, AmbientNPC ambient)
+    {
+        bool twoOptions = ambient.approaches.Length > 1;
+        dialogueText.text = ambient.promptText;
+        option1Text.text = ambient.approaches[0].playerLine;
+        option2Text.text = twoOptions ? ambient.approaches[1].playerLine : "";
+        option2Text.transform.parent.gameObject.SetActive(twoOptions);
+        advanceDialogue = false;
+        yield return new WaitUntil(() => advanceDialogue);
+        advanceDialogue = false;
+
+        npc.GetComponent<NPCAnimator>().Animate("Happy");
+        option2Text.transform.parent.gameObject.SetActive(false);
+        option1Text.text = ambient.closingLine;
+        string reply = ambient.approaches[Mathf.Clamp(optionPicked - 1, 0, ambient.approaches.Length - 1)].npcReply;
+        Coroutine textScroll = StartCoroutine(TextScrolling(reply));
+        yield return new WaitUntil(() => advanceDialogue);
+        if (textScrolling) // first tap skips the scroll, like the main dialogue
+        {
+            StopCoroutine(textScroll);
+            textScrolling = false;
+            dialogueText.text = reply;
+            advanceDialogue = false;
+            yield return new WaitUntil(() => advanceDialogue);
+        }
+        advanceDialogue = false;
+        EndDialogue(npc);
     }
     IEnumerator TextScrolling(string dialogueLine)
     {

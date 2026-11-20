@@ -70,7 +70,7 @@ public class TutorialNPCBehavior : MonoBehaviour
     public void EndEncounter()
     {
         encounterActive = false;
-        if (safeDistanceIndicator != null) safeDistanceIndicator.gameObject.SetActive(false);
+        if (safeDistanceIndicator != null) safeDistanceIndicator.Dismiss();
     }
 
     public void Interact()

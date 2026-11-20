@@ -15,6 +15,9 @@
 - [x] Did a script-based "unused asset" audit (cross-referenced every asset GUID against every scene/prefab/material/controller that could reference it, since the Editor's finder isn't drivable from here). Removed the confirmed-dead `Assets/Resources/Old versions/` folder (superseded by `RemoteLoader.cs`'s remote dialogue loading) and 6 orphan scenes not in Build Settings or referenced anywhere (`Modular.unity`, `NPCTexturingTest.unity`, `AnimationTestScene.unity`, both Starter Assets `Playground.unity` demo scenes, QuickOutline's sample scene).
 - [ ] Follow-up: the same audit flagged ~130MB of likely-orphaned textures/materials (mostly loose numbered textures and `Lata_*` PBR maps under `Assets/Prefab/Supermarket Models/Shelves/canned/`, plus orphans in `Materials/otherMat/`, `NPCs/Materials/`, `Textures/Planogram/`, and loose NPC animation FBXs). Not deleted yet — GUID cross-referencing can't catch assets loaded by string path (Resources/Addressables), so these need either a manual look or a pass through the Editor's actual unused-asset finder before removal. Overlaps with the FBX-splitting task above.
 
+## Mobile camera jitter
+- [ ] Camera view jitters while a finger rests on the look side of the screen (tiny finger tremor gets turned into camera rotation). Cause is in `Assets/Scripts/Mobile Controls/MobileControls.cs` `Update()`: 0.5px dead zone is far too small on high-DPI phones and not DPI-scaled, the `Vector2.Lerp(zero, delta, 0.5f)` is just `delta * 0.5` (no real smoothing across frames), and `FirstPersonController.CameraRotation()` multiplies the per-frame touch delta by `Time.deltaTime`, so uneven frame times add noise. Fix: add a touch-slop threshold (ignore look until the finger moves ~1–2mm from where it pressed, using `Screen.dpi`), apply frame-rate-independent exponential smoothing to the delta, and treat touch like mouse (no `Time.deltaTime`).
+
 ## Git housekeeping
 - [ ] Review `git status` and commit (when ready) the pending changes from this session: texture `maxTextureSize` reductions (71 files), removed clutter (`Assets/_Recovery`, `Assets/TutorialInfo`, `Assets/Readme.asset`, `Data/`), `.gitignore` additions, WebGL memory settings, and Addressables LZ4 compression fix.
 
@@ -24,12 +27,12 @@
 - [x] Place ordered pan waypoints (empty GameObjects) marking the camera path over the level.
 - [x] Build a `LevelIntroUI` Canvas with level-name text, level-description text, and a "tap to start" button.
 - [x] Add a `LevelIntro` component on an empty GameObject, fill in Level Name/Description, and wire up the canvas/text/button and camera/waypoints references.
-- [-] Decide if a prebuilt `LevelIntroUI` prefab (instead of building the canvas from scratch per scene) is wanted — offered, not yet built.
+- [x] Prebuilt prefab already exists: `Assets/Prefab/Intro.prefab` (LevelIntro + IntroCamera + LevelIntroUI), used by Level1. Drop it into Tutorial/Level2–4 and fill in name/description/waypoints when wanted.
 
 ## Safe distance / "S" & "K" reminder system
 `SafeDistanceIndicator.cs`, `SafeDistanceWarningUI.cs`, `AskReminderPopup.cs` are written, and `NPCBehavior.cs`/`TutorialNPC.cs`/`PlayerDialogue.cs` are already wired to use them. Still need to wire up in the Editor:
-- [ ] On the shared NPC prefab (`Assets/Prefab/NPC (Change This Name).prefab`): add a child `SafeDistanceCircle` GameObject (at the NPC's feet) with a `LineRenderer` (thin width, simple transparent/unlit material) + the `SafeDistanceIndicator` script, then drag it into `NPCBehavior` → **Safe Distance Indicator**. Save the prefab so every level's NPC instances pick it up.
-- [ ] Repeat the same wiring for the Tutorial NPC if it uses `TutorialNPCBehavior` instead.
-- [ ] Per scene (each level + Tutorial): add a small panel with `CanvasGroup` + `TextMeshProUGUI` under the `GameUI` canvas, add the `SafeDistanceWarningUI` script, assign those two fields (one per scene — it's a singleton).
-- [ ] Per scene: add a new `Canvas` with a body `TextMeshProUGUI` + close `Button`, add the `AskReminderPopup` script, assign **Reminder Canvas / Body Text / Close Button** (one per scene — it's a singleton). Default text is already the suggested S/K copy.
-- [ ] Decide whether to keep reusing mistake id `4` for the end-of-conversation safety ding (preserves existing End Screen scoring) or change/drop it if it should be purely educational.
+- [x] On the shared NPC prefab (`Assets/Prefab/NPC (Change This Name).prefab`): add a child `SafeDistanceCircle` GameObject (at the NPC's feet) with a `LineRenderer` (thin width, simple transparent/unlit material) + the `SafeDistanceIndicator` script, then drag it into `NPCBehavior` → **Safe Distance Indicator**. Save the prefab so every level's NPC instances pick it up.
+- [x] (Covered: Tutorial NPCs are instances of the shared prefab.) Repeat the same wiring for the Tutorial NPC if it uses `TutorialNPCBehavior` instead.
+- [x] Per scene (each level + Tutorial): add a small panel with `CanvasGroup` + `TextMeshProUGUI` under the `GameUI` canvas, add the `SafeDistanceWarningUI` script, assign those two fields (one per scene — it's a singleton).
+- [x] Per scene: add a new `Canvas` with a body `TextMeshProUGUI` + close `Button`, add the `AskReminderPopup` script, assign **Reminder Canvas / Body Text / Close Button** (one per scene — it's a singleton). Default text is already the suggested S/K copy.
+- [x] Decided: keep reusing mistake id `4`. Decide whether to keep reusing mistake id `4` for the end-of-conversation safety ding (preserves existing End Screen scoring) or change/drop it if it should be purely educational.

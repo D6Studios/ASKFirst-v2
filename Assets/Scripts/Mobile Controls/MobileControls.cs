@@ -14,6 +14,10 @@ public class MobileControls : MonoBehaviour
     [Tooltip("Look joystick magnitude is in [-1;1] range, this multiply it before sending it to move event")]
     public float LookMagnitudeMultiplier = 1.0f;
     public bool InvertLookY;
+    [Tooltip("Finger must move this far (mm) from where it pressed before the camera starts turning")]
+    public float TouchSlopMm = 1.5f;
+    [Tooltip("Higher = snappier, lower = smoother")]
+    public float LookSmoothing = 20f;
 
     [Header("Events")]
     public UnityEvent<Vector2> MoveEvent;
@@ -32,6 +36,9 @@ public class MobileControls : MonoBehaviour
     private VirtualJoystick m_LookJoystick;
     public float sensitivityMultiplier => GameManager.Instance.Sensitivity;
     private int cameraFingerId = -1;
+    private Vector2 pressPos;
+    private bool lookActive;
+    private Vector2 smoothedDelta;
     private VisualElement root;
 
     private void Awake()
@@ -104,6 +111,9 @@ public class MobileControls : MonoBehaviour
                 position.x > Screen.width * 0.5f)
             {
                 cameraFingerId = id;
+                pressPos = position;
+                lookActive = false;
+                smoothedDelta = Vector2.zero;
             }
         }
 
@@ -129,15 +139,21 @@ public class MobileControls : MonoBehaviour
                 // Finger is still held
                 if (touch.press.isPressed)
                 {
-                    Vector2 delta = touch.delta.ReadValue();
-                    if (delta.magnitude < 0.5f)
-                        delta = Vector2.zero;
+                    float dt = Time.deltaTime;
+                    if (dt <= 0f)
+                        break;
 
-                    delta = Vector2.Lerp(
-                        Vector2.zero,
-                        delta,
-                        0.5f
-                    );
+                    // Ignore a resting finger's tremor until it clearly starts dragging
+                    float dpi = Screen.dpi > 0 ? Screen.dpi : 160f;
+                    if (!lookActive && (touch.position.ReadValue() - pressPos).magnitude > TouchSlopMm / 25.4f * dpi)
+                        lookActive = true;
+
+                    Vector2 raw = lookActive ? touch.delta.ReadValue() : Vector2.zero;
+                    smoothedDelta = Vector2.Lerp(smoothedDelta, raw, 1f - Mathf.Exp(-LookSmoothing * dt));
+
+                    // FirstPersonController multiplies touch look by Time.deltaTime; cancel that so rotation
+                    // follows the finger, scaled to match the old feel at 60fps (old code halved the delta)
+                    Vector2 delta = smoothedDelta * 0.5f / (dt * 60f);
                     if (InvertLookY)
                         delta.y *= -1;
 

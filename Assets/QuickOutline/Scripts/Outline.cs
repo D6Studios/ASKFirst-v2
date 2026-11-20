@@ -83,7 +83,10 @@ public class Outline : MonoBehaviour {
   void Awake() {
 
     // Cache renderers
-    renderers = GetComponentsInChildren<Renderer>();
+    // Skip line/trail/particle renderers (e.g. the safe-distance circle) so they don't get outlined
+    renderers = GetComponentsInChildren<Renderer>()
+      .Where(r => !(r is LineRenderer) && !(r is TrailRenderer) && !(r is ParticleSystemRenderer))
+      .ToArray();
 
     // Instantiate outline materials
     outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));

@@ -5,19 +5,16 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 public class LoadingScreen : MonoBehaviour
 {
-    TextMeshProUGUI progressText;
-    Slider progressBar;
-    Button startButton;
+    [SerializeField] TextMeshProUGUI progressText;
+    [SerializeField] TextMeshProUGUI statusText;
+    [SerializeField] Slider progressBar;
+    [SerializeField] Button startButton;
     private AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance> assetLoadingHandle;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         assetLoadingHandle = Addressables.LoadSceneAsync("Assets/Scenes/MainMenu.unity", activateOnLoad: false);
-        progressText = GetComponentInChildren<TextMeshProUGUI>();
-        progressBar = GetComponentInChildren<Slider>();
-        startButton = GetComponentInChildren<Button>();
-        startButton.interactable = false;
-
+        startButton.gameObject.SetActive(false);
     }
     void Update()
     {
@@ -25,11 +22,12 @@ public class LoadingScreen : MonoBehaviour
         {
             float progress = assetLoadingHandle.PercentComplete;
 
-            progressText.text = $"{progress * 100:F2}%";
+            progressText.text = $"{progress * 100:F0}%";
             progressBar.value = progress;
-            if (progress >= 1f)
+            if (progress >= 1f && !startButton.gameObject.activeSelf)
             {
-                startButton.interactable = true;
+                if (statusText) statusText.text = "READY!";
+                startButton.gameObject.SetActive(true);
             }
         }
     }

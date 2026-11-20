@@ -21,6 +21,9 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField] public bool isLevel2NPC = false;
     [SerializeField] SafeDistanceIndicator safeDistanceIndicator;
     public bool safeDistanceBreached = false;
+    [Tooltip("Player must get closer than this to be penalised in the score. Breaching DangerDistance alone only shows the warning.")]
+    [SerializeField] public float PenaltyDistance = 1f;
+    public bool penaltyDistanceBreached = false;
     bool playerTooClose = false;
     bool encounterActive = true;
 
@@ -37,7 +40,7 @@ public class NPCBehavior : MonoBehaviour
         if (safeDistanceIndicator != null)
         {
             safeDistanceIndicator.SetRadius(DangerDistance);
-            safeDistanceIndicator.gameObject.SetActive(isShoplifter);
+            safeDistanceIndicator.gameObject.SetActive(isShoplifter); // fades itself in/out based on player distance
         }
         if (NPCOutline != null)
         {
@@ -66,6 +69,10 @@ public class NPCBehavior : MonoBehaviour
         }
         playerDistance = Vector3.Distance(player.position, gameObject.transform.position);
         bool tooClose = playerDistance < DangerDistance;
+        if (playerDistance < PenaltyDistance)
+        {
+            penaltyDistanceBreached = true; // Only this affects the final score
+        }
         if (tooClose && !playerTooClose)
         {
             safeDistanceBreached = true;
@@ -83,7 +90,7 @@ public class NPCBehavior : MonoBehaviour
     public void EndEncounter()
     {
         encounterActive = false;
-        if (safeDistanceIndicator != null) safeDistanceIndicator.gameObject.SetActive(false);
+        if (safeDistanceIndicator != null) safeDistanceIndicator.Dismiss();
     }
 
     public void Interact()
