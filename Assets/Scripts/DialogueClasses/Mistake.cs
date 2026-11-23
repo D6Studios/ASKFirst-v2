@@ -15,4 +15,18 @@ public class Mistake
         this.positive = positive;
         this.id = id;
     }
+
+    // Tab-separated sheet: category, description, positive, id. First row is the header.
+    public static List<Mistake> ParseAll(string sheet)
+    {
+        var list = new List<Mistake>();
+        string[] lines = sheet.Split('\n');
+        for (int i = 1; i < lines.Length; i++)
+        {
+            if (string.IsNullOrWhiteSpace(lines[i])) continue;
+            string[] cols = lines[i].Split('\t');
+            list.Add(new Mistake(cols[0], cols[1], bool.Parse(cols[2]), int.Parse(cols[3])));
+        }
+        return list;
+    }
 }

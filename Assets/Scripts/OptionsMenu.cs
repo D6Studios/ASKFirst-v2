@@ -16,49 +16,34 @@ public class OptionsMenu : MonoBehaviour
 
     void Start()
     {
-        SensSlider.value = GameManager.Instance.Sensitivity;
-        MusicSlider.value = SoundManager.Instance.MusicVolume;
-        SfxSlider.value = SoundManager.Instance.SFXVolume;
+        SensSlider.value = GameSettings.Sensitivity;
+        MusicSlider.value = GameSettings.MusicVolume;
+        SfxSlider.value = GameSettings.SfxVolume;
     }
 
     // Update is called once per frame
     public void ExitToMainMenu()
     {
-        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/MainMenu.unity"));
+        StartCoroutine(GameManager.Instance.LoadScene(GameLevels.ScenePath(GameLevels.MainMenu)));
     }
 
     public void SetMusicVolume()
     {
-        SoundManager.Instance.MusicVolume = MusicSlider.value;
-        float MusicVolume = SoundManager.Instance.MusicVolume;
-        if (MusicVolume == 0)
-        {
-            AudioMixer.SetFloat("Music", -80); // Set to minimum volume if slider is at 0 to avoid log10(0) error
-            return;
-        }
-        AudioMixer.SetFloat("Music", Mathf.Log10(MusicVolume) * 20); // Using this formula so that the value on the slider matches the audio mixer's values
-        PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
+        AudioMixer.SetFloat("Music", GameSettings.ToDecibels(MusicSlider.value));
+        GameSettings.MusicVolume = MusicSlider.value;
     }
 
     public void SetSFXVolume()
     {
-        SoundManager.Instance.SFXVolume = SfxSlider.value;
-        float SfxVolume = SoundManager.Instance.SFXVolume;
-        if (SfxVolume == 0)
-        {
-            AudioMixer.SetFloat("Sfx", -80); // Set to minimum volume if slider is at 0 to avoid log10(0) error
-            return;
-        }
-        AudioMixer.SetFloat("Sfx", Mathf.Log10(SfxVolume) * 20); // Using this formula so that the value on the slider matches the audio mixer's values
-        PlayerPrefs.SetFloat("SfxVolume", SfxVolume);
+        AudioMixer.SetFloat("Sfx", GameSettings.ToDecibels(SfxSlider.value));
+        GameSettings.SfxVolume = SfxSlider.value;
     }
 
     public void SetLookSensitivity()
     {
         // Set the look sensitivity based on the slider value
         float Sensitivity = SensSlider.value;
-        GameManager.Instance.Sensitivity = Sensitivity;
-        PlayerPrefs.SetFloat("Sensitivity", Sensitivity);
+        GameSettings.Sensitivity = Sensitivity;
     }
     public void pauseGame()
     {
@@ -67,5 +52,30 @@ public class OptionsMenu : MonoBehaviour
     public void resumeGame()
     {
         GameManager.Instance.ResumeGame();
+    }
+
+    [Tooltip("\"Are you sure?\" box shown by RESET DATA. Starts hidden.")]
+    [SerializeField] private GameObject resetConfirm;
+
+    public void AskResetData()
+    {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
+        resetConfirm.SetActive(true);
+    }
+
+    public void CancelResetData()
+    {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
+        resetConfirm.SetActive(false);
+    }
+
+    // Wipes progress and settings, then reloads the main menu so every screen reads the fresh defaults.
+    public void ConfirmResetData()
+    {
+        GameSettings.ResetAll();
+        GameSettings.ApplyVolumes(AudioMixer);
+        GameManager.Instance.currentLevel = 0;
+        resetConfirm.SetActive(false);
+        StartCoroutine(GameManager.Instance.LoadScene(GameLevels.ScenePath(GameLevels.MainMenu)));
     }
 }

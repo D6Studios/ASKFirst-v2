@@ -19,7 +19,7 @@ public class ToteBag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (npcBehavior.currentState == "Walking")
+        if (npcBehavior.currentState == NPCState.Walking)
         {
             toteBagTransform.localRotation = toteBagWalkRotation;
             toteBagTransform.localPosition = toteBagWalkPosition;

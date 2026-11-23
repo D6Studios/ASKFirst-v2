@@ -12,7 +12,7 @@ public class PlayerSensitivity : MonoBehaviour
     }
     void Update()
     {
-        sensitivity = GameManager.Instance.Sensitivity * 2; // Get the sensitivity value from GameManager
+        sensitivity = GameSettings.Sensitivity * 2; // saved look sensitivity
         firstPersonController.RotationSpeed = sensitivity; // Apply the sensitivity value to the FirstPersonController
     }
 }

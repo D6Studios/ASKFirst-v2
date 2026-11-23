@@ -19,7 +19,7 @@ public class Transition : MonoBehaviour
         formSGUI.enabled = false;
         GameManager.Instance.HideAll();
 
-        if (GameManager.Instance.levelUnlocked == 5)
+        if (GameSettings.LevelUnlocked >= GameLevels.All.Length) // every level beaten
         {
             formSGUI.enabled = true;
         }
@@ -28,8 +28,8 @@ public class Transition : MonoBehaviour
     public void SwitchToLevelSelect()
     {
 
-        levelSelectScript.UpdateLevelUnlock(GameManager.Instance.levelUnlocked);
-        if (!GameManager.Instance.viewedTrainingVideo)
+        levelSelectScript.UpdateLevelUnlock(GameSettings.LevelUnlocked);
+        if (!GameSettings.ViewedTrainingVideo)
         {
             videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().loopPointReached += OnVideoFinished;
             videoManually = false;
@@ -37,9 +37,9 @@ public class Transition : MonoBehaviour
             mainMenu.enabled = false;
             levelSelect.enabled = false;
             videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().Play();
+            SoundManager.Instance.PauseBGM();
             pauseOverlay.SetActive(false);
-            GameManager.Instance.viewedTrainingVideo = true;
-            PlayerPrefs.SetInt("ViewedTrainingVideo", 1);
+            GameSettings.ViewedTrainingVideo = true;
         }
         else
         {
@@ -66,7 +66,7 @@ public class Transition : MonoBehaviour
     {
         videoMenu.enabled = false;
         videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().Stop();
-
+        SoundManager.Instance.ResumeBGM();
     }
     public void OptionsMenu()
     {
@@ -85,6 +85,7 @@ public class Transition : MonoBehaviour
             mainMenu.enabled = true;
         }
         videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().loopPointReached -= OnVideoFinished;
+        SoundManager.Instance.ResumeBGM();
     }
     public void PlayTrainingVideo()
     {
@@ -94,13 +95,19 @@ public class Transition : MonoBehaviour
         mainMenu.enabled = false;
         levelSelect.enabled = false;
         videoMenu.transform.GetChild(1).GetComponent<VideoPlayer>().Play();
+        SoundManager.Instance.PauseBGM();
         pauseOverlay.SetActive(false);
     }
     public void StartTutorial()
     {
         int currentLevel = 0;
         GameManager.Instance.currentLevel = currentLevel;
-        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Tutorial.unity"));
+        StartCoroutine(GameManager.Instance.LoadScene(GameLevels.ScenePath(GameLevels.Tutorial)));
+    }
+    public void CloseFormSG()
+    {
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
+        formSGUI.enabled = false;
     }
     public void StartClicked()
     {

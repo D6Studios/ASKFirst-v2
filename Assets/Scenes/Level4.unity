@@ -13991,7 +13991,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -30982,7 +30982,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -55825,6 +55825,11 @@ MonoBehaviour:
   badgeText: {fileID: 497424501}
   headingText: {fileID: 1764308248}
   closeButton: {fileID: 1705879564}
+  dimBackdrop: {fileID: 0}
+  dimAlpha: 0.5
+  panel: {fileID: 0}
+  fadeInDuration: 0.3
+  fadeOutDuration: 0.2
   reminderMessages:
   - "S \u2013 Safety First\nMaintain a safe distance when interacting with suspicious
     individuals. Do not attempt any physical contact or confrontation."
@@ -55888,7 +55893,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_UseReflectionProbes: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 60
@@ -107283,7 +107288,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4285202450
   m_fontColor: {r: 0.07, g: 0, b: 0.42, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -107296,12 +107301,12 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
+  m_fontSize: 32
   m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -108988,12 +108993,12 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 22
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -117801,7 +117806,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -134970,6 +134975,156 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6876840071731912894}
   m_Mesh: {fileID: 7629811779324647873, guid: bbf8b75c9d29db74cbc7d1f26e466b6c, type: 3}
+--- !u!1001 &7310482915562044012
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 611240992189796301, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_Name
+      value: Intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690439502881229662, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.30309
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690439502881229662, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.65524
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690439502881229662, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9583591
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690439502881229662, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.22670275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690439502881229662, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.16898458
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690439502881229662, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.039973814
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612577099270470590, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.19691
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612577099270470590, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15354991
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612577099270470590, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.15524
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612577099270470590, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.91849685
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612577099270470590, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.09958373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612577099270470590, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.3804539
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612577099270470590, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.04124894
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318463460196316027, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.80309
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318463460196316027, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35354996
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318463460196316027, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.95524
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318463460196316027, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.17332125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318463460196316027, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.01065148
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318463460196316027, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.98295337
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318463460196316027, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.06040753
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.19691
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.14645
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.45524
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217567701392529387, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: levelName
+      value: No Loitering
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217567701392529387, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
+      propertyPath: levelDescription
+      value: 'Some customers in the store today are standing around in the same area
+        for too long without shopping, only moving occasionally to change positions.
+
+
+        Approach
+        them politely, keep a safe distance, and offer your assistance.'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
 --- !u!23 &7374029733788827254
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -135824,75 +135979,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5019751057387834058}
   m_Mesh: {fileID: 7198982899586462558, guid: aba315fb1c417aa4b905a0accadb4c72, type: 3}
---- !u!1001 &7310482915562044012
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 611240992189796301, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_Name
-      value: Intro
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.19691
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.14645
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.45524
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990406813643146749, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9217567701392529387, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: levelName
-      value: No Loitering
-      objectReference: {fileID: 0}
-    - target: {fileID: 9217567701392529387, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
-      propertyPath: levelDescription
-      value: 'Some customers in the store today are standing around in the same area for
-        too long without shopping, only moving occasionally to change positions.
-
-
-        Approach them politely, keep a safe distance, and offer your assistance.'
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 872044fe2d358294ea3d6f7a189954c7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

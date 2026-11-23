@@ -1,105 +1,78 @@
 using UnityEngine;
 
+public enum NPCAnimation { Idle, Walking, Suspicious, HoldingItem, InteractedWith, Happy, Upset }
+
+// Drives the NPC Animator Controller. Looping states are bools; one-off reactions are triggers.
 public class NPCAnimator : MonoBehaviour
 {
-    [SerializeField] bool IsWalking;
-    [SerializeField] bool IsSuspicious;
-    [SerializeField] bool IsHoldingItem;
+    private Animator animator;
 
-    //Temp
-    [SerializeField] bool IsInteractedWith;
-    [SerializeField] bool IsHappy;
-    [SerializeField] bool IsUpset;
-    //
-    private Animator NPCAnimatorController;
+    [Header("Footsteps")]
+    [SerializeField] float footstepVolume = 0.6f;
+    [SerializeField] float footstepMaxDistance = 12f;
+    static AudioClip[] footstepClips;
+    AudioSource footstepSource;
+    Transform leftFoot, rightFoot;
+    bool leftFootLower;
+    float nextStepTime;
 
-    void Start()
+    void Awake()
     {
-        NPCAnimatorController = GetComponentInChildren<Animator>();
-        Debug.Log("NPCAnimator: Animator component found and assigned.");
-    }
-    public void Animate(string newState)
-    {
-        IsWalking = false;
-        IsSuspicious = false;
-        IsHoldingItem = false;
-        IsInteractedWith = false;
-        IsHappy = false;
-        IsUpset = false;
-        if (newState == "Walking")
-        {
-            IsWalking = true;
-        }
-        else if (newState == "Suspicious")
-        {
-            IsSuspicious = true;
-        }
-        else if (newState == "HoldingItem")
-        {
-            IsHoldingItem = true;
-        }
-        else if (newState == "InteractedWith")
-        {
-            IsInteractedWith = true;
-        }
-        else if (newState == "Happy")
-        {
-            IsHappy = true;
-        }
-        else if (newState == "Upset")
-        {
-            IsUpset = true;
-        }
-    }
-    public void Update()
-    {
-        Walking(IsWalking);
-        Suspicious(IsSuspicious);
-        HoldingItem(IsHoldingItem);
-        InteractedWith();
-        Happy();
-        Upset();
-    }
-    public void Walking(bool IsWalking)
-    {
-        NPCAnimatorController.SetBool("IsWalking", IsWalking);
+        animator = GetComponentInChildren<Animator>();
+        if (footstepClips == null) footstepClips = Resources.LoadAll<AudioClip>("SFX/Footsteps");
+        leftFoot = FindFoot(HumanBodyBones.LeftFoot, "LeftFoot");
+        rightFoot = FindFoot(HumanBodyBones.RightFoot, "RightFoot");
+        footstepSource = gameObject.AddComponent<AudioSource>();
+        footstepSource.playOnAwake = false;
+        footstepSource.spatialBlend = 1f;
+        footstepSource.rolloffMode = AudioRolloffMode.Linear;
+        footstepSource.maxDistance = footstepMaxDistance;
     }
 
-    public void Suspicious(bool IsSuspicious)
+    void Start() // SoundManager may Awake after us when it lives in the same scene
     {
-        NPCAnimatorController.SetBool("IsSuspicious", IsSuspicious);
+        if (SoundManager.Instance != null) footstepSource.outputAudioMixerGroup = SoundManager.Instance.SfxGroup;
     }
 
-    public void HoldingItem(bool IsHoldingItem)
+    // Humanoid rigs expose the bone directly; generic (Mixamo) rigs are found by name.
+    Transform FindFoot(HumanBodyBones bone, string boneName)
     {
-        NPCAnimatorController.SetBool("IsHoldingItem", IsHoldingItem);
+        if (animator.isHuman) return animator.GetBoneTransform(bone);
+        foreach (Transform t in animator.GetComponentsInChildren<Transform>())
+            if (t.name.EndsWith(boneName)) return t;
+        return null;
     }
 
-    public void InteractedWith()
+    // A step lands when the other foot becomes the lower one, so the sound follows the walk cycle itself.
+    void LateUpdate()
     {
-        if (IsInteractedWith) //to be changed
+        if (current != NPCAnimation.Walking || leftFoot == null || rightFoot == null) return;
+        bool lower = leftFoot.position.y < rightFoot.position.y;
+        if (lower != leftFootLower && Time.time >= nextStepTime && footstepClips.Length > 0)
         {
-            NPCAnimatorController.SetTrigger("InteractedWith");
-            IsInteractedWith = false; // Reset the flag after triggering the animation
+            nextStepTime = Time.time + 0.2f; // both feet level during double-support can flicker; ignore that
+
+            footstepSource.pitch = Random.Range(0.9f, 1.1f);
+            footstepSource.PlayOneShot(footstepClips[Random.Range(0, footstepClips.Length)], footstepVolume * Random.Range(0.8f, 1f));
         }
+        leftFootLower = lower;
     }
 
-    public void Happy()
+    private NPCAnimation current = NPCAnimation.Idle;
+
+    public void Animate(NPCAnimation anim)
     {
-        if (IsHappy) //to be changed
-        {
-            NPCAnimatorController.SetTrigger("IsHappy");
-            IsHappy = false; // Reset the flag after triggering the animation
-        }
+        current = anim;
+        if (anim == NPCAnimation.InteractedWith) animator.SetTrigger("InteractedWith");
+        if (anim == NPCAnimation.Happy) animator.SetTrigger("IsHappy");
+        if (anim == NPCAnimation.Upset) animator.SetTrigger("IsUpset");
     }
 
-    public void Upset()
+    // Re-applied every frame so the bools survive the Animator being disabled and re-enabled.
+    void Update()
     {
-        if (IsUpset) //to be changed
-        {
-            NPCAnimatorController.SetTrigger("IsUpset");
-            IsUpset = false; // Reset the flag after triggering the animation
-        }
-
+        animator.SetBool("IsWalking", current == NPCAnimation.Walking);
+        animator.SetBool("IsSuspicious", current == NPCAnimation.Suspicious);
+        animator.SetBool("IsHoldingItem", current == NPCAnimation.HoldingItem);
     }
 }

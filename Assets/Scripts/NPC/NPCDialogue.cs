@@ -8,14 +8,16 @@ public class NPCDialogue : MonoBehaviour
     string currentDialogueLine;
     public List<DialogueLineBatch> dialogueLineBatches;
     int dialogueIndex = 0;
+    [Tooltip("Name in the first column of the dialogue sheet. Leave empty to use this GameObject's name.")]
+    [SerializeField] string dialogueId;
     void Start()
     {
-
+        string key = (string.IsNullOrEmpty(dialogueId) ? gameObject.name : dialogueId) + "\t";
         string dialogueFile = RemoteLoader.Instance.fileContent;
         string[] allLines = dialogueFile.Split('\n');
         for (int i = 0; i < allLines.Length; i++)
         {
-            if (allLines[i].StartsWith(gameObject.name + "\t")) //Filter lines for this NPC based on name
+            if (allLines[i].StartsWith(key)) //Filter lines for this NPC based on name
             {
                 string[] splitLine = allLines[i].Split('\t'); //Split line into components
                 //Debug.Log("Split Line: " + string.Join(", ", splitLine));

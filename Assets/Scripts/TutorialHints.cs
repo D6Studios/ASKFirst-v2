@@ -153,8 +153,14 @@ public class TutorialHints : MonoBehaviour
     // while the target is inactive.
     public void ShowSpotlight(RectTransform target, bool dim)
     {
+        ShowSpotlight(() => target != null && target.gameObject.activeInHierarchy ? ScreenRect(target) : (Rect?)null, dim, true);
+    }
+
+    // area returns the screen-pixel hole, or null to hide. showRing=false suits big areas (e.g. the look zone).
+    public void ShowSpotlight(System.Func<Rect?> area, bool dim, bool showRing)
+    {
         HideSpotlight();
-        spotlightRoutine = StartCoroutine(SpotlightLoop(target, dim));
+        spotlightRoutine = StartCoroutine(SpotlightLoop(area, dim, showRing));
     }
 
     public void HideSpotlight()
@@ -165,16 +171,17 @@ public class TutorialHints : MonoBehaviour
         foreach (RectTransform d in dimRects) if (d != null) d.gameObject.SetActive(false);
     }
 
-    IEnumerator SpotlightLoop(RectTransform target, bool dim)
+    IEnumerator SpotlightLoop(System.Func<Rect?> area, bool dim, bool showRing)
     {
         while (true)
         {
-            bool visible = target != null && target.gameObject.activeInHierarchy;
-            ring.gameObject.SetActive(visible);
+            Rect? hole = area();
+            bool visible = hole.HasValue;
+            ring.gameObject.SetActive(visible && showRing);
             foreach (RectTransform d in dimRects) d.gameObject.SetActive(visible && dim);
             if (visible)
             {
-                Rect r = ScreenRect(target);
+                Rect r = hole.Value;
                 float pad = 10f * ScaleFactor;
                 r.xMin -= pad; r.yMin -= pad; r.xMax += pad; r.yMax += pad;
 
@@ -213,16 +220,15 @@ public class TutorialHints : MonoBehaviour
         return Rect.MinMaxRect(Mathf.Min(min.x, max.x), Mathf.Min(min.y, max.y), Mathf.Max(min.x, max.x), Mathf.Max(min.y, max.y));
     }
 
-    // Screen-pixel centre of a UI Toolkit element (e.g. the mobile joystick), or null if it isn't laid out.
-    public static Vector2? ScreenCenterOf(VisualElement element)
+    // Screen-pixel rect of a UI Toolkit element (e.g. the mobile joystick), or null if it isn't laid out.
+    public static Rect? ScreenRectOf(VisualElement element)
     {
         if (element == null || element.panel == null) return null;
-        Rect bound = element.worldBound;
+        Rect b = element.worldBound;
         Rect panelRect = element.panel.visualTree.layout;
-        if (bound.width <= 0f || panelRect.width <= 0f || panelRect.height <= 0f) return null;
-        float x = bound.center.x / panelRect.width * Screen.width;
-        float y = Screen.height - bound.center.y / panelRect.height * Screen.height; // UI Toolkit y is top-down
-        return new Vector2(x, y);
+        if (b.width <= 0f || panelRect.width <= 0f || panelRect.height <= 0f) return null;
+        float sx = Screen.width / panelRect.width, sy = Screen.height / panelRect.height;
+        return Rect.MinMaxRect(b.xMin * sx, Screen.height - b.yMax * sy, b.xMax * sx, Screen.height - b.yMin * sy); // UI Toolkit y is top-down
     }
 
     // ---------------- helpers ----------------

@@ -17,7 +17,7 @@ public class LevelObjectives : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Level3" || scene.name == "Level4" || scene.name == "Level5" || scene.name == "Tutorial")
+        if (GameLevels.IsLevel(scene.name) || scene.name == GameLevels.Tutorial)
         {
             FindUI();
 
@@ -75,6 +75,7 @@ public class LevelObjectives : MonoBehaviour
     IEnumerator UpdateObjectiveSlider()
     {
         yield return new WaitForSeconds(0.3f);
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("SFX/proximity")); // as the bar starts filling
         float sliderAim = objectiveSlider.maxValue - npcObjectives.Count;
         for (float t = 0; t <= 1; t += 0.1f)
         {

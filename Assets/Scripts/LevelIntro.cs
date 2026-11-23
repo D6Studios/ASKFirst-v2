@@ -30,6 +30,21 @@ public class LevelIntro : MonoBehaviour
     [Tooltip("Scale of the objective card while it's held in the centre.")]
     [SerializeField] float objectiveCentreScale = 1.15f;
 
+    [Header("Reveal")]
+    [SerializeField] float titleFadeDuration = 0.4f;
+    [Tooltip("Seconds the title sits alone in the centre before moving up.")]
+    [SerializeField] float titleHold = 0.8f;
+    [SerializeField] float titleMoveDuration = 0.6f;
+    [SerializeField] float previewFadeDuration = 0.5f;
+    [SerializeField] float typewriterCharsPerSecond = 45f;
+    [Tooltip("Minimum seconds between typing tap sounds.")]
+    [SerializeField] float typingTapInterval = 0.07f;
+    [SerializeField] float buttonFadeDuration = 0.3f;
+
+    [Header("Camera preview")]
+    [Tooltip("Shows the panning intro camera (rendered to a texture). Its parent is the frame around it. On START it zooms to fill the screen, then the game view takes over.")]
+    [SerializeField] RawImage cameraPreview;
+
     [Header("Camera pan")]
     [SerializeField] CinemachineCamera introCamera;
     [SerializeField] int introCameraPriority = 20;
@@ -47,7 +62,11 @@ public class LevelIntro : MonoBehaviour
     void Awake()
     {
         if (introCanvas != null) introCanvas.enabled = false;
-        if (skipButton != null) skipButton.onClick.AddListener(() => skipRequested = true);
+        if (skipButton != null) skipButton.onClick.AddListener(() =>
+        {
+            skipRequested = true;
+            SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
+        });
     }
 
     public void PlayIntro(Action onComplete)
@@ -62,8 +81,19 @@ public class LevelIntro : MonoBehaviour
         Time.timeScale = 0f;
 
         if (levelNameText != null) levelNameText.text = levelName;
-        if (levelDescriptionText != null) levelDescriptionText.text = levelDescription;
+        if (levelDescriptionText != null)
+        {
+            levelDescriptionText.text = levelDescription;
+            levelDescriptionText.maxVisibleCharacters = 0; // laid out in full but hidden, then revealed letter by letter
+        }
         if (objectiveCardText != null) objectiveCardText.text = BuildObjectiveText();
+        if (objectiveCard != null) objectiveCard.gameObject.SetActive(false); // shown in-game after the hand-off
+        // Reveal order: title alone in the centre, title moves up, preview fades in, description types in, START appears.
+        if (skipButton != null) skipButton.gameObject.SetActive(false);
+        CanvasGroup previewGroup = cameraPreview != null ? GroupOf(cameraPreview.transform.parent) : null;
+        if (previewGroup != null) previewGroup.alpha = 0f;
+        CanvasGroup titleGroup = levelNameText != null ? GroupOf(levelNameText.transform) : null;
+        if (titleGroup != null) titleGroup.alpha = 0f;
         if (introCanvas != null) introCanvas.enabled = true;
 
         CursorLockMode previousLockState = Cursor.lockState;
@@ -71,19 +101,30 @@ public class LevelIntro : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        Renderer[] playerRenderers = null;
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            playerRenderers = player.GetComponentsInChildren<Renderer>();
-            foreach (Renderer r in playerRenderers) r.enabled = false;
-        }
+        HidePlayerBody();
 
         // The game is paused (timeScale 0) during the intro. The brain must ignore time scale or
         // its blend to the intro camera never advances and the view stays on the player camera.
-        CinemachineBrain brain = Camera.main != null ? Camera.main.GetComponent<CinemachineBrain>() : null;
+        Camera mainCam = Camera.main;
+        CinemachineBrain brain = mainCam != null ? mainCam.GetComponent<CinemachineBrain>() : null;
         bool previousIgnoreTimeScale = brain != null && brain.IgnoreTimeScale;
         if (brain != null) brain.IgnoreTimeScale = true;
+
+        // The game camera renders into the preview; a camera that draws nothing keeps the screen (and this UI) rendering.
+        RenderTexture previewTexture = null;
+        Camera screenCam = null;
+        if (cameraPreview != null && mainCam != null)
+        {
+            previewTexture = new RenderTexture(Screen.width, Screen.height, 24);
+            mainCam.targetTexture = previewTexture;
+            cameraPreview.texture = previewTexture;
+            cameraPreview.gameObject.SetActive(true);
+            FitPreviewToScreenAspect();
+            screenCam = new GameObject("IntroScreenCamera").AddComponent<Camera>();
+            screenCam.cullingMask = 0;
+            screenCam.clearFlags = CameraClearFlags.SolidColor;
+            screenCam.backgroundColor = Color.black;
+        }
 
         int previousPriority = 0;
         if (introCamera != null)
@@ -92,34 +133,39 @@ public class LevelIntro : MonoBehaviour
             introCamera.Priority = introCameraPriority;
         }
 
-        if (introCamera != null && panWaypoints != null && panWaypoints.Length > 1)
+        bool canPan = introCamera != null && panWaypoints != null && panWaypoints.Length > 1;
+        if (canPan) introCamera.transform.SetPositionAndRotation(panWaypoints[0].position, panWaypoints[0].rotation);
+
+        yield return RevealTitle(titleGroup);
+
+        // The pan starts as the preview fades in, and runs while the description types out.
+        bool panDone = false;
+        StartCoroutine(RunPan(canPan, () => panDone = true));
+        StartCoroutine(Fade(previewGroup, 1f, previewFadeDuration));
+        yield return WaitUnscaledFixed(previewFadeDuration * 0.5f);
+        yield return TypeDescription();
+
+        if (skipButton != null)
         {
-            yield return PanCamera();
-        }
-        else
-        {
-            yield return WaitUnscaled(panDuration);
+            CanvasGroup buttonGroup = GroupOf(skipButton.transform);
+            buttonGroup.alpha = 0f;
+            skipButton.gameObject.SetActive(true);
+            yield return Fade(buttonGroup, 1f, buttonFadeDuration);
         }
 
         if (autoStartAfterPan)
+        {
+            while (!panDone && !skipRequested) yield return null;
             yield return WaitUnscaled(holdAfterPan);
+        }
         else
             while (!skipRequested) yield return null;
 
         if (skipButton != null) skipButton.interactable = false;
 
-        // Remember the card's resting spot so it can be put back after the animation.
-        Vector3 cardRestPos = objectiveCard != null ? objectiveCard.position : Vector3.zero;
-        Vector3 cardRestScale = objectiveCard != null ? objectiveCard.localScale : Vector3.one;
-
-        // Fade out the menu while the objective card glides to the centre of the screen, then hold.
+        // START: the menu fades, the preview zooms to fill the screen, and meanwhile the camera
+        // glides back to the player, so when the zoom lands the texture already shows the game view.
         StartCoroutine(FadeIntroUI());
-        yield return MoveObjectiveToCentre();
-        yield return WaitUnscaledFixed(objectiveCentreHold);
-
-        // Hand control back to the game: camera blends back to the player while the card flies.
-        // Use a longer, eased blend for the hand-back so the camera glides from its current spot
-        // (wherever the pan was when START was pressed) to the player instead of snapping.
         CinemachineBlendDefinition previousBlend = default;
         if (brain != null)
         {
@@ -127,56 +173,187 @@ public class LevelIntro : MonoBehaviour
             brain.DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Styles.EaseInOut, cameraReturnDuration);
         }
         if (introCamera != null) introCamera.Priority = previousPriority;
-        Time.timeScale = previousTimeScale;
-        if (playerRenderers != null)
-        {
-            foreach (Renderer r in playerRenderers)
-            {
-                if (r != null) r.enabled = true;
-            }
-        }
-        Cursor.lockState = previousLockState;
-        Cursor.visible = previousCursorVisible;
-
-        onComplete?.Invoke(); // shows GameUI + resets objectives
-
-        yield return FlyObjectiveToBar();
-
-        // Let the return blend finish before restoring the brain's normal settings.
+        SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("SFX/swoosh"));
+        yield return null; // let the brain start its blend before checking IsBlending
+        yield return ZoomPreviewToFullScreen();
         while (brain != null && brain.IsBlending) yield return null;
+
+        // Swap: the full-screen texture and the live camera show the same frame, so this is invisible.
+        if (previewTexture != null)
+        {
+            mainCam.targetTexture = null;
+            cameraPreview.gameObject.SetActive(false);
+            cameraPreview.texture = null;
+            Destroy(screenCam.gameObject);
+            previewTexture.Release();
+            Destroy(previewTexture);
+        }
         if (brain != null)
         {
             brain.IgnoreTimeScale = previousIgnoreTimeScale;
             brain.DefaultBlend = previousBlend;
         }
+        Time.timeScale = previousTimeScale;
+        Cursor.lockState = previousLockState;
+        Cursor.visible = previousCursorVisible;
+
+        onComplete?.Invoke(); // shows GameUI + resets objectives
+        SetObjectiveBarAlpha(0f); // the card stands in for it until it lands
+
+        // Objective pops up in the middle of the game view, holds, then swipes up into the bar.
+        yield return PopObjectiveInCentre();
+        yield return WaitUnscaledFixed(objectiveCentreHold);
+        yield return FlyObjectiveToBar();
+
         if (introCanvas != null) introCanvas.enabled = false;
-        if (objectiveCard != null)
-        {
-            objectiveCard.position = cardRestPos;
-            objectiveCard.localScale = cardRestScale;
-        }
     }
 
-    IEnumerator MoveObjectiveToCentre()
+    static CanvasGroup GroupOf(Transform t)
+    {
+        CanvasGroup g = t.GetComponent<CanvasGroup>();
+        return g != null ? g : t.gameObject.AddComponent<CanvasGroup>();
+    }
+
+    static IEnumerator Fade(CanvasGroup group, float to, float duration)
+    {
+        if (group == null) yield break;
+        float from = group.alpha;
+        for (float t = 0f; t < duration; t += Time.unscaledDeltaTime)
+        {
+            group.alpha = Mathf.Lerp(from, to, t / duration);
+            yield return null;
+        }
+        group.alpha = to;
+    }
+
+    // Title fades in by itself in the middle of the screen, holds, then glides up to its place in the layout.
+    IEnumerator RevealTitle(CanvasGroup titleGroup)
+    {
+        if (levelNameText == null || introCanvas == null) yield break;
+        RectTransform title = levelNameText.rectTransform;
+        RectTransform canvasRect = introCanvas.transform as RectTransform;
+        Canvas.ForceUpdateCanvases();
+        Vector3 restPos = title.position;
+        Vector3 centre = canvasRect.TransformPoint(canvasRect.rect.center);
+        title.position = centre;
+
+        yield return Fade(titleGroup, 1f, titleFadeDuration);
+        yield return WaitUnscaledFixed(titleHold);
+        for (float t = 0f; t < titleMoveDuration; t += Time.unscaledDeltaTime)
+        {
+            title.position = Vector3.LerpUnclamped(centre, restPos, EaseInOutCubic(t / titleMoveDuration));
+            yield return null;
+        }
+        title.position = restPos;
+    }
+
+    // Reveals the already laid-out description one letter at a time; a tap anywhere shows it all at once.
+    IEnumerator TypeDescription()
+    {
+        if (levelDescriptionText == null) yield break;
+        levelDescriptionText.ForceMeshUpdate();
+        int total = levelDescriptionText.textInfo.characterCount;
+        AudioClip[] taps = Resources.LoadAll<AudioClip>("SFX/Typing");
+        float shown = 0f, nextTapTime = 0f;
+        while (shown < total)
+        {
+            if (TappedThisFrame()) break;
+            int before = levelDescriptionText.maxVisibleCharacters;
+            shown += typewriterCharsPerSecond * Time.unscaledDeltaTime;
+            levelDescriptionText.maxVisibleCharacters = Mathf.Min(total, Mathf.FloorToInt(shown));
+            // One tap per new letter, capped to a believable typing speed and silent on spaces.
+            int last = levelDescriptionText.maxVisibleCharacters - 1;
+            if (last >= before && Time.unscaledTime >= nextTapTime && !char.IsWhiteSpace(levelDescriptionText.textInfo.characterInfo[last].character))
+            {
+                SoundManager.Instance.PlayRandom(taps, 0.05f);
+                nextTapTime = Time.unscaledTime + typingTapInterval;
+            }
+            yield return null;
+        }
+        levelDescriptionText.maxVisibleCharacters = int.MaxValue;
+        yield return null; // don't let the skipping tap also land on START, which appears next
+    }
+
+    static bool TappedThisFrame()
+    {
+        return UnityEngine.InputSystem.Pointer.current != null && UnityEngine.InputSystem.Pointer.current.press.wasPressedThisFrame;
+    }
+
+    IEnumerator RunPan(bool canPan, Action done)
+    {
+        if (canPan) yield return PanCamera();
+        else yield return WaitUnscaled(panDuration);
+        done();
+    }
+
+    // First person never needs the player's body; hiding it keeps it out of the intro, the zoom and NPC close-ups.
+    static void HidePlayerBody()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player == null) return;
+        foreach (Renderer r in player.transform.root.GetComponentsInChildren<Renderer>(true)) r.enabled = false;
+    }
+
+    // The preview matches the screen's aspect so the zoomed texture lines up exactly with the real view.
+    void FitPreviewToScreenAspect()
+    {
+        RectTransform frame = cameraPreview.rectTransform.parent as RectTransform;
+        RectTransform preview = cameraPreview.rectTransform;
+        float border = frame.rect.width - preview.rect.width;
+        frame.sizeDelta = new Vector2(frame.sizeDelta.x, preview.rect.width * Screen.height / Screen.width + border);
+    }
+
+    IEnumerator ZoomPreviewToFullScreen()
+    {
+        if (cameraPreview == null || introCanvas == null) yield break;
+        RectTransform preview = cameraPreview.rectTransform;
+        RectTransform canvasRect = introCanvas.transform as RectTransform;
+        Canvas.ForceUpdateCanvases();
+        Vector3 startPos = preview.position;
+        Vector3 endPos = canvasRect.TransformPoint(canvasRect.rect.center);
+        Vector3 startScale = preview.localScale;
+        Vector3 endScale = startScale * (canvasRect.rect.width * canvasRect.lossyScale.x) / (preview.rect.width * preview.lossyScale.x);
+
+        float elapsed = 0f;
+        while (elapsed < cameraReturnDuration)
+        {
+            float t = EaseInOutCubic(Mathf.Clamp01(elapsed / cameraReturnDuration));
+            preview.position = Vector3.LerpUnclamped(startPos, endPos, t);
+            preview.localScale = Vector3.LerpUnclamped(startScale, endScale, t);
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        preview.position = endPos;
+        preview.localScale = endScale;
+    }
+
+    IEnumerator PopObjectiveInCentre()
     {
         if (objectiveCard == null || introCanvas == null) yield break;
         RectTransform canvasRect = introCanvas.transform as RectTransform;
-        Vector3 startPos = objectiveCard.position;
-        Vector3 endPos = canvasRect.TransformPoint(canvasRect.rect.center);
-        Vector3 startScale = objectiveCard.localScale;
-        Vector3 endScale = startScale * objectiveCentreScale;
+        objectiveCard.gameObject.SetActive(true);
+        objectiveCard.position = canvasRect.TransformPoint(canvasRect.rect.center);
+        Vector3 endScale = objectiveCard.localScale * objectiveCentreScale;
 
         float elapsed = 0f;
         while (elapsed < objectiveCentreMoveDuration)
         {
             float t = Mathf.Clamp01(elapsed / objectiveCentreMoveDuration);
-            objectiveCard.position = Vector3.LerpUnclamped(startPos, endPos, EaseInOutCubic(t));
-            objectiveCard.localScale = Vector3.LerpUnclamped(startScale, endScale, EaseOutBack(t));
+            objectiveCard.localScale = Vector3.LerpUnclamped(Vector3.zero, endScale, EaseOutBack(t));
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
-        objectiveCard.position = endPos;
         objectiveCard.localScale = endScale;
+    }
+
+    static void SetObjectiveBarAlpha(float alpha)
+    {
+        GameObject objectiveTextGO = GameObject.FindGameObjectWithTag("Objective");
+        if (objectiveTextGO == null) return;
+        GameObject bar = objectiveTextGO.transform.parent.gameObject;
+        CanvasGroup group = bar.GetComponent<CanvasGroup>();
+        if (group == null) group = bar.AddComponent<CanvasGroup>();
+        group.alpha = alpha;
     }
 
     static float EaseOutBack(float t)
@@ -203,6 +380,7 @@ public class LevelIntro : MonoBehaviour
         foreach (Graphic g in introCanvas.GetComponentsInChildren<Graphic>())
         {
             if (objectiveCard != null && g.transform.IsChildOf(objectiveCard)) continue;
+            if (g == cameraPreview) continue; // it zooms instead
             g.CrossFadeAlpha(0f, uiFadeDuration, true);
         }
         yield return WaitUnscaledFixed(uiFadeDuration);

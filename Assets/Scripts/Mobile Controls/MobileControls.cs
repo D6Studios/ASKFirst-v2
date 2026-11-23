@@ -34,7 +34,7 @@ public class MobileControls : MonoBehaviour
 
     private VirtualJoystick m_MoveJoystick;
     private VirtualJoystick m_LookJoystick;
-    public float sensitivityMultiplier => GameManager.Instance.Sensitivity;
+    public float sensitivityMultiplier => GameSettings.Sensitivity;
     private int cameraFingerId = -1;
     private Vector2 pressPos;
     private bool lookActive;

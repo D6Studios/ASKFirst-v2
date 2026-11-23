@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <rect id="shadow-soft" x="53" y="53" width="934" height="934" rx="58" ry="58" fill="#000000" fill-opacity="0.12"/>
+  <rect id="shadow-mid" x="58" y="58" width="914" height="914" rx="52" ry="52" fill="#000000" fill-opacity="0.2"/>
+  <rect id="shadow-core" x="63" y="63" width="894" height="894" rx="47" ry="47" fill="#000000" fill-opacity="0.45"/>
+  <rect id="button" x="53" y="53" width="894" height="894" rx="47" ry="47" fill="#FFFFFF"/>
+</svg>

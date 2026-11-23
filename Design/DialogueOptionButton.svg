@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4530" height="1178" viewBox="0 0 4530 1178">
+  <path id="body" d="M590 131H4150A380 380 0 0 1 4530 511V798A380 380 0 0 1 4150 1178H590Z" fill="#FFFFFF"/>
+  <circle id="badge-ring" cx="589.5" cy="589" r="589" fill="#FFFFFF"/>
+  <circle id="badge" cx="589.5" cy="589" r="527" fill="#000000"/>
+</svg>

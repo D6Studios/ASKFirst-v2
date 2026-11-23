@@ -337,6 +337,11 @@ MonoBehaviour:
   badgeText: {fileID: 1224731321}
   headingText: {fileID: 1939923977}
   closeButton: {fileID: 1090556706}
+  dimBackdrop: {fileID: 0}
+  dimAlpha: 0.5
+  panel: {fileID: 0}
+  fadeInDuration: 0.3
+  fadeOutDuration: 0.2
   reminderMessages:
   - "S \u2013 Safety First\nMaintain a safe distance when interacting with suspicious
     individuals. Do not attempt any physical contact or confrontation."
@@ -7905,9 +7910,14 @@ MonoBehaviour:
   tutorialPopupPrefab: {fileID: 2657310132462294180, guid: 72dc4cfb2b5f0d0498dfb7574811106b, type: 3}
   tutorialImages:
   - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 21300000, guid: b93882b6a8c6b7044b8b93b41e4d0881, type: 3}
+  - {fileID: 21300000, guid: b89609364e248ef42b1b3f13e3d61133, type: 3}
   - {fileID: 21300000, guid: 9a136615985cbae45bc504dbbc1bd228, type: 3}
+  - {fileID: 21300000, guid: a00fe7b62b444a54699c3cbeb78b527e, type: 3}
   interactButton: {fileID: 298952199}
+  tutorialNPCName: Tutorial
+  requiredMoveDistance: 1.5
+  requiredLookAngle: 45
+  popupButtonText: OK, got it
 --- !u!4 &1378300956
 Transform:
   m_ObjectHideFlags: 0
@@ -10055,6 +10065,14 @@ PrefabInstance:
       propertyPath: RotationSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4968192776384647631, guid: 10469b63d404f9a47a97b33fbb1e3a61, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968192776384647631, guid: 10469b63d404f9a47a97b33fbb1e3a61, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5240623106586176802, guid: 10469b63d404f9a47a97b33fbb1e3a61, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.6
@@ -10533,7 +10551,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 22
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11127,7 +11145,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
+  m_fontSize: 32
   m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 1

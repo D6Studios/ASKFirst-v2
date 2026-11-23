@@ -110,33 +110,28 @@ public class EndScreen : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
-        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/MainMenu.unity"));
+        StartCoroutine(GameManager.Instance.LoadScene(GameLevels.ScenePath(GameLevels.MainMenu)));
     }
     public void RestartLevel()
     {
         SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
-        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (GameManager.Instance.currentLevel) + ".unity"));
+        StartCoroutine(GameManager.Instance.LoadScene(GameLevels.ScenePath(GameManager.Instance.currentLevel)));
     }
     public void NextLevel()
     {
         SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("click"));
-        StartCoroutine(GameManager.Instance.LoadScene("Assets/Scenes/Level" + (GameManager.Instance.currentLevel + 1) + ".unity"));
-        GameManager.Instance.currentLevel += 1;
+        int next = GameManager.Instance.currentLevel + 1;
+        if (!GameLevels.HasLevel(next)) { ReturnToMainMenu(); return; } // beat the last level
+        GameManager.Instance.currentLevel = next;
+        StartCoroutine(GameManager.Instance.LoadScene(GameLevels.ScenePath(next)));
     }
     void UpdateWin()
     {
         SoundManager.Instance.PlaySound(Resources.Load<AudioClip>("win"));
         restartButton.SetActive(false); // Hide the restart button on win
         nextButton.SetActive(true); // Show the next button on win
-        if (GameManager.Instance.levelUnlocked > GameManager.Instance.currentLevel)
-        {
-            return;
-        }
-        else
-        {
-            GameManager.Instance.levelUnlocked = GameManager.Instance.currentLevel + 1;
-            PlayerPrefs.SetInt("LevelUnlocked", GameManager.Instance.levelUnlocked);
-        }
+        if (GameSettings.LevelUnlocked <= GameManager.Instance.currentLevel)
+            GameSettings.LevelUnlocked = GameManager.Instance.currentLevel + 1;
     }
     void UpdateLose()
     {

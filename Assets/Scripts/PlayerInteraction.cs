@@ -34,6 +34,9 @@ public class PlayerInteraction : MonoBehaviour
     GameObject optionsButton;
     [SerializeField] Transform spawnPoint;
     [SerializeField] float interactDistance = 4f;
+    [Tooltip("Seconds the interact button stays after the view moves off an NPC.")]
+    [SerializeField] float loseTargetDelay = 0.6f;
+    float lastSeenTime;
 
     void Start()
     {
@@ -81,36 +84,33 @@ public class PlayerInteraction : MonoBehaviour
             GameObject hitObject = hitInfo.collider.gameObject;
             if (hitObject.CompareTag("NPC"))
             {
-
                 if (hitObject.GetComponent<NPCBehavior>().interactedWith)
                 {
-                    interactButton.gameObject.SetActive(false);
+                    LoseTarget(); // already talked to: drop it straight away, no grace period
                     return;
                 }
+                lastSeenTime = Time.unscaledTime;
                 interactButton.gameObject.SetActive(true);
                 NPCProximity(hitObject);
-
-            }
-            else
-            {
-                interactButton.gameObject.SetActive(false);
-                if (closestNPC != null)
-                {
-                    closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
-                }
-                closestNPC = null;
+                return;
             }
         }
-        else
+
+        // Looking away: keep the button briefly so a quick pan past someone (or a pause starting
+        // mid-turn) doesn't make it vanish before it can be tapped.
+        bool paused = Time.timeScale == 0f;
+        if (closestNPC != null && (paused || Time.unscaledTime - lastSeenTime < loseTargetDelay)) return;
+        LoseTarget();
+    }
+
+    void LoseTarget()
+    {
+        interactButton.gameObject.SetActive(false);
+        if (closestNPC != null)
         {
-            interactButton.gameObject.SetActive(false);
-            if (closestNPC != null)
-            {
-                closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
-            }
-            closestNPC = null;
+            closestNPC.GetComponent<NPCBehavior>().OutlineNPC(false);
         }
-
+        closestNPC = null;
     }
     public void NPCProximity(GameObject npc)
     {

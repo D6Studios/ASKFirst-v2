@@ -19,5 +19,4 @@ public class AmbientNPC : MonoBehaviour
         new Approach { playerLine = "Hi there, are you finding everything okay?", npcReply = "Yes, I'm fine. Thanks!" },
     };
     public string closingLine = "No worries, let me know if you need any assistance.";
-    public string promptText = "(Choose how to approach the customer)";
 }

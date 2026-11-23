@@ -245,7 +245,7 @@ MonoBehaviour:
   idleWaitTime: {x: 0.5, y: 4}
   isShoplifter: 0
   interactedWith: 0
-  isLevel2NPC: 0
+  walkOnceThenStay: 0
   safeDistanceIndicator: {fileID: 7817044663092477983}
   safeDistanceBreached: 0
 --- !u!114 &2431600161854495527

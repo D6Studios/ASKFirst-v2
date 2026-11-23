@@ -68,16 +68,12 @@ public class TutorialManager : MonoBehaviour
         FindDeviceSize();
     }
 
-    // Where the move joystick is on screen; falls back to the lower-left if it can't be measured.
-    Vector2 JoystickScreenPos()
-    {
-        Vector2? p = TutorialHints.ScreenCenterOf(moveJoystick);
-        return p ?? new Vector2(Screen.width * 0.18f, Screen.height * 0.25f);
-    }
-    Vector2 LookAreaScreenPos()
-    {
-        return new Vector2(Screen.width * 0.72f, Screen.height * 0.4f);
-    }
+    Rect? JoystickRect() { return TutorialHints.ScreenRectOf(moveJoystick); }
+    // Right half of the screen, where dragging looks around.
+    Rect? LookRect() { return new Rect(Screen.width * 0.5f, Screen.height * 0.1f, Screen.width * 0.5f, Screen.height * 0.8f); }
+    // Finger start points; the joystick falls back to the lower-left if it can't be measured.
+    Vector2 JoystickScreenPos() { Rect? r = JoystickRect(); return r.HasValue ? r.Value.center : new Vector2(Screen.width * 0.18f, Screen.height * 0.25f); }
+    Vector2 LookAreaScreenPos() { return new Vector2(Screen.width * 0.72f, Screen.height * 0.4f); }
 
     // Makes the popup's close button obvious: bigger, clearly labelled, with room left for it under the text.
     void StylePopupButton(GameObject popup)
@@ -138,7 +134,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     // Positions are given as a fraction of the screen so they stay correct after a resize/rotation.
-    void OpenPopup(string message, Vector2 screenFraction, Vector2 size, int imageIndex, Color backgroundColor, float backgroundOpacity)
+    void OpenPopup(string message, Vector2 screenFraction, Vector2 size, int imageIndex, Color backgroundColor, float backgroundOpacity, bool freezeInstantly = false)
     {
         if (currentPopup != null) Destroy(currentPopup); // never stack two popups
         FindDeviceSize();
@@ -153,7 +149,14 @@ public class TutorialManager : MonoBehaviour
             if (imageIndex >= 0 && imageIndex < tutorialImages.Length) tutorialBackground.sprite = tutorialImages[imageIndex];
             tutorialBackground.color = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, currentBgOpacity / 100f);
         }
-        StartSpeed(0f, 0.6f);
+        if (freezeInstantly)
+        {
+            // Stop the camera on the spot, e.g. so the view can't drift off the NPC the popup points at.
+            if (speedRoutine != null) StopCoroutine(speedRoutine);
+            speedRoutine = null;
+            Time.timeScale = 0f;
+        }
+        else StartSpeed(0f, 0.6f);
         StartBg(backgroundOpacity, 0.2f);
     }
     public void ClosePopup()
@@ -212,11 +215,11 @@ public class TutorialManager : MonoBehaviour
     }
 
     // Opens a popup and waits until the player closes it.
-    IEnumerator Popup(string message, Vector2 screenFraction, Vector2 size, int imageIndex, Color backgroundColor, float backgroundOpacity)
+    IEnumerator Popup(string message, Vector2 screenFraction, Vector2 size, int imageIndex, Color backgroundColor, float backgroundOpacity, bool freezeInstantly = false)
     {
         // Don't open on top of the ASK reminder or while a conversation is on screen.
         yield return new WaitUntil(() => !ReminderOpen());
-        OpenPopup(message, screenFraction, size, imageIndex, backgroundColor, backgroundOpacity);
+        OpenPopup(message, screenFraction, size, imageIndex, backgroundColor, backgroundOpacity, freezeInstantly);
         yield return new WaitUntil(() => continueTutorial);
     }
 
@@ -257,6 +260,20 @@ public class TutorialManager : MonoBehaviour
         text.color = Done;
     }
 
+    // Slides the objectives panel out, swaps the finished move task for the look task, and slides it back in.
+    IEnumerator SwapToLookObjective()
+    {
+        if (objectiveAnimator != null) objectiveAnimator.SetBool("ObjectiveIn", false);
+        yield return new WaitForSecondsRealtime(StepDelay);
+        if (objective1Text != null && objective2Text != null)
+        {
+            ((RectTransform)objective2Text.transform).anchoredPosition = ((RectTransform)objective1Text.transform).anchoredPosition;
+            objective1Text.gameObject.SetActive(false);
+            objective2Text.gameObject.SetActive(true);
+        }
+        if (objectiveAnimator != null) objectiveAnimator.SetBool("ObjectiveIn", true);
+    }
+
     IEnumerator Tutorial()
     {
         // Realtime waits everywhere: scaled waits stall forever if timeScale is ever left at 0.
@@ -269,9 +286,12 @@ public class TutorialManager : MonoBehaviour
         if (objectiveAnimator != null) objectiveAnimator.SetBool("ObjectiveIn", false);
         yield return new WaitForSecondsRealtime(StepDelay);
 
-        // 1) Moving
+        // 1) Moving: the objectives panel lists one task at a time, matching the step.
+        if (objective2Text != null) objective2Text.gameObject.SetActive(false);
+        if (hints != null) hints.ShowSpotlight(JoystickRect, true, false);
         if (hints != null) hints.ShowFingerDrag(JoystickScreenPos, new[] { new Vector2(0f, 45f), new Vector2(35f, 25f), new Vector2(0f, 45f) });
-        yield return Popup("Let's start by walking.\n\nPress and HOLD the joystick in the bottom left, then slide your thumb the way you want to go.\n(On a computer: W A S D keys)", new Vector2(0.3f, 0.68f), new Vector2(360, 180), 1, new Color(1f, 1f, 1f, 0.5f), 100f);
+        yield return Popup("Let's start by walking.\n\nPress and HOLD the joystick in the bottom left, then slide your thumb the way you want to go.", new Vector2(0.3f, 0.68f), new Vector2(360, 180), 0, DarkBg, 0f, freezeInstantly: true);
+        if (hints != null) hints.HideSpotlight();
         if (objectiveAnimator != null) objectiveAnimator.SetBool("ObjectiveIn", true);
         float walked = 0f;
         Vector3 lastPos = player.transform.position;
@@ -286,10 +306,13 @@ public class TutorialManager : MonoBehaviour
         if (hints != null) hints.HideFinger();
         MarkDone(objective1Text);
         yield return new WaitForSecondsRealtime(0.8f); // let them see the tick before the next instruction
+        yield return SwapToLookObjective();
 
         // 2) Looking around
+        if (hints != null) hints.ShowSpotlight(LookRect, true, false);
         if (hints != null) hints.ShowFingerDrag(LookAreaScreenPos, new[] { new Vector2(-80f, 0f), new Vector2(80f, 0f) });
-        yield return Popup("Nice walking!\n\nNow put your finger on the RIGHT side of the screen and drag it left and right to look around.\n(On a computer: move the mouse)", new Vector2(0.3f, 0.68f), new Vector2(360, 180), 1, new Color(1f, 1f, 1f, 0.5f), 100f);
+        yield return Popup("Nice walking!\n\nNow put your finger on the RIGHT side of the screen and drag it left and right to look around.", new Vector2(0.3f, 0.68f), new Vector2(360, 180), 0, DarkBg, 0f, freezeInstantly: true);
+        if (hints != null) hints.HideSpotlight();
         float looked = 0f;
         Quaternion lastRot = cam != null ? cam.rotation : player.transform.rotation;
         while (looked < requiredLookAngle)
@@ -318,7 +341,7 @@ public class TutorialManager : MonoBehaviour
             float popupX = buttonScreen.x > Screen.width * 0.5f ? 0.32f : 0.68f; // keep the popup away from the button
             if (hints != null) hints.ShowSpotlight(buttonRect, true);
             // Background opacity 0: the spotlight provides the dimming, with a hole over the button.
-            yield return Popup("This round button appears when you're looking at someone.\n\nTap the glowing button to start talking to them!", new Vector2(popupX, 0.6f), new Vector2(360, 170), 0, DarkBg, 0f);
+            yield return Popup("This round button appears when you're looking at someone.\n\nTap the glowing button to start talking to them!", new Vector2(popupX, 0.6f), new Vector2(360, 170), 0, DarkBg, 0f, freezeInstantly: true);
             // Keep a pulsing ring on the button (no dimming) until they've used it.
             if (hints != null) hints.ShowSpotlight(buttonRect, false);
         }
@@ -336,11 +359,7 @@ public class TutorialManager : MonoBehaviour
 
         //End tutorial
         yield return new WaitForSecondsRealtime(StepDelay);
-        GameManager.Instance.mistakesMade = new Mistake[3];
-        for (int i = 0; i < GameManager.Instance.mistakesMade.Length; i++)
-        {
-            GameManager.Instance.mistakesMade[i] = new Mistake("", "", true, -1); // Initialize with default values
-        }
+        GameManager.Instance.ResetMistakes();
         tutorialRoutine = null;
         GameManager.Instance.EndLevel(10, "tutorial");
     }

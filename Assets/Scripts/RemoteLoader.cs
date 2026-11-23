@@ -21,14 +21,28 @@ public class RemoteLoader : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return; // duplicate: don't download again
         }
 #if UNITY_EDITOR
         if (preloadedInEditor) return; // Content was already fetched synchronously by RemoteLoaderEditorBootstrap
 #endif
-        StartCoroutine(DownloadNPCLines(fileUrl));
-        StartCoroutine(DownloadMistakes(mistakesUrl));
-        StartCoroutine(DownloadFormSGLinks(formSGLinksUrl));
+        // Bundled copies first, so the game still works offline or if a download fails;
+        // downloads overwrite them with the latest text when they arrive.
+        fileContent = Fallback("ASKFirstDialogueFinal");
+        mistakesContent = Fallback("ASKFirstMistakes");
+        formSGLinksContent = Fallback("formsglinks");
+        StartCoroutine(Download(fileUrl, text => fileContent = text));
+        StartCoroutine(Download(mistakesUrl, text => mistakesContent = text));
+        StartCoroutine(Download(formSGLinksUrl, text => formSGLinksContent = text));
+    }
 
+    // Snapshot in Assets/Resources/RemoteFallback, refreshed automatically whenever a level is played in the editor.
+    const string FallbackFolder = "RemoteFallback/";
+    static string Fallback(string name)
+    {
+        TextAsset asset = Resources.Load<TextAsset>(FallbackFolder + name);
+        if (asset == null) Debug.LogError("[RemoteLoader] Missing bundled fallback " + name);
+        return asset != null ? asset.text : "";
     }
 
 #if UNITY_EDITOR
@@ -40,15 +54,13 @@ public class RemoteLoader : MonoBehaviour
     {
         Instance = this;
         preloadedInEditor = true;
-        fileContent = FetchBlocking(fileUrl, "ASKFirstDialogueFinal.txt");
-        mistakesContent = FetchBlocking(mistakesUrl, "ASKFirstMistakes.txt");
-        formSGLinksContent = FetchBlocking(formSGLinksUrl, "formsglinks.txt");
+        fileContent = FetchBlocking(fileUrl, "ASKFirstDialogueFinal");
+        mistakesContent = FetchBlocking(mistakesUrl, "ASKFirstMistakes");
+        formSGLinksContent = FetchBlocking(formSGLinksUrl, "formsglinks");
     }
 
-    static string FetchBlocking(string url, string cacheName)
+    static string FetchBlocking(string url, string name)
     {
-        string cacheDir = System.IO.Path.Combine(Application.dataPath, "..", "Library", "RemoteLoaderCache");
-        string cachePath = System.IO.Path.Combine(cacheDir, cacheName);
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
             www.timeout = 10;
@@ -57,73 +69,27 @@ public class RemoteLoader : MonoBehaviour
             while (!www.isDone && UnityEditor.EditorApplication.timeSinceStartup - start < 12) System.Threading.Thread.Sleep(10);
             if (www.isDone && www.result == UnityWebRequest.Result.Success)
             {
-                System.IO.Directory.CreateDirectory(cacheDir);
-                System.IO.File.WriteAllText(cachePath, www.downloadHandler.text);
+                // Keep the bundled fallback in sync with the live text.
+                string path = System.IO.Path.Combine(Application.dataPath, "Resources", FallbackFolder + name + ".txt");
+                if (!System.IO.File.Exists(path) || System.IO.File.ReadAllText(path) != www.downloadHandler.text)
+                    System.IO.File.WriteAllText(path, www.downloadHandler.text);
                 return www.downloadHandler.text;
             }
-            Debug.LogWarning($"[RemoteLoader] Editor preload of {cacheName} failed ({www.error}); trying cache.");
+            Debug.LogWarning($"[RemoteLoader] Editor preload of {name} failed ({www.error}); using bundled fallback.");
         }
-        if (System.IO.File.Exists(cachePath)) return System.IO.File.ReadAllText(cachePath);
-        Debug.LogError($"[RemoteLoader] No network and no cached copy of {cacheName}.");
-        return "";
+        return Fallback(name);
     }
 #endif
 
-    IEnumerator DownloadNPCLines(string url)
+    IEnumerator Download(string url, System.Action<string> onSuccess)
     {
-        Debug.Log("Waiting for response...");
-
-        UnityWebRequest www = UnityWebRequest.Get(url);
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
-            Debug.Log("Failed to download: " + www.error);
-        }
-        else
-        {
-            Debug.Log("Response received!");
-
-            fileContent = www.downloadHandler.text;
-            Debug.Log(fileContent);
-        }
-    }
-    IEnumerator DownloadMistakes(string url)
-    {
-        Debug.Log("Waiting for response...");
-
-        UnityWebRequest www = UnityWebRequest.Get(url);
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log("Failed to download: " + www.error);
-        }
-        else
-        {
-            Debug.Log("Response received!");
-
-            mistakesContent = www.downloadHandler.text;
-            Debug.Log(mistakesContent);
-        }
-    }
-    IEnumerator DownloadFormSGLinks(string url)
-    {
-        Debug.Log("Waiting for response...");
-
-        UnityWebRequest www = UnityWebRequest.Get(url);
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log("Failed to download: " + www.error);
-        }
-        else
-        {
-            Debug.Log("Response received!");
-
-            formSGLinksContent = www.downloadHandler.text;
-            Debug.Log(formSGLinksContent);
+            yield return www.SendWebRequest();
+            if (www.result != UnityWebRequest.Result.Success)
+                Debug.LogError("[RemoteLoader] Failed to download " + url + ": " + www.error);
+            else
+                onSuccess(www.downloadHandler.text);
         }
     }
 }

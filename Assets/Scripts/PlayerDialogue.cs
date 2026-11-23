@@ -24,6 +24,8 @@ public class PlayerDialogue : MonoBehaviour
     public float mood;
     Material moodSlider;
     int optionPicked;
+    RectTransform dialogueBox, option1Button, option2Button;
+    Vector2 option1Home, option2Home; // layout positions from the prefab
     void Start()
     {
         dialogueUI = GameObject.FindGameObjectWithTag("DialogueUI").GetComponent<Canvas>();
@@ -34,6 +36,11 @@ public class PlayerDialogue : MonoBehaviour
         option2Text = dialogueUI.transform.Find("Option 2").GetChild(0).GetComponent<TextMeshProUGUI>();
         option3Text = dialogueUI.transform.Find("Option 3").GetChild(0).GetComponent<TextMeshProUGUI>();
         option4Text = dialogueUI.transform.Find("Option 4").GetChild(0).GetComponent<TextMeshProUGUI>();
+        dialogueBox = (RectTransform)dialogueText.transform.parent;
+        option1Button = (RectTransform)option1Text.transform.parent;
+        option2Button = (RectTransform)option2Text.transform.parent;
+        option1Home = option1Button.anchoredPosition;
+        option2Home = option2Button.anchoredPosition;
         mood = 10;
         moodSlider = dialogueUI.transform.Find("Mood/FillShader").GetComponent<Image>().material;
         moodSlider.SetFloat("_stepValue", mood);
@@ -42,6 +49,10 @@ public class PlayerDialogue : MonoBehaviour
     {
 
         GameManager.Instance.DisplayDialogueUI();
+        // The background-customer intro moves these; always start from the normal layout.
+        dialogueBox.localScale = Vector3.one;
+        option1Button.anchoredPosition = option1Home;
+        option2Button.anchoredPosition = option2Home;
         AmbientNPC ambient = npc.GetComponent<AmbientNPC>();
         StartCoroutine(ambient != null ? AmbientDialogueCoroutine(npc, ambient) : DialogueCoroutine(npc));
 
@@ -57,11 +68,11 @@ public class PlayerDialogue : MonoBehaviour
         npcBehavior.EndEncounter();
         if (!npcBehavior.isShoplifter)
         {
-            npcBehavior.ChangeState("Idle");
+            npcBehavior.ChangeState(NPCState.Idle);
         }
         else
         {
-            npcBehavior.ChangeState("Leaving");
+            npcBehavior.ChangeState(NPCState.Leaving);
         }
         if (npcBehavior.safeDistanceBreached)
         {
@@ -85,45 +96,17 @@ public class PlayerDialogue : MonoBehaviour
             }
             else
             {
-                switch (optionPicked)
+                bool first = optionPicked != 2; // bypass lines only have option 1
+                GameManager.Instance.AddMistake(first ? dialogueLine.option1MistakeId : dialogueLine.option2MistakeId);
+                int nextId = first ? dialogueLine.option1NextId : dialogueLine.option2NextId;
+                if (nextId < 0) // -1 = end conversation, -2 = end and count the objective
                 {
-                    case 1:
-                        GameManager.Instance.AddMistake(dialogueLine.option1MistakeId);
-                        if (dialogueLine.option1NextId == -1)
-                        {
-                            EndDialogue(npc);
-                            break;
-                        }
-                        else if (dialogueLine.option1NextId == -2)
-                        {
-                            EndDialogue(npc);
-                            GameManager.Instance.GetComponent<LevelObjectives>().UpdateObjectives(npc.GetComponent<NPCBehavior>(), mood);
-
-                            break;
-                        }
-                        else
-                        {
-                            dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option1NextId);
-                        }
-                        break;
-                    case 2:
-                        GameManager.Instance.AddMistake(dialogueLine.option2MistakeId);
-                        if (dialogueLine.option2NextId == -1)
-                        {
-                            EndDialogue(npc);
-                            break;
-                        }
-                        else if (dialogueLine.option2NextId == -2)
-                        {
-                            GameManager.Instance.GetComponent<LevelObjectives>().UpdateObjectives(npc.GetComponent<NPCBehavior>(), mood);
-                            break;
-                        }
-                        else
-                        {
-                            dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(dialogueLine.option2NextId);
-                        }
-                        break;
+                    EndDialogue(npc);
+                    if (nextId == -2)
+                        GameManager.Instance.GetComponent<LevelObjectives>().UpdateObjectives(npc.GetComponent<NPCBehavior>(), mood);
+                    yield break;
                 }
+                dialogueLine = npc.GetComponent<NPCDialogue>().AdvanceDialogue(nextId);
             }
 
 
@@ -163,32 +146,10 @@ public class PlayerDialogue : MonoBehaviour
                 advanceDialogue = false;
                 if (dialogueLine.optionsBypass == false)
                 {
-                    switch (optionPicked)
-                    {
-                        case 1:
-                            StartCoroutine(MoodChange(dialogueLine.option1MoodChange));
-                            if (dialogueLine.option1MoodChange >= 0)
-                            {
-                                npcAnimator.Animate("Happy");
-                            }
-                            else if (dialogueLine.option1MoodChange < 0)
-                            {
-                                npcAnimator.Animate("Upset");
-                            }
-                            break;
-                        case 2:
-                            StartCoroutine(MoodChange(dialogueLine.option2MoodChange));
-                            if (dialogueLine.option2MoodChange >= 0)
-                            {
-                                npcAnimator.Animate("Happy");
-                            }
-                            else if (dialogueLine.option2MoodChange < 0)
-                            {
-                                npcAnimator.Animate("Upset");
-                            }
-                            break;
-                    }
-
+                    int moodChange = optionPicked == 2 ? dialogueLine.option2MoodChange : dialogueLine.option1MoodChange;
+                    StartCoroutine(MoodChange(moodChange));
+                    npcAnimator.Animate(moodChange >= 0 ? NPCAnimation.Happy : NPCAnimation.Upset);
+                    SoundManager.Instance.PlaySound(Resources.Load<AudioClip>(moodChange >= 0 ? "SFX/goodchoice" : "SFX/badchoice"));
                 }
             }
         }
@@ -201,7 +162,12 @@ public class PlayerDialogue : MonoBehaviour
     IEnumerator AmbientDialogueCoroutine(GameObject npc, AmbientNPC ambient)
     {
         bool twoOptions = ambient.approaches.Length > 1;
-        dialogueText.text = ambient.promptText;
+        // No box yet: the approach lines sit centred vertically until one is picked.
+        dialogueBox.localScale = Vector3.zero;
+        dialogueText.text = "";
+        float centreShift = -(twoOptions ? (option1Home.y + option2Home.y) / 2f : option1Home.y);
+        option1Button.anchoredPosition = option1Home + Vector2.up * centreShift;
+        option2Button.anchoredPosition = option2Home + Vector2.up * centreShift;
         option1Text.text = ambient.approaches[0].playerLine;
         option2Text.text = twoOptions ? ambient.approaches[1].playerLine : "";
         option2Text.transform.parent.gameObject.SetActive(twoOptions);
@@ -209,10 +175,11 @@ public class PlayerDialogue : MonoBehaviour
         yield return new WaitUntil(() => advanceDialogue);
         advanceDialogue = false;
 
-        npc.GetComponent<NPCAnimator>().Animate("Happy");
+        npc.GetComponent<NPCAnimator>().Animate(NPCAnimation.Happy);
         option2Text.transform.parent.gameObject.SetActive(false);
         option1Text.text = ambient.closingLine;
         string reply = ambient.approaches[Mathf.Clamp(optionPicked - 1, 0, ambient.approaches.Length - 1)].npcReply;
+        StartCoroutine(RevealDialogueBox(option1Button.anchoredPosition));
         Coroutine textScroll = StartCoroutine(TextScrolling(reply));
         yield return new WaitUntil(() => advanceDialogue);
         if (textScrolling) // first tap skips the scroll, like the main dialogue
@@ -225,6 +192,20 @@ public class PlayerDialogue : MonoBehaviour
         }
         advanceDialogue = false;
         EndDialogue(npc);
+    }
+    // Box pops in to full size while the button slides back to its normal spot below it.
+    IEnumerator RevealDialogueBox(Vector2 buttonFrom)
+    {
+        const float duration = 0.35f;
+        for (float t = 0f; t < 1f; t += Time.deltaTime / duration)
+        {
+            float back = 1f + 2.70158f * Mathf.Pow(t - 1f, 3f) + 1.70158f * Mathf.Pow(t - 1f, 2f); // ease-out-back: slight overshoot
+            dialogueBox.localScale = Vector3.one * back;
+            option1Button.anchoredPosition = Vector2.Lerp(buttonFrom, option1Home, 1f - Mathf.Pow(1f - t, 3f));
+            yield return null;
+        }
+        dialogueBox.localScale = Vector3.one;
+        option1Button.anchoredPosition = option1Home;
     }
     IEnumerator TextScrolling(string dialogueLine)
     {
